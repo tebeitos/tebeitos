@@ -1,0 +1,31 @@
+---
+import ComicLayout from '../../layouts/Comic.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const comics = await getCollection('comics');
+  return comics.map(comic => ({
+    params: { slug: comic.slug },
+    props:  { comic },
+  }));
+}
+
+const { comic } = Astro.props;
+const { Content } = await comic.render();
+---
+
+<ComicLayout
+  title={comic.data.title}
+  autor={comic.data.autor}
+  editorial={comic.data.editorial}
+  edad={comic.data.edad}
+  paginas={comic.data.paginas}
+  precio={comic.data.precio}
+  dificultad={comic.data.dificultad}
+  valoracion={comic.data.valoracion}
+  amazon={comic.data.amazon}
+  tipo={comic.data.tipo}
+  temas={comic.data.temas}
+>
+  <Content />
+</ComicLayout>

@@ -1,0 +1,38 @@
+import { defineCollection, z } from 'astro:content';
+
+const comicsCollection = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title:      z.string(),
+    autor:      z.string(),
+    editorial:  z.string(),
+    edad:       z.string(),
+    paginas:    z.number(),
+    precio:     z.number(),
+    dificultad: z.number().min(1).max(5),
+    valoracion: z.number().min(1).max(5),
+    temas:      z.array(z.string()),
+    tipo:       z.enum(['clasico', 'actual']),
+    imagen:     z.string().optional(),
+    amazon:     z.string().url(),
+    fecha:      z.date(),
+    destacado:  z.boolean().default(false),
+  }),
+});
+
+const blogCollection = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title:       z.string(),
+    descripcion: z.string(),
+    fecha:       z.date(),
+    categoria:   z.string(),
+    imagen:      z.string().optional(),
+    destacado:   z.boolean().default(false),
+  }),
+});
+
+export const collections = {
+  comics: comicsCollection,
+  blog:   blogCollection,
+};

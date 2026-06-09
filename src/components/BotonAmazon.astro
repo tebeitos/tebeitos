@@ -1,0 +1,28 @@
+---
+export interface Props {
+  url: string;
+  texto?: string;
+}
+
+const { url, texto = 'Comprar en Amazon' } = Astro.props;
+---
+
+<a
+  href={url}
+  target="_blank"
+  rel="noopener noreferrer nofollow"
+  class="boton-amazon group inline-flex items-center gap-2 font-fredoka text-base text-hueso bg-rojo px-6 py-3 border-3 border-negro shadow-comic hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-100 relative"
+  aria-label={texto}
+  id="btn-amazon"
+>
+  <span class="text-lg">🛒</span>
+  <span>{texto}</span>
+
+  <!-- ¡ZAS! que aparece en hover -->
+  <span
+    class="zas-badge absolute -top-5 -right-4 bg-mostaza text-negro font-bangers text-xs px-2 py-0.5 border-2 border-negro rotate-12 opacity-0 group-hover:opacity-100 group-hover:scale-110 transition-all duration-150 pointer-events-none"
+    aria-hidden="true"
+  >
+    ¡ZAS!
+  </span>
+</a>

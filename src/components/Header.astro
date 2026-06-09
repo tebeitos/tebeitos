@@ -1,0 +1,94 @@
+---
+const navLinks = [
+  { href: '/comics/', label: 'Cómics' },
+  { href: '/cromos/', label: 'Cromos' },
+  { href: '/cartas/', label: 'Cartas' },
+  { href: '/juguetes/', label: 'Juguetes' },
+  { href: '/blog/', label: 'Blog' },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="bg-crema border-b-[3px] border-negro sticky top-0 z-50">
+  <div class="contenedor flex items-center justify-between py-5 gap-4">
+
+    <!-- Logo -->
+    <a href="/" class="flex items-center group flex-shrink-0" aria-label="Tebeitos — Inicio">
+      <img
+        src="/image/A _ Principal horizontal.png"
+        alt="Tebeitos — El Kiosko de Siempre"
+        class="h-24 w-auto group-hover:opacity-90 transition-opacity duration-150"
+      />
+    </a>
+
+    <!-- Nav desktop -->
+    <nav class="hidden md:flex items-center gap-1" aria-label="Navegación principal">
+      {navLinks.map(link => (
+        <a
+          href={link.href}
+          class={`font-fredoka text-sm px-3 py-2 border-2 transition-all duration-150 hover:bg-negro hover:text-crema
+            ${currentPath.startsWith(link.href)
+              ? 'bg-negro text-crema border-negro'
+              : 'border-transparent text-negro hover:border-negro'
+            }`}
+        >
+          {link.label}
+        </a>
+      ))}
+    </nav>
+
+    <!-- Hamburger mobile -->
+    <button
+      id="menu-toggle"
+      class="md:hidden flex flex-col gap-1.5 p-2 border-2 border-negro bg-mostaza hover:bg-rojo hover:text-hueso transition-colors"
+      aria-label="Abrir menú"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+    >
+      <span class="block w-5 h-0.5 bg-negro"></span>
+      <span class="block w-5 h-0.5 bg-negro"></span>
+      <span class="block w-5 h-0.5 bg-negro"></span>
+    </button>
+  </div>
+
+  <!-- Menú móvil -->
+  <div
+    id="mobile-menu"
+    class="md:hidden hidden bg-crema border-t-4 border-negro"
+    aria-hidden="true"
+  >
+    <nav class="contenedor py-4 flex flex-col gap-1" aria-label="Menú móvil">
+      {navLinks.map(link => (
+        <a
+          href={link.href}
+          class={`font-fredoka text-base px-4 py-3 border-2 border-negro transition-colors hover:bg-negro hover:text-crema
+            ${currentPath.startsWith(link.href) ? 'bg-negro text-crema' : 'bg-hueso text-negro'}`}
+        >
+          {link.label}
+        </a>
+      ))}
+    </nav>
+  </div>
+</header>
+
+<script>
+  const toggle = document.getElementById('menu-toggle');
+  const menu   = document.getElementById('mobile-menu');
+
+  toggle?.addEventListener('click', () => {
+    const isOpen = !menu?.classList.contains('hidden');
+    menu?.classList.toggle('hidden');
+    toggle.setAttribute('aria-expanded', String(!isOpen));
+    menu?.setAttribute('aria-hidden', String(isOpen));
+  });
+
+  // Cerrar menú al hacer clic en un enlace
+  menu?.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      menu.classList.add('hidden');
+      toggle?.setAttribute('aria-expanded', 'false');
+      menu.setAttribute('aria-hidden', 'true');
+    });
+  });
+</script>

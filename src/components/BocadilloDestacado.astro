@@ -1,0 +1,50 @@
+---
+export interface Props {
+  color?: 'mostaza' | 'rojo' | 'crema';
+}
+
+const { color = 'mostaza' } = Astro.props;
+
+const estilos: Record<string, { bg: string; border: string; text: string }> = {
+  mostaza: { bg: '#E8A01B', border: '#1B1714', text: '#1B1714' },
+  rojo:    { bg: '#E1352A', border: '#1B1714', text: '#FBF3E2' },
+  crema:   { bg: '#F3E9D2', border: '#1B1714', text: '#1B1714' },
+};
+
+const e = estilos[color];
+---
+
+<div class="bocadillo-wrapper relative inline-block max-w-prose">
+  <div
+    class="bocadillo-body relative font-nunito font-semibold text-base leading-snug px-6 py-4"
+    style={`
+      background-color: ${e.bg};
+      color: ${e.text};
+      border: 3px solid ${e.border};
+      border-radius: 18px;
+      box-shadow: 4px 4px 0 ${e.border};
+    `}
+  >
+    <slot />
+  </div>
+
+  <!-- Punta del bocadillo (triángulo apuntando abajo-izquierda) -->
+  <div
+    class="absolute left-8 -bottom-[18px] w-0 h-0"
+    style={`
+      border-left: 12px solid transparent;
+      border-right: 8px solid transparent;
+      border-top: 20px solid ${e.border};
+    `}
+    aria-hidden="true"
+  ></div>
+  <div
+    class="absolute left-[33px] -bottom-[12px] w-0 h-0"
+    style={`
+      border-left: 9px solid transparent;
+      border-right: 6px solid transparent;
+      border-top: 15px solid ${e.bg};
+    `}
+    aria-hidden="true"
+  ></div>
+</div>

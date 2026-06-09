@@ -1,0 +1,299 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import TarjetaComic from '../components/TarjetaComic.astro';
+import SeccionKiosko from '../components/SeccionKiosko.astro';
+import Onomatopeya from '../components/Onomatopeya.astro';
+import BotonAmazon from '../components/BotonAmazon.astro';
+import { getCollection } from 'astro:content';
+
+// Cómics destacados
+const todosLosComics = await getCollection('comics');
+const destacados = todosLosComics
+  .filter(c => c.data.destacado)
+  .sort((a, b) => b.data.fecha.valueOf() - a.data.fecha.valueOf())
+  .slice(0, 6);
+
+// Blog recientes
+const todosLosArticulos = await getCollection('blog');
+const recientes = todosLosArticulos
+  .sort((a, b) => b.data.fecha.valueOf() - a.data.fecha.valueOf())
+  .slice(0, 3);
+
+// Secciones del kiosko
+const secciones = [
+  {
+    href: '/comics/',
+    icono: '📚',
+    titulo: 'Cómics',
+    desc: 'De ayer y de hoy. Clásicos del kiosko y novedades de temporada.',
+    color: 'bg-mostaza',
+  },
+  {
+    href: '/cromos/',
+    icono: '🃏',
+    titulo: 'Cromos',
+    desc: 'Álbumes Panini, sobres y colecciones para completar.',
+    color: 'bg-rojo',
+    textColor: 'text-hueso',
+  },
+  {
+    href: '/cartas/',
+    icono: '🎴',
+    titulo: 'Cartas',
+    desc: 'Pokémon, Dragon Ball y todas las cartas coleccionables.',
+    color: 'bg-terracota',
+    textColor: 'text-hueso',
+  },
+  {
+    href: '/juguetes/',
+    icono: '🎮',
+    titulo: 'Juguetes retro',
+    desc: 'Los juguetes de los 80 y 90 que nunca olvidarás.',
+    color: 'bg-negro',
+    textColor: 'text-crema',
+  },
+];
+---
+
+<Base
+  title="Tebeitos — El Kiosko de Siempre | Cómics, Cromos y Nostalgia"
+  description="Tu kiosko online de cómics clásicos y actuales, cromos Panini, cartas y juguetes retro. El kiosko de siempre, ahora en internet."
+>
+  <Header slot="header" />
+
+  <!-- ============================================================
+       BLOQUE 1 — HERO: El Escaparate del Kiosko
+  ============================================================ -->
+  <section class="relative overflow-hidden trama-bg border-b-4 border-negro">
+    <!-- Speed lines decorativas -->
+    <div class="absolute inset-0 speed-lines opacity-60 pointer-events-none" aria-hidden="true"></div>
+
+    <div class="contenedor relative z-10 py-8 lg:py-12">
+      <div class="flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
+
+        <!-- Texto izquierda -->
+        <div class="flex-1 text-center lg:text-left">
+          <!-- Badge novedad -->
+          <div class="inline-flex items-center gap-2 bg-rojo text-hueso font-fredoka text-sm px-4 py-1.5 border-3 border-negro shadow-comic mb-6">
+            <span>🔥</span>
+            <span>MUNDIAL PANINI 2026 — ¡Ya disponible!</span>
+          </div>
+
+          <!-- Título hero -->
+          <h1 class="font-bangers text-6xl lg:text-8xl text-negro leading-none tracking-bangers mb-4"
+              style="text-shadow: 4px 4px 0 #E8A01B, 6px 6px 0 #1B1714;">
+            EL KIOSKO<br/>
+            <span class="text-rojo" style="text-shadow: 4px 4px 0 #1B1714;">DE SIEMPRE</span>
+          </h1>
+
+          <p class="font-fredoka text-xl text-negro/80 mb-8 max-w-lg mx-auto lg:mx-0">
+            Cómics de ayer y de hoy, cromos, cartas y juguetes retro.<br/>
+            <strong class="text-rojo">El kiosko de tu barrio, ahora en internet.</strong>
+          </p>
+
+          <div class="flex flex-wrap gap-4 justify-center lg:justify-start">
+            <a
+              href="/comics/"
+              class="font-bangers text-xl text-negro bg-mostaza px-8 py-3 border-3 border-negro shadow-comic hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-100 tracking-bangers"
+            >
+              VER CÓMICS
+            </a>
+            <a
+              href="/cromos/panini-mundial-2026/"
+              class="font-bangers text-xl text-hueso bg-rojo px-8 py-3 border-3 border-negro shadow-comic hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-100 tracking-bangers"
+            >
+              ÁLBUM PANINI
+            </a>
+          </div>
+        </div>
+
+        <!-- Ilustración del kiosko (placeholder) -->
+        <div class="flex-1 max-w-md lg:max-w-none w-full relative">
+          <div class="comic-border-lg bg-trama/40 aspect-[4/3] flex flex-col items-center justify-center gap-4 relative overflow-hidden">
+            <!-- Decoración interior -->
+            <div class="absolute top-4 left-4">
+              <Onomatopeya texto="¡ZAS!" color="rojo" rotacion={-12} />
+            </div>
+            <div class="absolute bottom-6 right-4">
+              <Onomatopeya texto="¡PUMBA!" color="mostaza" rotacion={8} />
+            </div>
+
+            <span class="text-7xl">🏪</span>
+            <div class="text-center px-8">
+              <p class="font-bangers text-2xl text-negro tracking-bangers">ILUSTRACIÓN KIOSKO</p>
+              <p class="font-fredoka text-sm text-negro/60">PRÓXIMAMENTE</p>
+            </div>
+          </div>
+
+          <!-- ¡ZAS! flotante animado -->
+          <div class="absolute -top-6 -right-4 animate-float">
+            <Onomatopeya texto="¡PLOF!" color="terracota" rotacion={15} />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       BLOQUE 2 — BANNER PANINI
+  ============================================================ -->
+  <a
+    href="/cromos/panini-mundial-2026/"
+    class="block bg-rojo border-b-4 border-negro hover:bg-terracota transition-colors duration-150 group"
+    aria-label="Guía completa Panini Mundial 2026"
+  >
+    <div class="contenedor py-4 flex items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <span class="text-2xl">🔥</span>
+        <span class="font-bangers text-xl lg:text-2xl text-hueso tracking-bangers uppercase">
+          MUNDIAL PANINI 2026 — Guía completa aquí
+        </span>
+      </div>
+      <span class="font-fredoka text-hueso text-sm hidden md:block group-hover:translate-x-1 transition-transform">
+        Leer guía →
+      </span>
+    </div>
+  </a>
+
+  <!-- ============================================================
+       BLOQUE 3 — SECCIONES DEL KIOSKO
+  ============================================================ -->
+  <SeccionKiosko titulo="Las secciones del kiosko" fondo="hueso" id="secciones">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      {secciones.map(s => (
+        <a
+          href={s.href}
+          class={`comic-border-lg ${s.color} ${s.textColor ?? 'text-negro'} p-6 flex flex-col gap-3 group hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-100`}
+        >
+          <span class="text-5xl">{s.icono}</span>
+          <h3 class="font-bangers text-2xl tracking-bangers uppercase leading-tight">
+            {s.titulo}
+          </h3>
+          <p class={`font-nunito text-sm leading-snug ${s.textColor ?? 'text-negro/70'}`}>
+            {s.desc}
+          </p>
+          <span class={`font-fredoka text-sm mt-auto group-hover:underline ${s.textColor ?? 'text-negro'}`}>
+            Entrar →
+          </span>
+        </a>
+      ))}
+    </div>
+  </SeccionKiosko>
+
+  <!-- ============================================================
+       BLOQUE 4 — CÓMICS DESTACADOS
+  ============================================================ -->
+  <SeccionKiosko titulo="En el kiosko esta semana" fondo="crema" id="destacados">
+    <div class="grid-comics">
+      {destacados.map(comic => (
+        <TarjetaComic
+          titulo={comic.data.title}
+          slug={comic.slug}
+          autor={comic.data.autor}
+          edad={comic.data.edad}
+          valoracion={comic.data.valoracion}
+          precio={comic.data.precio}
+          amazon={comic.data.amazon}
+          tipo={comic.data.tipo}
+        />
+      ))}
+    </div>
+
+    <div class="mt-10 text-center">
+      <a
+        href="/comics/"
+        class="font-bangers text-xl text-negro border-3 border-negro px-8 py-3 shadow-comic hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-100 inline-block tracking-bangers bg-crema"
+      >
+        VER TODOS LOS CÓMICS →
+      </a>
+    </div>
+  </SeccionKiosko>
+
+  <!-- ============================================================
+       BLOQUE 5 — BANNER NOSTALGIA
+  ============================================================ -->
+  <section class="bg-mostaza border-y-4 border-negro py-16 relative overflow-hidden">
+    <!-- Onomatopeyas decorativas -->
+    <div class="absolute top-4 left-8 opacity-30" aria-hidden="true">
+      <Onomatopeya texto="¡CHISPUM!" color="terracota" rotacion={-8} />
+    </div>
+    <div class="absolute bottom-4 right-8 opacity-30" aria-hidden="true">
+      <Onomatopeya texto="¡ZAS!" color="rojo" rotacion={12} />
+    </div>
+
+    <div class="contenedor text-center relative z-10">
+      <p class="font-bangers text-4xl lg:text-6xl text-negro tracking-bangers leading-tight mb-4">
+        ¿Recuerdas el kiosko de tu barrio?
+      </p>
+      <p class="font-bangers text-3xl lg:text-4xl text-negro/70 tracking-bangers mb-2">
+        Nosotros tampoco lo hemos olvidado.
+      </p>
+      <p class="font-nunito text-lg text-negro/80 mb-8 max-w-xl mx-auto">
+        Cómics clásicos, cromos, juguetes... todo lo de siempre, con el cariño de siempre.
+      </p>
+      <a
+        href="/comics/clasicos/"
+        class="font-bangers text-xl text-hueso bg-negro px-8 py-3 border-3 border-negro shadow-comic-rojo hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-100 inline-block tracking-bangers"
+      >
+        VER CÓMICS CLÁSICOS →
+      </a>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       BLOQUE 6 — ÚLTIMAS DEL BLOG
+  ============================================================ -->
+  <SeccionKiosko titulo="Del cuaderno de Tebeitos" fondo="hueso" id="blog">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {recientes.map(articulo => {
+        const fecha = new Intl.DateTimeFormat('es-ES', {
+          day: 'numeric', month: 'short', year: 'numeric'
+        }).format(articulo.data.fecha);
+
+        return (
+          <article class="comic-border bg-crema flex flex-col group hover:shadow-comic-lg transition-shadow duration-150">
+            <!-- Imagen placeholder -->
+            <div class="h-36 bg-trama/50 border-b-3 border-negro flex items-center justify-center">
+              <span class="text-4xl">📝</span>
+            </div>
+
+            <div class="p-5 flex flex-col gap-3 flex-1">
+              <span class="font-fredoka text-xs text-rojo uppercase tracking-wide">{articulo.data.categoria}</span>
+
+              <h3 class="font-bangers text-xl tracking-bangers text-negro leading-tight group-hover:text-rojo transition-colors line-clamp-2">
+                <a href={`/blog/${articulo.slug}/`}>{articulo.data.title}</a>
+              </h3>
+
+              <p class="font-nunito text-sm text-negro/70 line-clamp-2 flex-1">
+                {articulo.data.descripcion}
+              </p>
+
+              <div class="flex items-center justify-between mt-auto pt-3 border-t-2 border-negro/10">
+                <span class="font-fredoka text-xs text-trama">{fecha}</span>
+                <a
+                  href={`/blog/${articulo.slug}/`}
+                  class="font-fredoka text-xs text-rojo hover:underline"
+                >
+                  Leer más →
+                </a>
+              </div>
+            </div>
+          </article>
+        );
+      })}
+    </div>
+
+    <div class="mt-10 text-center">
+      <a
+        href="/blog/"
+        class="font-bangers text-xl text-negro border-3 border-negro px-8 py-3 shadow-comic hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-100 inline-block tracking-bangers bg-hueso"
+      >
+        VER TODO EL BLOG →
+      </a>
+    </div>
+  </SeccionKiosko>
+
+  <Footer slot="footer" />
+</Base>

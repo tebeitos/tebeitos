@@ -1,0 +1,147 @@
+---
+import Base from './Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import FichaRapida from '../components/FichaRapida.astro';
+import BotonAmazon from '../components/BotonAmazon.astro';
+import BocadilloDestacado from '../components/BocadilloDestacado.astro';
+
+export interface Props {
+  title: string;
+  autor: string;
+  editorial: string;
+  edad: string;
+  paginas: number;
+  precio: number;
+  dificultad: number;
+  valoracion: number;
+  amazon: string;
+  tipo: 'clasico' | 'actual';
+  temas: string[];
+}
+
+const {
+  title,
+  autor,
+  editorial,
+  edad,
+  paginas,
+  precio,
+  dificultad,
+  valoracion,
+  amazon,
+  tipo,
+  temas,
+} = Astro.props;
+
+const descripcion = `Reseña de ${title} de ${autor}. Editorial ${editorial}. Recomendado para niños de ${edad} años. Cómpralo en Amazon España.`;
+
+const breadcrumbs = [
+  { label: 'Cómics', href: '/comics/' },
+  { label: title, href: '' },
+];
+
+// Schema JSON-LD: Book + Review
+const bookSchema = {
+  "@context": "https://schema.org",
+  "@type": "Book",
+  "name": title,
+  "author": { "@type": "Person", "name": autor },
+  "publisher": { "@type": "Organization", "name": editorial },
+  "numberOfPages": paginas,
+  "review": {
+    "@type": "Review",
+    "reviewRating": {
+      "@type": "Rating",
+      "ratingValue": valoracion,
+      "bestRating": 5,
+    },
+    "author": { "@type": "Organization", "name": "Tebeitos" },
+  },
+};
+---
+
+<Base title={title} description={descripcion} breadcrumbs={breadcrumbs}>
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(bookSchema)} />
+
+  <Header slot="header" />
+
+  <!-- Breadcrumb visual -->
+  <nav class="contenedor pt-4 pb-2" aria-label="Ruta de navegación">
+    <ol class="flex items-center gap-2 font-fredoka text-sm text-negro/70">
+      <li><a href="/" class="hover:text-rojo transition-colors">Inicio</a></li>
+      <li class="text-trama">›</li>
+      <li><a href="/comics/" class="hover:text-rojo transition-colors">Cómics</a></li>
+      <li class="text-trama">›</li>
+      <li class="text-negro font-semibold truncate max-w-[200px]">{title}</li>
+    </ol>
+  </nav>
+
+  <!-- Cabecera de la reseña -->
+  <section class="contenedor py-8">
+    <div class="flex flex-col lg:flex-row gap-8 items-start">
+
+      <!-- Portada placeholder -->
+      <div class="w-full lg:w-56 flex-shrink-0">
+        <div class="img-placeholder comic-border aspect-[2/3] flex flex-col gap-2">
+          <span class="text-2xl">📚</span>
+          <span class="font-fredoka text-xs text-center">Portada próximamente</span>
+        </div>
+      </div>
+
+      <!-- Info principal -->
+      <div class="flex-1">
+        <!-- Etiqueta tipo -->
+        <span class={`inline-block font-fredoka text-xs px-3 py-1 border-2 border-negro mb-3 ${tipo === 'clasico' ? 'bg-terracota text-hueso' : 'bg-mostaza text-negro'}`}>
+          {tipo === 'clasico' ? '⭐ CLÁSICO DEL KIOSKO' : '🆕 CÓMIC ACTUAL'}
+        </span>
+
+        <h1 class="titulo-seccion text-4xl lg:text-5xl mb-2">{title}</h1>
+        <p class="font-fredoka text-lg text-terracota mb-4">
+          {autor} · {editorial}
+        </p>
+
+        <!-- Temas -->
+        <div class="flex flex-wrap gap-2 mb-6">
+          {temas.map(tema => (
+            <span class="badge-edad font-nunito text-xs capitalize">{tema}</span>
+          ))}
+        </div>
+
+        <!-- Ficha rápida -->
+        <FichaRapida
+          edad={edad}
+          paginas={paginas}
+          editorial={editorial}
+          precio={precio}
+          dificultad={dificultad}
+          valoracion={valoracion}
+        />
+
+        <!-- Botón Amazon -->
+        <div class="mt-6">
+          <BotonAmazon url={amazon} />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cuerpo MDX -->
+  <article class="contenedor pb-16">
+    <div class="max-w-3xl prose-tebeitos">
+      <slot />
+    </div>
+
+    <!-- CTA final -->
+    <div class="mt-12 max-w-3xl">
+      <BocadilloDestacado color="rojo">
+        ¿Lo quieres para tus hijos? Encuéntralo en Amazon España con entrega rápida.
+      </BocadilloDestacado>
+      <div class="mt-4">
+        <BotonAmazon url={amazon} texto="Comprar ahora en Amazon →" />
+      </div>
+    </div>
+  </article>
+
+  <Footer slot="footer" />
+</Base>

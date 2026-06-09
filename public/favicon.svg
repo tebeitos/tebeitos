@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Fondo mostaza -->
+  <rect width="100" height="100" fill="#E8A01B" rx="12"/>
+  <!-- Contorno negro -->
+  <rect width="100" height="100" fill="none" stroke="#1B1714" stroke-width="6" rx="12"/>
+  <!-- Letra T en Bangers style -->
+  <text
+    x="50" y="72"
+    font-family="Arial Black, sans-serif"
+    font-weight="900"
+    font-size="72"
+    text-anchor="middle"
+    fill="#1B1714"
+    letter-spacing="-2"
+  >T</text>
+  <!-- Pequeña estrella decorativa -->
+  <polygon
+    points="85,8 88,18 98,18 90,24 93,34 85,28 77,34 80,24 72,18 82,18"
+    fill="#E1352A"
+    stroke="#1B1714"
+    stroke-width="2"
+  />
+</svg>

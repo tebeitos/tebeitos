@@ -1,0 +1,93 @@
+---
+export interface Props {
+  title: string;
+  description?: string;
+  imagen?: string;
+  breadcrumbs?: { label: string; href: string }[];
+}
+
+const {
+  title,
+  description = 'Tu kiosko online de cómics clásicos y actuales, cromos Panini, cartas y juguetes retro. El kiosko de siempre, ahora en internet.',
+  imagen = '/images/og-tebeitos.jpg',
+  breadcrumbs = [],
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const siteName = 'Tebeitos — El Kiosko de Siempre';
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://tebeitos.com" },
+    ...breadcrumbs.map((b, i) => ({
+      "@type": "ListItem",
+      "position": i + 2,
+      "name": b.label,
+      "item": `https://tebeitos.com${b.href}`,
+    })),
+  ],
+};
+---
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- SEO -->
+    <title>{title} | Tebeitos</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={`${title} | Tebeitos`} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={imagen} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={siteName} />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={`${title} | Tebeitos`} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={imagen} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/image/3 _ Icono T _favicon _ avatar_.png" />
+    <link rel="apple-touch-icon" href="/image/3 _ Icono T _favicon _ avatar_.png" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bangers&family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Estilos globales -->
+    <link rel="stylesheet" href="/src/styles/global.css" />
+
+    <!-- Schema: BreadcrumbList -->
+    {breadcrumbs.length > 0 && (
+      <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    )}
+
+    <!-- GA4 -->
+    <!-- GA4 aquí -->
+  </head>
+  <body>
+    <slot name="header" />
+    <main>
+      <slot />
+    </main>
+    <slot name="footer" />
+  </body>
+</html>
+
+<style is:global>
+  @import '../styles/global.css';
+</style>

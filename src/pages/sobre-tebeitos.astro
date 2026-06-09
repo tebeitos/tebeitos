@@ -1,0 +1,105 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import BocadilloDestacado from '../components/BocadilloDestacado.astro';
+import Onomatopeya from '../components/Onomatopeya.astro';
+---
+
+<Base
+  title="Sobre Tebeitos — Quiénes somos"
+  description="Tebeitos es el kiosko de siempre, ahora en internet. Conoce la historia detrás del portal y por qué creemos en el poder del cómic y el coleccionismo."
+  breadcrumbs={[{ label: 'Sobre Tebeitos', href: '/sobre-tebeitos/' }]}
+>
+  <Header slot="header" />
+
+  <!-- Breadcrumb -->
+  <nav class="contenedor pt-4 pb-2" aria-label="Ruta de navegación">
+    <ol class="flex items-center gap-2 font-fredoka text-sm text-negro/70">
+      <li><a href="/" class="hover:text-rojo transition-colors">Inicio</a></li>
+      <li class="text-trama">›</li>
+      <li class="text-negro font-semibold">Sobre Tebeitos</li>
+    </ol>
+  </nav>
+
+  <!-- Hero -->
+  <section class="trama-bg border-b-4 border-negro py-16">
+    <div class="contenedor flex flex-col lg:flex-row items-center gap-10">
+      <div class="flex-1">
+        <h1 class="titulo-seccion text-5xl lg:text-7xl mb-4">
+          ¿Quiénes somos?
+        </h1>
+        <p class="font-fredoka text-xl text-negro/80 max-w-xl">
+          Somos el kiosko de tu barrio, pero en internet.
+        </p>
+      </div>
+      <div class="relative flex-shrink-0">
+        <div class="comic-border-lg bg-mostaza w-40 h-40 flex items-center justify-center">
+          <span class="text-7xl">🏪</span>
+        </div>
+        <div class="absolute -top-4 -right-6 animate-float">
+          <Onomatopeya texto="¡HOLA!" color="rojo" rotacion={10} />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contenido -->
+  <div class="contenedor py-16 max-w-3xl prose-tebeitos">
+
+    <h2>El kiosko que no cierra</h2>
+    <p>
+      Tebeitos nació de una idea sencilla: ¿y si el kiosko de tu barrio nunca hubiera cerrado?
+      Ese kiosko donde había un tebeo de Mortadelo para cada semana, un álbum de cromos Panini
+      en cada Mundial, y el dependiente que te guardaba el último número cuando se agotaba.
+    </p>
+
+    <p>
+      Ese kiosko ya no existe en la esquina. Los hay menos, están más lejos, y muchos cerraron.
+      Pero los cómics que vendían siguen siendo igual de buenos. Y nosotros queremos que los
+      niños de hoy los descubran.
+    </p>
+
+    <h2>Qué hacemos en Tebeitos</h2>
+    <p>
+      Tebeitos es un portal de recomendaciones. No somos una tienda: somos el amigo que ha
+      leído todos los cómics y te dice cuál le encantará a tu hijo de 7 años, cuál compartir
+      con los abuelos, y cuál es el primero a comprar si nunca han leído un tebeo.
+    </p>
+
+    <p>
+      Cada reseña la escribimos con honestidad. Si un cómic no nos convence, lo decimos. Si nos
+      parece imprescindible, también. El objetivo es ayudarte a elegir bien, no vender más.
+    </p>
+
+    <div class="my-8">
+      <BocadilloDestacado color="mostaza">
+        Queremos ser el kiosquero de confianza que te recomienda lo que de verdad vale la pena.
+      </BocadilloDestacado>
+    </div>
+
+    <h2>¿Y los enlaces de Amazon?</h2>
+    <p>
+      Tebeitos participa en el Programa de Afiliados de Amazon España. Esto significa que cuando
+      compras un cómic a través de nuestros enlaces, recibimos una pequeña comisión sin coste
+      adicional para ti. Esto es lo que nos permite mantener el sitio funcionando.
+    </p>
+    <p>
+      Pero nuestra política es clara: <strong>nunca recomendamos algo que no nos gusta solo por
+      la comisión</strong>. Si está aquí, es porque creemos que vale la pena.
+    </p>
+
+    <h2>¿Quién hay detrás?</h2>
+    <p>
+      Tebeitos somos personas que crecimos con Mortadelo y Filemón, Astérix y los cromos del
+      Mundial, y que ahora queremos transmitir esa misma magia a la siguiente generación.
+    </p>
+    <p>
+      Si tienes sugerencias, correcciones o simplemente quieres hablar de tebeos, escríbenos.
+      Siempre tenemos tiempo para hablar de cómics.
+    </p>
+
+  </div>
+
+  <Footer slot="footer" />
+</Base>

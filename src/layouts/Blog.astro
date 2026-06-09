@@ -1,0 +1,62 @@
+---
+import Base from './Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+export interface Props {
+  title: string;
+  descripcion: string;
+  fecha: Date;
+  categoria: string;
+}
+
+const { title, descripcion, fecha, categoria } = Astro.props;
+
+const fechaFormateada = new Intl.DateTimeFormat('es-ES', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+}).format(fecha);
+
+const breadcrumbs = [
+  { label: 'Blog', href: '/blog/' },
+  { label: title, href: '' },
+];
+---
+
+<Base title={title} description={descripcion} breadcrumbs={breadcrumbs}>
+  <Header slot="header" />
+
+  <!-- Breadcrumb visual -->
+  <nav class="contenedor pt-4 pb-2" aria-label="Ruta de navegación">
+    <ol class="flex items-center gap-2 font-fredoka text-sm text-negro/70">
+      <li><a href="/" class="hover:text-rojo transition-colors">Inicio</a></li>
+      <li class="text-trama">›</li>
+      <li><a href="/blog/" class="hover:text-rojo transition-colors">Blog</a></li>
+      <li class="text-trama">›</li>
+      <li class="text-negro font-semibold truncate max-w-[200px]">{title}</li>
+    </ol>
+  </nav>
+
+  <!-- Cabecera del artículo -->
+  <header class="contenedor py-10">
+    <span class="inline-block bg-mostaza text-negro font-fredoka text-xs px-3 py-1 border-2 border-negro mb-4 uppercase">
+      {categoria}
+    </span>
+    <h1 class="titulo-seccion text-4xl lg:text-5xl mb-4 max-w-3xl">{title}</h1>
+    <p class="font-nunito text-lg text-negro/70 mb-3 max-w-2xl">{descripcion}</p>
+    <p class="font-fredoka text-sm text-trama">
+      📅 {fechaFormateada} · Tebeitos
+    </p>
+    <div class="mt-6 border-t-4 border-negro"></div>
+  </header>
+
+  <!-- Cuerpo MDX -->
+  <article class="contenedor pb-16">
+    <div class="max-w-3xl prose-tebeitos">
+      <slot />
+    </div>
+  </article>
+
+  <Footer slot="footer" />
+</Base>

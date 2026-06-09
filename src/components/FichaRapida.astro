@@ -1,0 +1,38 @@
+---
+export interface Props {
+  edad: string;
+  paginas: number;
+  editorial: string;
+  precio: number;
+  dificultad: number;
+  valoracion: number;
+}
+
+const { edad, paginas, editorial, precio, dificultad, valoracion } = Astro.props;
+
+const dificultades = ['', '🟡 Fácil', '🟢 Accesible', '🔵 Medio', '🟠 Avanzado', '🔴 Experto'];
+---
+
+<div class="comic-border bg-mostaza">
+  <!-- Cabecera -->
+  <div class="bg-negro text-hueso px-4 py-2">
+    <span class="font-bangers text-lg tracking-bangers uppercase">Ficha del Kiosko</span>
+  </div>
+
+  <!-- Datos -->
+  <div class="grid grid-cols-2 sm:grid-cols-3 gap-0 divide-x-0">
+    {[
+      { label: 'Edad recomendada', valor: `${edad} años` },
+      { label: 'Páginas', valor: String(paginas) },
+      { label: 'Editorial', valor: editorial },
+      { label: 'Precio aprox.', valor: `${precio.toFixed(2)} €` },
+      { label: 'Dificultad', valor: dificultades[dificultad] ?? String(dificultad) },
+      { label: 'Nuestra nota', valor: `${valoracion}/5 🗯` },
+    ].map(({ label, valor }) => (
+      <div class="px-4 py-3 border-b-2 border-negro/20 flex flex-col gap-0.5">
+        <span class="font-fredoka text-[10px] text-negro/60 uppercase tracking-wider">{label}</span>
+        <span class="font-fredoka text-sm font-bold text-negro">{valor}</span>
+      </div>
+    ))}
+  </div>
+</div>

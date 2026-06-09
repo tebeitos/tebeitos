@@ -1,0 +1,38 @@
+---
+export interface Props {
+  titulo: string;
+  fondo?: 'crema' | 'hueso' | 'negro';
+  id?: string;
+}
+
+const { titulo, fondo = 'crema', id } = Astro.props;
+
+const fondos: Record<string, string> = {
+  crema: 'bg-crema trama-bg-sutil',
+  hueso: 'bg-hueso',
+  negro: 'bg-negro text-crema',
+};
+---
+
+<section
+  class={`py-14 ${fondos[fondo]}`}
+  id={id}
+>
+  <div class="contenedor">
+    <!-- Título de sección con decoración cómic -->
+    <header class="mb-10 flex items-end gap-4">
+      <div>
+        <h2 class={`titulo-seccion ${fondo === 'negro' ? 'text-crema' : 'text-negro'}`}>
+          {titulo}
+        </h2>
+        <!-- Línea decorativa doble -->
+        <div class="flex gap-1 mt-2">
+          <div class="h-1 w-16 bg-rojo"></div>
+          <div class="h-1 flex-1 bg-negro"></div>
+        </div>
+      </div>
+    </header>
+
+    <slot />
+  </div>
+</section>

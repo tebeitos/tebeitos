@@ -1,0 +1,80 @@
+---
+const footerLinks = [
+  { href: '/comics/', label: 'Cómics' },
+  { href: '/cromos/', label: 'Cromos' },
+  { href: '/cartas/', label: 'Cartas' },
+  { href: '/juguetes/', label: 'Juguetes retro' },
+  { href: '/blog/', label: 'Blog' },
+  { href: '/sobre-tebeitos/', label: 'Sobre Tebeitos' },
+];
+
+const year = new Date().getFullYear();
+---
+
+<footer class="bg-negro text-crema mt-16 border-t-4 border-mostaza">
+  <div class="contenedor py-12">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+
+      <!-- Logo y descripción -->
+      <div class="md:col-span-1">
+        <a href="/" class="block mb-4" aria-label="Tebeitos">
+          <img
+            src="/image/5 _ Inversa _sobre fondo oscuro_.png"
+            alt="Tebeitos"
+            width="180"
+            height="50"
+            class="h-10 w-auto object-contain opacity-90"
+          />
+        </a>
+        <p class="font-nunito text-sm text-crema/70 leading-relaxed">
+          El kiosko de siempre, ahora en internet. Cómics clásicos y actuales, cromos Panini, cartas coleccionables y juguetes retro.
+        </p>
+        <div class="mt-4 flex gap-2 flex-wrap">
+          <span class="font-fredoka text-xs bg-mostaza text-negro px-2 py-1 border border-crema/20">📚 Cómics</span>
+          <span class="font-fredoka text-xs bg-rojo text-hueso px-2 py-1 border border-crema/20">🃏 Cromos</span>
+          <span class="font-fredoka text-xs bg-terracota text-hueso px-2 py-1 border border-crema/20">🎮 Retro</span>
+        </div>
+      </div>
+
+      <!-- Navegación -->
+      <div class="md:col-span-1">
+        <h3 class="font-bangers text-xl text-mostaza mb-4 tracking-bangers uppercase">El Kiosko</h3>
+        <ul class="space-y-2">
+          {footerLinks.map(link => (
+            <li>
+              <a
+                href={link.href}
+                class="font-fredoka text-sm text-crema/80 hover:text-mostaza transition-colors duration-150 flex items-center gap-1"
+              >
+                <span class="text-mostaza">›</span> {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Aviso Amazon + legal -->
+      <div class="md:col-span-1">
+        <h3 class="font-bangers text-xl text-mostaza mb-4 tracking-bangers uppercase">Aviso Afiliados</h3>
+        <p class="font-nunito text-xs text-crema/60 leading-relaxed">
+          Tebeitos participa en el Programa de Afiliados de Amazon EU, un programa de publicidad para afiliados diseñado para proporcionar a sitios web un medio para obtener comisiones por publicidad, mediante la creación de enlaces a Amazon.es.
+        </p>
+        <p class="font-nunito text-xs text-crema/50 mt-3">
+          Los precios y disponibilidad pueden variar. Siempre verifica el precio actual en Amazon antes de comprar.
+        </p>
+      </div>
+    </div>
+
+    <!-- Línea inferior -->
+    <div class="border-t-2 border-crema/10 mt-10 pt-6 flex flex-col md:flex-row items-center justify-between gap-4">
+      <p class="font-fredoka text-xs text-crema/40">
+        © {year} Tebeitos · Hecho con ❤️ y nostalgia del kiosko de barrio
+      </p>
+      <div class="flex gap-4">
+        <a href="/sobre-tebeitos/" class="font-fredoka text-xs text-crema/40 hover:text-crema/70 transition-colors">Sobre Tebeitos</a>
+        <span class="text-crema/20">·</span>
+        <a href="/sitemap.xml" class="font-fredoka text-xs text-crema/40 hover:text-crema/70 transition-colors">Sitemap</a>
+      </div>
+    </div>
+  </div>
+</footer>
