@@ -1,0 +1,283 @@
+---
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import BotonAmazon from '../../components/BotonAmazon.astro';
+import BocadilloDestacado from '../../components/BocadilloDestacado.astro';
+import Onomatopeya from '../../components/Onomatopeya.astro';
+import SeccionKiosko from '../../components/SeccionKiosko.astro';
+
+const amazonBase = "?tag=tebeitos-21";
+
+const productos = [
+  {
+    titulo: "El álbum vacío",
+    desc: "Lo primero. Sin álbum no hay colección. Cómpralo antes que nada.",
+    icono: "📔",
+    url: `https://www.amazon.es/s?k=panini+mundial+2026+album&${amazonBase}`,
+    cta: "Ver álbum en Amazon",
+    color: "bg-mostaza",
+  },
+  {
+    titulo: "Sobre suelto (7 cromos)",
+    desc: "La unidad mínima. Para empezar o para regalar a un niño.",
+    icono: "📦",
+    url: `https://www.amazon.es/s?k=panini+mundial+2026+sobre&${amazonBase}`,
+    cta: "Ver sobres en Amazon",
+    color: "bg-crema",
+  },
+  {
+    titulo: "Ecoblister de 8 sobres (56 cromos)",
+    desc: "El formato más popular para avanzar sin gastar demasiado de golpe.",
+    icono: "📦",
+    url: `https://www.amazon.es/s?k=panini+mundial+2026+ecoblister&${amazonBase}`,
+    cta: "Ver ecoblister en Amazon",
+    color: "bg-crema",
+  },
+  {
+    titulo: "Caja de 50 sobres (350 cromos)",
+    desc: "Para los que van en serio. Aun así no garantiza completar el álbum.",
+    icono: "📫",
+    url: `https://www.amazon.es/s?k=panini+mundial+2026+caja+50+sobres&${amazonBase}`,
+    cta: "Ver caja en Amazon",
+    color: "bg-hueso",
+  },
+  {
+    titulo: "Pack ahorro: álbum + sobres",
+    desc: "Si empiezas desde cero, es la opción más cómoda.",
+    icono: "🎁",
+    url: `https://www.amazon.es/s?k=panini+mundial+2026+pack&${amazonBase}`,
+    cta: "Ver pack en Amazon",
+    color: "bg-mostaza",
+  },
+];
+
+const cromosBuscados = [
+  { nombre: "Lamine Yamal", desc: "el más buscado de España", emoji: "⭐" },
+  { nombre: "Vinícius Jr.", desc: "imprescindible", emoji: "🇧🇷" },
+  { nombre: "Messi y Cristiano", desc: "puede ser su último Mundial", emoji: "🐐" },
+  { nombre: "Cromos brillantes y especiales", desc: "los 68 premium, los más difíciles", emoji: "✨" },
+];
+
+const dondeComprar = [
+  { nombre: "Amazon España", desc: "el más fiable para recibir rápido", url: `https://www.amazon.es/s?k=panini+mundial+2026&${amazonBase}` },
+  { nombre: "Panini oficial", desc: "a veces tienen stock cuando Amazon no", url: "https://www.panini.es" },
+  { nombre: "El Corte Inglés online", desc: "otra opción segura", url: "https://www.elcorteingles.es" },
+  { nombre: "Carrefour online", desc: "suele tener cajas a buen precio", url: "https://www.carrefour.es" },
+];
+
+const relacionados = [
+  { titulo: "Álbum Panini Liga 2025-26", href: "/cromos/", emoji: "⚽" },
+  { titulo: "Álbum Panini Champions League", href: "/cromos/", emoji: "🏆" },
+  { titulo: "Cartas Pokémon: guía para empezar", href: "/cartas/", emoji: "🃏" },
+];
+---
+
+<Base
+  title="Guía Panini Mundial 2026 — Todo lo que necesitas saber"
+  description="980 cromos, 48 selecciones, el álbum más grande de la historia. Dónde comprar, qué formatos hay y cómo no arruinarte. Guía completa Panini Mundial 2026."
+  breadcrumbs={[
+    { label: 'Cromos', href: '/cromos/' },
+    { label: 'Panini Mundial 2026', href: '/cromos/panini-mundial-2026/' },
+  ]}
+>
+  <Header slot="header" />
+
+  <!-- Breadcrumb -->
+  <nav class="contenedor pt-4 pb-2" aria-label="Ruta de navegación">
+    <ol class="flex items-center gap-2 font-fredoka text-sm text-negro/70 flex-wrap">
+      <li><a href="/" class="hover:text-rojo transition-colors">Inicio</a></li>
+      <li class="text-trama">›</li>
+      <li><a href="/cromos/" class="hover:text-rojo transition-colors">Cromos</a></li>
+      <li class="text-trama">›</li>
+      <li class="text-negro font-semibold">Panini Mundial 2026</li>
+    </ol>
+  </nav>
+
+  <!-- ============================================================
+       HERO
+  ============================================================ -->
+  <section class="trama-bg border-b-4 border-negro relative overflow-hidden">
+    <div class="absolute top-4 right-8 animate-float" aria-hidden="true">
+      <Onomatopeya texto="¡ZAS!" color="rojo" rotacion={12} />
+    </div>
+    <div class="absolute bottom-4 left-6 opacity-40" aria-hidden="true">
+      <Onomatopeya texto="¡GOL!" color="mostaza" rotacion={-8} />
+    </div>
+
+    <div class="contenedor py-12 lg:py-16 relative z-10">
+      <!-- Badge -->
+      <div class="inline-flex items-center gap-2 bg-rojo text-hueso font-fredoka text-sm px-4 py-1.5 border-3 border-negro shadow-comic mb-5">
+        <span>🔥</span><span>MUNDIAL 2026 — EE.UU. · MÉXICO · CANADÁ</span>
+      </div>
+
+      <h1 class="font-bangers text-5xl lg:text-7xl text-negro tracking-bangers leading-none mb-4"
+          style="text-shadow: 3px 3px 0 #E8A01B, 5px 5px 0 #1B1714;">
+        PANINI MUNDIAL 2026
+      </h1>
+      <p class="font-bangers text-2xl lg:text-3xl text-rojo tracking-bangers mb-6">
+        Todo lo que necesitas saber
+      </p>
+
+      <!-- Intro -->
+      <div class="comic-border bg-crema p-6 max-w-3xl">
+        <p class="font-fredoka text-xl text-negro leading-relaxed mb-3">
+          El álbum más grande de la historia. Y el más difícil de completar.
+        </p>
+        <p class="font-nunito text-base text-negro/80 leading-relaxed mb-3">
+          El Mundial 2026 es histórico: por primera vez se juega en tres países (España, México y Canadá) y con 48 selecciones. Panini no se ha quedado corto: <strong>980 cromos, 112 páginas y 68 cromos especiales en material premium.</strong> El álbum más grande que han hecho nunca.
+        </p>
+        <p class="font-nunito text-base text-negro/80 leading-relaxed">
+          Y claro, los quioscos llevan semanas con el cartel de "no hay".<br/>
+          Aquí te contamos qué puedes comprar, dónde encontrarlo y cómo no arruinarte en el intento.
+        </p>
+      </div>
+
+      <!-- Stats rápidos -->
+      <div class="flex flex-wrap gap-4 mt-6">
+        {[
+          { n: "980", label: "cromos totales" },
+          { n: "48", label: "selecciones" },
+          { n: "68", label: "cromos premium" },
+          { n: "112", label: "páginas" },
+        ].map(s => (
+          <div class="comic-border-sm bg-mostaza px-4 py-2 text-center">
+            <p class="font-bangers text-3xl text-negro leading-none">{s.n}</p>
+            <p class="font-fredoka text-xs text-negro/70 uppercase">{s.label}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       QUÉ PUEDES COMPRAR
+  ============================================================ -->
+  <SeccionKiosko titulo="Qué puedes comprar" fondo="hueso" id="productos">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {productos.map(p => (
+        <article class={`comic-border ${p.color} flex flex-col gap-3 p-5`}>
+          <span class="text-4xl">{p.icono}</span>
+          <h3 class="font-bangers text-xl tracking-bangers text-negro leading-tight">{p.titulo}</h3>
+          <p class="font-nunito text-sm text-negro/75 flex-1">{p.desc}</p>
+          <a
+            href={p.url}
+            target="_blank"
+            rel="noopener noreferrer nofollow"
+            class="font-fredoka text-sm text-hueso bg-rojo px-4 py-2 border-2 border-negro shadow-comic-sm hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-none transition-all duration-100 inline-flex items-center gap-2 w-fit"
+          >
+            👉 {p.cta}
+          </a>
+        </article>
+      ))}
+    </div>
+  </SeccionKiosko>
+
+  <!-- ============================================================
+       LA VERDAD SOBRE COMPLETAR EL ÁLBUM
+  ============================================================ -->
+  <section class="bg-negro text-crema border-y-4 border-negro py-14">
+    <div class="contenedor max-w-3xl">
+      <h2 class="font-bangers text-4xl lg:text-5xl text-mostaza tracking-bangers mb-6">
+        La verdad sobre completar el álbum
+      </h2>
+
+      <div class="comic-border bg-rojo/10 border-rojo p-6 mb-8">
+        <p class="font-fredoka text-xl text-hueso leading-relaxed">
+          Te lo decimos sin rodeos: completar el álbum solo comprando sobres al azar puede costarte entre <strong class="text-mostaza">800 y 1.500€</strong>. El factor repetición es brutal con 980 cromos.
+        </p>
+      </div>
+
+      <h3 class="font-bangers text-2xl text-mostaza tracking-bangers mb-4">Lo que hacen los más listos:</h3>
+      <ul class="space-y-3 mb-8">
+        {[
+          "Compran una caja de 50 sobres para cubrir el grueso",
+          "Intercambian repetidos con familia, amigos o grupos de WhatsApp del cole",
+          "Compran cromos sueltos para los que faltan al final (hay grupos en Facebook y Wallapop)",
+          "Usan el servicio de cromos sueltos de Panini cuando esté disponible",
+        ].map(tip => (
+          <li class="flex items-start gap-3 font-nunito text-base text-crema/90">
+            <span class="text-mostaza mt-0.5 flex-shrink-0">✦</span>
+            <span>{tip}</span>
+          </li>
+        ))}
+      </ul>
+
+      <div class="mt-6">
+        <BocadilloDestacado color="mostaza">
+          ¿Merece la pena? Sí. No por completarlo (eso es opcional), sino por el ritual. Abrir sobres con tu hijo, buscar a Lamine Yamal, pegar cromos un domingo por la tarde. Eso no tiene precio.
+        </BocadilloDestacado>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CROMOS MÁS BUSCADOS
+  ============================================================ -->
+  <SeccionKiosko titulo="Cromos más buscados" fondo="crema" id="cromos-buscados">
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl">
+      {cromosBuscados.map(c => (
+        <div class="comic-border bg-mostaza p-4 flex items-start gap-3">
+          <span class="text-3xl flex-shrink-0">{c.emoji}</span>
+          <div>
+            <p class="font-bangers text-xl tracking-bangers text-negro leading-tight">{c.nombre}</p>
+            <p class="font-nunito text-sm text-negro/70">{c.desc}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </SeccionKiosko>
+
+  <!-- ============================================================
+       DÓNDE COMPRAR
+  ============================================================ -->
+  <SeccionKiosko titulo="Dónde comprar si el quiosco está agotado" fondo="hueso" id="donde-comprar">
+    <p class="font-nunito text-base text-negro/70 mb-6 max-w-2xl">
+      Los quioscos llevan semanas sin stock. Estas son tus opciones online:
+    </p>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl mb-8">
+      {dondeComprar.map((d, i) => (
+        <a
+          href={d.url}
+          target={d.url.startsWith('http') ? '_blank' : undefined}
+          rel="noopener noreferrer nofollow"
+          class="comic-border bg-crema p-4 flex items-start gap-3 hover:bg-mostaza transition-colors duration-150 group"
+        >
+          <span class="font-bangers text-2xl text-rojo">{i + 1}.</span>
+          <div>
+            <p class="font-fredoka text-base text-negro group-hover:text-negro font-bold">{d.nombre}</p>
+            <p class="font-nunito text-xs text-negro/60">{d.desc}</p>
+          </div>
+        </a>
+      ))}
+    </div>
+
+    <BotonAmazon
+      url={`https://www.amazon.es/s?k=panini+mundial+2026&tag=tebeitos-21`}
+      texto="Ver todas las opciones en Amazon"
+    />
+  </SeccionKiosko>
+
+  <!-- ============================================================
+       TAMBIÉN TE PUEDE INTERESAR
+  ============================================================ -->
+  <section class="bg-crema border-t-4 border-negro py-10">
+    <div class="contenedor">
+      <h2 class="font-bangers text-2xl tracking-bangers text-negro mb-5 uppercase">También te puede interesar</h2>
+      <div class="flex flex-wrap gap-3">
+        {relacionados.map(r => (
+          <a
+            href={r.href}
+            class="comic-border-sm bg-hueso px-5 py-3 font-fredoka text-sm text-negro hover:bg-mostaza transition-colors duration-150 flex items-center gap-2"
+          >
+            <span>{r.emoji}</span>
+            <span>{r.titulo}</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</Base>
