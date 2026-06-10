@@ -64,74 +64,88 @@ const secciones = [
   <Header slot="header" />
 
   <!-- ============================================================
-       BLOQUE 1 — HERO: El Escaparate del Kiosko
+       BLOQUE 1 — HERO: Esta semana en el kiosko
   ============================================================ -->
   <section class="relative overflow-hidden trama-bg border-b-4 border-negro">
-    <!-- Speed lines decorativas -->
-    <div class="absolute inset-0 speed-lines opacity-60 pointer-events-none" aria-hidden="true"></div>
+    <div class="absolute inset-0 speed-lines opacity-40 pointer-events-none" aria-hidden="true"></div>
 
     <div class="contenedor relative z-10 py-8 lg:py-12">
-      <div class="flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
+      <div class="flex flex-col lg:flex-row items-center gap-8 lg:gap-16">
 
         <!-- Texto izquierda -->
-        <div class="flex-1 text-center lg:text-left">
-          <!-- Badge novedad -->
-          <div class="inline-flex items-center gap-2 bg-rojo text-hueso font-fredoka text-sm px-4 py-1.5 border-3 border-negro shadow-comic mb-6">
-            <span>🔥</span>
-            <span>MUNDIAL PANINI 2026 — ¡Ya disponible!</span>
-          </div>
+        <div class="flex-1 text-center lg:text-left order-2 lg:order-1">
 
-          <!-- Título hero -->
-          <h1 class="font-bangers text-6xl lg:text-8xl text-negro leading-none tracking-bangers mb-4"
-              style="text-shadow: 4px 4px 0 #E8A01B, 6px 6px 0 #1B1714;">
-            EL KIOSKO<br/>
-            <span class="text-rojo" style="text-shadow: 4px 4px 0 #1B1714;">DE SIEMPRE</span>
+          <p class="font-fredoka text-sm uppercase tracking-widest text-rojo mb-2">
+            🗓️ Esta semana en el kiosko
+          </p>
+
+          <h1 class="font-bangers text-5xl lg:text-7xl text-negro leading-none tracking-bangers mb-3"
+              style="text-shadow: 3px 3px 0 #E8A01B, 5px 5px 0 #1B1714;">
+            MUNDIAL PANINI 2026
           </h1>
 
-          <p class="font-fredoka text-xl text-negro/80 mb-8 max-w-lg mx-auto lg:mx-0">
-            Cómics de ayer y de hoy, cromos, cartas y juguetes retro.<br/>
-            <strong class="text-rojo">El kiosko de tu barrio, ahora en internet.</strong>
+          <p class="font-bangers text-2xl lg:text-3xl text-rojo tracking-bangers mb-5">
+            980 cromos · 48 selecciones · el más grande de la historia
+          </p>
+
+          <p class="font-nunito text-base text-negro/80 mb-8 max-w-lg mx-auto lg:mx-0 leading-relaxed">
+            Los quioscos llevan semanas sin stock. Aquí te contamos qué formatos hay,
+            cuánto cuesta completarlo de verdad y dónde comprarlo online.
           </p>
 
           <div class="flex flex-wrap gap-4 justify-center lg:justify-start">
+            <a
+              href="/cromos/panini-mundial-2026/"
+              class="font-bangers text-xl text-hueso bg-rojo px-8 py-3 border-3 border-negro shadow-comic hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-100 tracking-bangers"
+            >
+              VER GUÍA COMPLETA →
+            </a>
             <a
               href="/comics/"
               class="font-bangers text-xl text-negro bg-mostaza px-8 py-3 border-3 border-negro shadow-comic hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-100 tracking-bangers"
             >
               VER CÓMICS
             </a>
-            <a
-              href="/cromos/panini-mundial-2026/"
-              class="font-bangers text-xl text-hueso bg-rojo px-8 py-3 border-3 border-negro shadow-comic hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-100 tracking-bangers"
-            >
-              ÁLBUM PANINI
-            </a>
           </div>
         </div>
 
-        <!-- Ilustración del kiosko (placeholder) -->
-        <div class="flex-1 max-w-md lg:max-w-none w-full relative">
-          <div class="comic-border-lg bg-trama/40 aspect-[4/3] flex flex-col items-center justify-center gap-4 relative overflow-hidden">
-            <!-- Decoración interior -->
-            <div class="absolute top-4 left-4">
-              <Onomatopeya texto="¡ZAS!" color="rojo" rotacion={-12} />
-            </div>
-            <div class="absolute bottom-6 right-4">
-              <Onomatopeya texto="¡PUMBA!" color="mostaza" rotacion={8} />
-            </div>
+        <!-- Cromo Lamine Yamal -->
+        <div class="flex-shrink-0 order-1 lg:order-2 relative flex items-center justify-center">
 
-            <span class="text-7xl">🏪</span>
-            <div class="text-center px-8">
-              <p class="font-bangers text-2xl text-negro tracking-bangers">ILUSTRACIÓN KIOSKO</p>
-              <p class="font-fredoka text-sm text-negro/60">PRÓXIMAMENTE</p>
+          <!-- Burst detrás del cromo -->
+          <div class="absolute inset-0 flex items-center justify-center" aria-hidden="true">
+            <div class="w-72 h-72 lg:w-96 lg:h-96 bg-mostaza rounded-full opacity-30"
+                 style="filter: blur(40px);"></div>
+          </div>
+
+          <!-- Onomatopeyas -->
+          <div class="absolute -top-4 -left-2 animate-float z-10">
+            <Onomatopeya texto="¡ZAS!" color="rojo" rotacion={-15} />
+          </div>
+          <div class="absolute -bottom-2 -right-4 animate-float z-10" style="animation-delay: 0.5s;">
+            <Onomatopeya texto="¡CRACK!" color="terracota" rotacion={10} />
+          </div>
+
+          <!-- El cromo -->
+          <div class="relative z-10" style="transform: rotate(-4deg);">
+            <div class="comic-border-lg overflow-hidden shadow-[8px_8px_0px_#1B1714]"
+                 style="width: 220px;">
+              <img
+                src="/image/jamine lamal.jpg"
+                alt="Lamine Yamal — Cromo Panini Mundial 2026"
+                width="220"
+                height="300"
+                class="w-full object-cover"
+              />
+            </div>
+            <!-- Etiqueta "MÁS BUSCADO" -->
+            <div class="absolute -top-3 -right-3 bg-rojo border-2 border-negro px-2 py-1 rotate-6 z-20">
+              <span class="font-bangers text-xs text-hueso tracking-bangers">⭐ MÁS BUSCADO</span>
             </div>
           </div>
 
-          <!-- ¡ZAS! flotante animado -->
-          <div class="absolute -top-6 -right-4 animate-float">
-            <Onomatopeya texto="¡PLOF!" color="terracota" rotacion={15} />
-          </div>
         </div>
+
       </div>
     </div>
   </section>
