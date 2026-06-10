@@ -30,3 +30,5 @@ pnpm-debug.log*
 # Temporales
 *.tmp
 *.temp
+
+.vercel
