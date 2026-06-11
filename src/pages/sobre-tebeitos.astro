@@ -7,8 +7,8 @@ import Onomatopeya from '../components/Onomatopeya.astro';
 ---
 
 <Base
-  title="Sobre Tebeitos — Quiénes somos"
-  description="Tebeitos es el kiosko de siempre, ahora en internet. Conoce la historia detrás del portal y por qué creemos en el poder del cómic y el coleccionismo."
+  title="Sobre Tebeitos — Alfonso y Vera"
+  description="Conoce la historia de Tebeitos: un proyecto de Alfonso y Vera (padre e hija) para traer de vuelta el kiosko de siempre a internet."
   breadcrumbs={[{ label: 'Sobre Tebeitos', href: '/sobre-tebeitos/' }]}
 >
   <Header slot="header" />
@@ -27,10 +27,10 @@ import Onomatopeya from '../components/Onomatopeya.astro';
     <div class="contenedor flex flex-col lg:flex-row items-center gap-10">
       <div class="flex-1">
         <h1 class="titulo-seccion text-5xl lg:text-7xl mb-4">
-          ¿Quiénes somos?
+          Sobre Tebeitos
         </h1>
         <p class="font-fredoka text-xl text-negro/80 max-w-xl">
-          Somos el kiosko de tu barrio, pero en internet.
+          Somos Alfonso y Vera. Padre e hija. Cuarenta y tantos años él, siete ella.
         </p>
       </div>
       <div class="relative flex-shrink-0">
@@ -38,7 +38,7 @@ import Onomatopeya from '../components/Onomatopeya.astro';
           <span class="text-7xl">🏪</span>
         </div>
         <div class="absolute -top-4 -right-6 animate-float">
-          <Onomatopeya texto="¡HOLA!" color="rojo" rotacion={10} />
+          <Onomatopeya texto="¡ZAS!" color="rojo" rotacion={10} />
         </div>
       </div>
     </div>
@@ -46,58 +46,93 @@ import Onomatopeya from '../components/Onomatopeya.astro';
 
   <!-- Contenido -->
   <div class="contenedor py-16 max-w-3xl prose-tebeitos">
-
-    <h2>El kiosko que no cierra</h2>
-    <p>
-      Tebeitos nació de una idea sencilla: ¿y si el kiosko de tu barrio nunca hubiera cerrado?
-      Ese kiosko donde había un tebeo de Mortadelo para cada semana, un álbum de cromos Panini
-      en cada Mundial, y el dependiente que te guardaba el último número cuando se agotaba.
+    <p class="text-lg leading-relaxed font-fredoka text-negro/95">
+      Entre los dos, una afición que no necesita explicación: los cómics, los libros con muchos dibujos, las historias que te atrapan desde la primera viñeta y no te sueltan hasta el final.
     </p>
 
     <p>
-      Ese kiosko ya no existe en la esquina. Los hay menos, están más lejos, y muchos cerraron.
-      Pero los cómics que vendían siguen siendo igual de buenos. Y nosotros queremos que los
-      niños de hoy los descubran.
-    </p>
-
-    <h2>Qué hacemos en Tebeitos</h2>
-    <p>
-      Tebeitos es un portal de recomendaciones. No somos una tienda: somos el amigo que ha
-      leído todos los cómics y te dice cuál le encantará a tu hijo de 7 años, cuál compartir
-      con los abuelos, y cuál es el primero a comprar si nunca han leído un tebeo.
+      Tebeitos nació un día cualquiera, de esos en los que te sientas con tu hija a leer y de repente piensas: ojalá existiera un sitio como este. Un sitio que juntara todo lo que nos gusta. Un kiosko de los de antes, pero en internet.
     </p>
 
     <p>
-      Cada reseña la escribimos con honestidad. Si un cómic no nos convence, lo decimos. Si nos
-      parece imprescindible, también. El objetivo es ayudarte a elegir bien, no vender más.
+      Como ese kiosko de barrio que olía a papel nuevo y a chicle, donde el señor de detrás del mostrador te conocía por nombre y sabía exactamente qué tebeo te iba a flipar. Donde podías estar media hora mirando sin comprar nada y nadie te decía nada. Donde convivían Mortadelo con los cromos del Mundial, el yoyó con la revista de pasatiempos, el tebeo de siempre con la novedad de la semana.
     </p>
 
-    <div class="my-8">
+    <p class="font-fredoka font-semibold text-terracota">
+      Ese kiosko ya no existe en la mayoría de los barrios. Pero existe aquí.
+    </p>
+
+    <h2 class="font-bangers text-3xl tracking-bangers text-negro uppercase mt-10 mb-4">Por qué lo hacemos</h2>
+    <p>
+      No somos expertos. No somos críticos literarios. No somos una editorial ni una tienda.
+      <strong>Somos dos lectores con criterio propio y mucha opinión.</strong>
+    </p>
+
+    <p>
+      Alfonso creció con Mortadelo y Filemón, con Zipi y Zape, con los cromos del Mundial 82 pegados en el álbum con lengüetazo y todo. Con aquellos quioscos que eran el centro del universo cuando tenías diez años y cincuenta pesetas en el bolsillo.
+    </p>
+
+    <p>
+      Vera está creciendo con Perro Apestoso, con Anna Kadabra, con libros que tienen tantos dibujos que a veces no hace falta leer las palabras para entender lo que pasa. Con esa cara de concentración absoluta cuando algo le engancha de verdad y no hay manera de arrancarla del sofá.
+    </p>
+
+    <p class="italic">
+      Y cuando los dos leemos juntos es cuando Tebeitos tiene más sentido.
+    </p>
+
+    <h2 class="font-bangers text-3xl tracking-bangers text-negro uppercase mt-10 mb-4">Cómo elegimos lo que recomendamos</h2>
+    <p class="font-fredoka text-rojo font-bold">
+      Regla número uno: si no nos gusta, no sale.
+    </p>
+
+    <p>
+      No hay patrocinios que nos obliguen a recomendar algo que no hemos leído. No hay algoritmos que decidan por nosotros. No hay listas copiadas de otras webs.
+    </p>
+
+    <p>
+      Cada cómic, cada libro ilustrado, cada coleccionable que aparece en Tebeitos ha pasado por el sofá de casa. Lo hemos leído, ojeado, discutido, y en algunos casos nos lo hemos disputado.
+    </p>
+
+    <div class="my-6">
       <BocadilloDestacado color="mostaza">
-        Queremos ser el kiosquero de confianza que te recomienda lo que de verdad vale la pena.
+        Si Vera dice "este es aburrido", no sale. Así de simple.
+        Si Alfonso dice "esto es un clásico que tienes que leer", sale con todas las letras.
       </BocadilloDestacado>
     </div>
 
-    <h2>¿Y los enlaces de Amazon?</h2>
     <p>
-      Tebeitos participa en el Programa de Afiliados de Amazon España. Esto significa que cuando
-      compras un cómic a través de nuestros enlaces, recibimos una pequeña comisión sin coste
-      adicional para ti. Esto es lo que nos permite mantener el sitio funcionando.
-    </p>
-    <p>
-      Pero nuestra política es clara: <strong>nunca recomendamos algo que no nos gusta solo por
-      la comisión</strong>. Si está aquí, es porque creemos que vale la pena.
+      Y cuando los dos coincidimos en que algo es especial, lo ponemos en grande.
     </p>
 
-    <h2>¿Quién hay detrás?</h2>
+    <h2 class="font-bangers text-3xl tracking-bangers text-negro uppercase mt-10 mb-4">El dibujo de la portada</h2>
     <p>
-      Tebeitos somos personas que crecimos con Mortadelo y Filemón, Astérix y los cromos del
-      Mundial, y que ahora queremos transmitir esa misma magia a la siguiente generación.
+      Ese dibujo que ves arriba lo hizo Vera.
     </p>
     <p>
-      Si tienes sugerencias, correcciones o simplemente quieres hablar de tebeos, escríbenos.
-      Siempre tenemos tiempo para hablar de cómics.
+      Tiene siete años y ya sabe que los mejores cómics son los que te hacen reír y llorar en la misma página. También sabe que el papel huele mejor que la pantalla, que los cromos molan más cuando te falta uno para completar el álbum, y que un buen libro ilustrado puede hacer que el tiempo pase sin que te des cuenta.
     </p>
+    <p>
+      Nosotros solo intentamos contarte dónde encontrarlos.
+    </p>
+
+    <h2 class="font-bangers text-3xl tracking-bangers text-negro uppercase mt-10 mb-4">Una nota sobre los enlaces de compra</h2>
+    <p>
+      Algunos de los enlaces que encontrarás en Tebeitos son enlaces de afiliado de Amazon. Significa que si compras algo a través de ellos, nosotros recibimos una pequeña comisión sin que tú pagues nada más.
+    </p>
+    <p>
+      Es nuestra forma de mantener el kiosko abierto.
+    </p>
+    <p>
+      Pero que conste: nunca recomendamos nada que no hayamos leído, ojeado o tenido entre las manos en el sofá de casa. La comisión no decide lo que sale en Tebeitos.
+      <strong>Eso lo decide Vera.</strong>
+    </p>
+
+    <div class="mt-12">
+      <BocadilloDestacado color="rojo">
+        <span class="font-bangers text-xl tracking-bangers block mb-1">El kiosko de siempre. Ahora en internet.</span>
+        <span class="font-fredoka text-sm block">— Alfonso y Vera 🗯️</span>
+      </BocadilloDestacado>
+    </div>
 
   </div>
 
