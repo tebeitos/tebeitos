@@ -8,9 +8,10 @@ export interface Props {
   descripcion: string;
   fecha: Date;
   categoria: string;
+  imagen?: string;
 }
 
-const { title, descripcion, fecha, categoria } = Astro.props;
+const { title, descripcion, fecha, categoria, imagen } = Astro.props;
 
 const fechaFormateada = new Intl.DateTimeFormat('es-ES', {
   day: 'numeric',
@@ -44,7 +45,18 @@ const breadcrumbs = [
       {categoria}
     </span>
     <h1 class="titulo-seccion text-4xl lg:text-5xl mb-4 max-w-3xl">{title}</h1>
-    <p class="font-nunito text-lg text-negro/70 mb-3 max-w-2xl">{descripcion}</p>
+    <p class="font-nunito text-lg text-negro/70 mb-6 max-w-2xl">{descripcion}</p>
+
+    {imagen && (
+      <div class="comic-border-lg max-w-3xl overflow-hidden mb-6 bg-crema">
+        <img
+          src={imagen}
+          alt={`Imagen ilustrativa de ${title}`}
+          class="w-full h-auto max-h-[380px] object-cover block"
+        />
+      </div>
+    )}
+
     <p class="font-fredoka text-sm text-trama">
       📅 {fechaFormateada} · Tebeitos
     </p>

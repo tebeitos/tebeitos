@@ -279,10 +279,20 @@ const secciones = [
 
         return (
           <article class="comic-border bg-crema flex flex-col group hover:shadow-comic-lg transition-shadow duration-150">
-            <!-- Imagen placeholder -->
-            <div class="h-36 bg-trama/50 border-b-3 border-negro flex items-center justify-center">
-              <span class="text-4xl">📝</span>
-            </div>
+            {articulo.data.imagen ? (
+              <div class="h-44 overflow-hidden border-b-3 border-negro bg-crema relative">
+                <img
+                  src={articulo.data.imagen}
+                  alt={articulo.data.title}
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-200"
+                  loading="lazy"
+                />
+              </div>
+            ) : (
+              <div class="h-44 bg-trama/50 border-b-3 border-negro flex items-center justify-center">
+                <span class="text-4xl">📝</span>
+              </div>
+            )}
 
             <div class="p-5 flex flex-col gap-3 flex-1">
               <span class="font-fredoka text-xs text-rojo uppercase tracking-wide">{articulo.data.categoria}</span>
