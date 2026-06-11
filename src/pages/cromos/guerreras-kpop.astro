@@ -68,42 +68,66 @@ const relacionados = [
     </div>
 
     <div class="contenedor pt-20 pb-12 lg:pt-24 lg:pb-16 relative z-10">
-      <!-- Badge -->
-      <div class="inline-flex items-center gap-2 bg-rojo text-hueso font-fredoka text-sm px-4 py-1.5 border-3 border-negro shadow-comic mb-5">
-        <span>⭐</span><span>COLECCIÓN OFICIAL BIZAK — NETFLIX</span>
-      </div>
-
-      <h1 class="font-bangers text-5xl lg:text-7xl text-negro tracking-bangers leading-none mb-4"
-          style="text-shadow: 3px 3px 0 #E8A01B, 5px 5px 0 #1B1714;">
-        GUERRERAS K-POP
-      </h1>
-      <p class="font-bangers text-2xl lg:text-3xl text-rojo tracking-bangers mb-6">
-        K-Pop Demon Hunters Sticker Album
-      </p>
-
-      <!-- Intro -->
-      <div class="comic-border bg-crema p-6 max-w-3xl">
-        <p class="font-fredoka text-xl text-negro leading-relaxed mb-3">
-          El álbum de pegatinas de la película de cazadoras de demonios de Netflix.
-        </p>
-        <p class="font-nunito text-base text-negro/80 leading-relaxed">
-          Basado en la exitosa producción de Netflix, Bizak nos trae una colección de <strong>200 pegatinas totales</strong> llenas de música, acción y fantasía. Con cromos holográficos, siluetas troqueladas especiales y un póster exclusivo de las protagonistas en concierto.
-        </p>
-      </div>
-
-      <!-- Stats rápidos -->
-      <div class="flex flex-wrap gap-4 mt-6">
-        {[
-          { n: "200", label: "cromos totales" },
-          { n: "32", label: "páginas de álbum" },
-          { n: "4", label: "guerreras protagonistas" },
-          { n: "Bizak", label: "editorial oficial" },
-        ].map(s => (
-          <div class="comic-border-sm bg-mostaza px-4 py-2 text-center">
-            <p class="font-bangers text-3xl text-negro leading-none">{s.n}</p>
-            <p class="font-fredoka text-xs text-negro/70 uppercase">{s.label}</p>
+      <div class="flex flex-col lg:flex-row items-center gap-6 lg:gap-16">
+        <!-- Texto izquierda -->
+        <div class="flex-1 text-center lg:text-left order-2 lg:order-1">
+          <!-- Badge -->
+          <div class="inline-flex items-center gap-2 bg-rojo text-hueso font-fredoka text-sm px-4 py-1.5 border-3 border-negro shadow-comic mb-5">
+            <span>⭐</span><span>COLECCIÓN OFICIAL BIZAK — NETFLIX</span>
           </div>
-        ))}
+
+          <h1 class="font-bangers text-5xl lg:text-7xl text-negro tracking-bangers leading-none mb-4"
+              style="text-shadow: 3px 3px 0 #E8A01B, 5px 5px 0 #1B1714;">
+            GUERRERAS K-POP
+          </h1>
+          <p class="font-bangers text-2xl lg:text-3xl text-rojo tracking-bangers mb-6">
+            K-Pop Demon Hunters Sticker Album
+          </p>
+
+          <!-- Intro -->
+          <div class="comic-border bg-crema p-6 max-w-3xl mx-auto lg:mx-0">
+            <p class="font-fredoka text-xl text-negro leading-relaxed mb-3">
+              El álbum de pegatinas de la película de cazadoras de demonios de Netflix.
+            </p>
+            <p class="font-nunito text-base text-negro/80 leading-relaxed">
+              Basado en la exitosa producción de Netflix, Bizak nos trae una colección de <strong>196 pegatinas totales</strong> llenas de música, acción y fantasía. Con cromos holográficos, siluetas troqueladas especiales y un póster exclusivo de las protagonistas en concierto.
+            </p>
+          </div>
+
+          <!-- Stats rápidos -->
+          <div class="flex flex-wrap gap-4 mt-6 justify-center lg:justify-start">
+            {[
+              { n: "196", label: "cromos totales" },
+              { n: "32", label: "páginas de álbum" },
+              { n: "4", label: "guerreras protagonistas" },
+              { n: "Bizak", label: "editorial oficial" },
+            ].map(s => (
+              <div class="comic-border-sm bg-mostaza px-4 py-2 text-center">
+                <p class="font-bangers text-3xl text-negro leading-none">{s.n}</p>
+                <p class="font-fredoka text-xs text-negro/70 uppercase">{s.label}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Portada del Álbum (Derecha) -->
+        <div class="flex-shrink-0 order-1 lg:order-2 relative flex items-center justify-center">
+          <div class="relative z-10 mt-8 lg:mt-5" style="transform: rotate(-3deg);">
+            <div class="comic-border-lg overflow-hidden shadow-[8px_8px_0px_#1B1714] w-40 sm:w-48 lg:w-56">
+              <img
+                src="/image/covers/guerreras-kpop.png"
+                alt="Álbum Oficial K-Pop Demon Hunters Bizak"
+                width="220"
+                height="300"
+                class="w-full h-auto block"
+              />
+            </div>
+            <!-- Etiqueta NOVEDAD -->
+            <div class="absolute -top-3 -right-3 bg-rojo border-2 border-negro px-2 py-1 rotate-6 z-20">
+              <span class="font-bangers text-xs text-hueso tracking-bangers">⭐ NOVEDAD</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
