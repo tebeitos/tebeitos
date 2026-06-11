@@ -1,6 +1,13 @@
 ---
 const navLinks = [
-  { href: '/comics/', label: 'Cómics' },
+  {
+    label: 'Cómics',
+    href: '/comics/',
+    dropdown: [
+      { href: '/comics/', label: 'Ver todos los cómics' },
+      { href: '/libros-ilustrados/', label: 'Libros ilustrados' }
+    ]
+  },
   { href: '/cromos/', label: 'Cromos' },
   { href: '/cartas/', label: 'Cartas' },
   { href: '/juguetes/', label: 'Juguetes' },
@@ -25,16 +32,42 @@ const currentPath = Astro.url.pathname;
     <!-- Nav desktop -->
     <nav class="hidden md:flex items-center gap-1" aria-label="Navegación principal">
       {navLinks.map(link => (
-        <a
-          href={link.href}
-          class={`font-fredoka text-sm px-3 py-2 border-2 transition-all duration-150 hover:bg-negro hover:text-crema
-            ${currentPath.startsWith(link.href)
-              ? 'bg-negro text-crema border-negro'
-              : 'border-transparent text-negro hover:border-negro'
-            }`}
-        >
-          {link.label}
-        </a>
+        link.dropdown ? (
+          <div class="relative group">
+            <button
+              class={`font-fredoka text-sm px-3 py-2 border-2 transition-all duration-150 flex items-center gap-1 hover:bg-negro hover:text-crema border-transparent text-negro hover:border-negro
+                ${currentPath.startsWith(link.href) || currentPath.startsWith('/libros-ilustrados/')
+                  ? 'bg-negro text-crema border-negro'
+                  : ''
+                }`}
+            >
+              {link.label}
+              <span class="text-xs transition-transform group-hover:rotate-180">▼</span>
+            </button>
+            <div class="absolute left-0 mt-1 hidden group-hover:block bg-crema border-3 border-negro shadow-comic min-w-[220px] z-50">
+              {link.dropdown.map(sub => (
+                <a
+                  href={sub.href}
+                  class={`block font-fredoka text-sm px-4 py-3 hover:bg-negro hover:text-crema border-b border-negro/10 last:border-b-0
+                    ${currentPath === sub.href ? 'bg-negro/5 text-negro font-semibold' : 'text-negro'}`}
+                >
+                  {sub.label}
+                </a>
+              ))}
+            </div>
+          </div>
+        ) : (
+          <a
+            href={link.href}
+            class={`font-fredoka text-sm px-3 py-2 border-2 transition-all duration-150 hover:bg-negro hover:text-crema
+              ${currentPath.startsWith(link.href)
+                ? 'bg-negro text-crema border-negro'
+                : 'border-transparent text-negro hover:border-negro'
+              }`}
+          >
+            {link.label}
+          </a>
+        )
       ))}
     </nav>
 
@@ -60,13 +93,32 @@ const currentPath = Astro.url.pathname;
   >
     <nav class="contenedor py-4 flex flex-col gap-1" aria-label="Menú móvil">
       {navLinks.map(link => (
-        <a
-          href={link.href}
-          class={`font-fredoka text-base px-4 py-3 border-2 border-negro transition-colors hover:bg-negro hover:text-crema
-            ${currentPath.startsWith(link.href) ? 'bg-negro text-crema' : 'bg-hueso text-negro'}`}
-        >
-          {link.label}
-        </a>
+        link.dropdown ? (
+          <div class="flex flex-col border-2 border-negro bg-hueso mb-1">
+            <span class="font-fredoka text-base px-4 py-3 bg-negro text-crema font-bold border-b border-negro">
+              {link.label}
+            </span>
+            <div class="flex flex-col">
+              {link.dropdown.map(sub => (
+                <a
+                  href={sub.href}
+                  class={`font-fredoka text-sm px-6 py-3 border-b border-negro/10 last:border-b-0 transition-colors hover:bg-negro hover:text-crema
+                    ${currentPath === sub.href ? 'bg-negro/5 text-negro font-semibold' : 'text-negro'}`}
+                >
+                  {sub.label}
+                </a>
+              ))}
+            </div>
+          </div>
+        ) : (
+          <a
+            href={link.href}
+            class={`font-fredoka text-base px-4 py-3 border-2 border-negro transition-colors hover:bg-negro hover:text-crema
+              ${currentPath.startsWith(link.href) ? 'bg-negro text-crema' : 'bg-hueso text-negro'}`}
+          >
+            {link.label}
+          </a>
+        )
       ))}
     </nav>
   </div>

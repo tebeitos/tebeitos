@@ -1,0 +1,57 @@
+---
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import TarjetaComic from '../../components/TarjetaComic.astro';
+import SeccionKiosko from '../../components/SeccionKiosko.astro';
+import { getCollection } from 'astro:content';
+
+const todos = await getCollection('comics');
+const ilustrados = todos.filter(c => c.data.tipo === 'ilustrado').sort((a,b) => b.data.fecha.valueOf() - a.data.fecha.valueOf());
+---
+
+<Base
+  title="Libros Ilustrados — El Kiosko de Siempre"
+  description="Colección completa de libros ilustrados seleccionados por Tebeitos: historias con arte y magia para los más pequeños."
+  breadcrumbs={[{ label: 'Libros ilustrados', href: '/libros-ilustrados/' }]}
+>
+  <Header slot="header" />
+
+  <!-- Breadcrumb -->
+  <nav class="contenedor pt-10 pb-2" aria-label="Ruta de navegación">
+    <ol class="flex items-center gap-2 font-fredoka text-sm text-negro/70">
+      <li><a href="/" class="hover:text-rojo transition-colors">Inicio</a></li>
+      <li class="text-trama">›</li>
+      <li class="text-negro font-semibold">Libros ilustrados</li>
+    </ol>
+  </nav>
+
+  <!-- Cabecera -->
+  <div class="contenedor py-10 pt-6">
+    <h1 class="titulo-seccion text-5xl lg:text-7xl mb-3">🖍️ Libros ilustrados</h1>
+    <p class="font-fredoka text-lg text-negro/70 max-w-2xl">
+      Arte y narración de la mano. Álbumes ilustrados y primeras lecturas visuales recomendadas.
+    </p>
+  </div>
+
+  <!-- Ilustrados -->
+  <SeccionKiosko titulo="Libros ilustrados recomendados" fondo="crema" id="ilustrados">
+    <div class="grid-comics">
+      {ilustrados.map(comic => (
+        <TarjetaComic
+          titulo={comic.data.title}
+          slug={comic.slug}
+          autor={comic.data.autor}
+          edad={comic.data.edad}
+          valoracion={comic.data.valoracion}
+          precio={comic.data.precio}
+          amazon={comic.data.amazon}
+          tipo={comic.data.tipo}
+          imagen={comic.data.imagen}
+        />
+      ))}
+    </div>
+  </SeccionKiosko>
+
+  <Footer slot="footer" />
+</Base>
