@@ -11,7 +11,7 @@ import { getCollection } from 'astro:content';
 const todosLosComics = await getCollection('comics');
 const destacados = todosLosComics
   .sort((a, b) => b.data.fecha.valueOf() - a.data.fecha.valueOf())
-  .slice(0, 6);
+  .slice(0, 8);
 
 // Blog recientes
 const todosLosArticulos = await getCollection('blog');
@@ -211,7 +211,7 @@ const secciones = [
       <!-- Título -->
       <div class="flex items-center gap-4 mb-8">
         <h2 class="font-bangers text-4xl lg:text-5xl tracking-bangers text-negro uppercase">
-          🔥 No te puedes perder
+          🔥 Esto hay que probarlo
         </h2>
       </div>
 
