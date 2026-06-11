@@ -16,8 +16,9 @@ export interface Props {
   dificultad: number;
   valoracion: number;
   amazon: string;
-  tipo: 'clasico' | 'actual';
+  tipo: 'clasico' | 'actual' | 'ilustrado';
   temas: string[];
+  imagen?: string;
 }
 
 const {
@@ -32,7 +33,15 @@ const {
   amazon,
   tipo,
   temas,
+  imagen,
 } = Astro.props;
+
+const badgeMap: Record<string, { bg: string; label: string }> = {
+  clasico:   { bg: 'bg-terracota text-hueso', label: '⭐ CLÁSICO DEL KIOSKO' },
+  actual:    { bg: 'bg-mostaza text-negro',   label: '🆕 CÓMIC ACTUAL' },
+  ilustrado: { bg: 'bg-trama text-hueso',     label: '🖍️ LIBRO ILUSTRADO' },
+};
+const badge = badgeMap[tipo] ?? badgeMap.actual;
 
 const descripcion = `Reseña de ${title} de ${autor}. Editorial ${editorial}. Recomendado para niños de ${edad} años. Cómpralo en Amazon España.`;
 
@@ -81,19 +90,30 @@ const bookSchema = {
   <section class="contenedor py-8">
     <div class="flex flex-col lg:flex-row gap-8 items-start">
 
-      <!-- Portada placeholder -->
+      <!-- Portada -->
       <div class="w-full lg:w-56 flex-shrink-0">
-        <div class="img-placeholder comic-border aspect-[2/3] flex flex-col gap-2">
-          <span class="text-2xl">📚</span>
-          <span class="font-fredoka text-xs text-center">Portada próximamente</span>
+        <div class="comic-border aspect-[2/3] overflow-hidden bg-trama">
+          {imagen ? (
+            <img
+              src={imagen}
+              alt={`Portada de ${title}`}
+              class="w-full h-full object-cover"
+              loading="eager"
+            />
+          ) : (
+            <div class="w-full h-full flex flex-col items-center justify-center gap-2">
+              <span class="text-2xl">📚</span>
+              <span class="font-fredoka text-xs text-center">Portada próximamente</span>
+            </div>
+          )}
         </div>
       </div>
 
       <!-- Info principal -->
       <div class="flex-1">
         <!-- Etiqueta tipo -->
-        <span class={`inline-block font-fredoka text-xs px-3 py-1 border-2 border-negro mb-3 ${tipo === 'clasico' ? 'bg-terracota text-hueso' : 'bg-mostaza text-negro'}`}>
-          {tipo === 'clasico' ? '⭐ CLÁSICO DEL KIOSKO' : '🆕 CÓMIC ACTUAL'}
+        <span class={`inline-block font-fredoka text-xs px-3 py-1 border-2 border-negro mb-3 ${badge.bg}`}>
+          {badge.label}
         </span>
 
         <h1 class="titulo-seccion text-4xl lg:text-5xl mb-2">{title}</h1>
