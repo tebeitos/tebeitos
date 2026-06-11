@@ -215,114 +215,36 @@ const secciones = [
         </h2>
       </div>
 
-      <!-- CÓMICS -->
-      <p class="font-fredoka text-xs uppercase tracking-widest text-negro/50 mb-4">💬 Cómics</p>
-      <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-4 gap-4 mb-10">
+      <!-- JUGUETES CLÁSICOS -->
+      <p class="font-fredoka text-xs uppercase tracking-widest text-negro/50 mb-4">🧸 Juguetes retro</p>
+      <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-4 mb-10">
         {[
-          {
-            titulo: "El club de cómic de Chikigato 1",
-            autor: "Dav Pilkey",
-            cover: "https://covers.openlibrary.org/b/isbn/9788413921419-L.jpg",
-            href: "/comics/club-comic-chikigato/",
-            coleccion: "comics",
-          },
-          {
-            titulo: "Policán 1",
-            autor: "Dav Pilkey",
-            cover: "https://covers.openlibrary.org/b/isbn/9788467594454-L.jpg",
-            href: "/comics/polican/",
-            coleccion: "comics",
-          },
-          {
-            titulo: "Animalotes 1",
-            autor: "Aaron Blabey",
-            cover: "/image/covers/animalotes.jpg",
-            href: "/comics/animalotes/",
-            coleccion: "comics",
-          },
-          {
-            titulo: "¡Escóndete que voy!",
-            autor: "L. Séchan / C. Jourdy",
-            cover: "/image/covers/escondete-que-voy.jpg",
-            href: "/comics/escondete-que-voy/",
-            coleccion: "comics",
-          },
-        ].map(libro => (
+          { titulo: "Cometa Infantil", cover: "/image/covers/cometa.jpg", href: "/juguetes/cometa/", marca: "Generic Classic" },
+          { titulo: "Yoyó de Madera", cover: "/image/covers/yoyo.jpg", href: "/juguetes/yoyo/", marca: "Artesanal" },
+          { titulo: "Peonza de Madera", cover: "/image/covers/peonza.jpg", href: "/juguetes/peonza/", marca: "Artesanal" },
+          { titulo: "Tamagotchi Original", cover: "/image/covers/tamagochi.jpg", href: "/juguetes/tamagochi/", marca: "Bandai" },
+          { titulo: "Consola Retro Anbernic", cover: "/image/covers/consola-retro.jpg", href: "/juguetes/consola-retro/", marca: "Anbernic" },
+          { titulo: "Cubo de Rubik 3x3", cover: "/image/covers/cubo-rubik.jpg", href: "/juguetes/cubo-rubik/", marca: "Rubik's" },
+          { titulo: "Barco Pirata Playmobil", cover: "/image/covers/barco-pirata.jpg", href: "/juguetes/barco-pirata/", marca: "Playmobil" },
+          { titulo: "Mano Loca", cover: "/image/covers/mano-loca.jpg", href: "/juguetes/mano-loca/", marca: "Generic Retro" },
+        ].map(juguete => (
           <a
-            href={libro.href}
+            href={juguete.href}
             class="group flex flex-col gap-2"
           >
             <div class="comic-border overflow-hidden bg-hueso aspect-[2/3] relative">
               <img
-                src={libro.cover}
-                alt={`Portada de ${libro.titulo}`}
-                class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-200"
+                src={juguete.cover}
+                alt={`Imagen de ${juguete.titulo}`}
+                class="w-full h-full object-contain bg-hueso p-1 group-hover:scale-105 transition-transform duration-200"
                 loading="lazy"
-                onerror="this.style.display='none';this.parentElement.querySelector('.fallback').style.display='flex'"
               />
-              <div class="fallback hidden absolute inset-0 items-center justify-center bg-mostaza">
-                <span class="font-bangers text-4xl">💬</span>
-              </div>
             </div>
-            <p class="font-fredoka text-sm text-negro leading-tight group-hover:text-rojo transition-colors">{libro.titulo}</p>
-            <p class="font-nunito text-xs text-negro/50">{libro.autor}</p>
+            <p class="font-fredoka text-sm text-negro leading-tight group-hover:text-rojo transition-colors">{juguete.titulo}</p>
+            <p class="font-nunito text-xs text-negro/50">{juguete.marca}</p>
           </a>
         ))}
       </div>
-
-      <!-- LIBROS ILUSTRADOS -->
-      <p class="font-fredoka text-xs uppercase tracking-widest text-negro/50 mb-4">🖍️ Libros ilustrados</p>
-      <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-4 gap-4 mb-10">
-        {[
-          {
-            titulo: "Perro Apestoso",
-            autor: "Colas Gutman",
-            cover: "https://covers.openlibrary.org/b/isbn/9788417552442-L.jpg",
-            href: "/comics/perro-apestoso/",
-          },
-          {
-            titulo: "La Calavera",
-            autor: "Folklore tirolés",
-            cover: "https://vadecuentos.com/wp-content/uploads/2024/11/cuento-la-calavera-12-scaled.jpg",
-            href: "/comics/la-calavera/",
-          },
-          {
-            titulo: "Mina Trolina 1",
-            autor: "Amelia Villetta",
-            cover: "/image/covers/mina-trolina.jpg",
-            href: "/comics/mina-trolina/",
-          },
-          {
-            titulo: "Feliz Feroz",
-            autor: "El Hematocrítico",
-            cover: "/image/covers/feliz-feroz.jpg",
-            href: "/comics/feliz-feroz/",
-          },
-        ].map(libro => (
-          <a
-            href={libro.href}
-            class="group flex flex-col gap-2"
-          >
-            <div class="comic-border overflow-hidden bg-hueso aspect-[2/3] relative">
-              <img
-                src={libro.cover}
-                alt={`Portada de ${libro.titulo}`}
-                class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-200"
-                loading="lazy"
-                onerror="this.style.display='none';this.parentElement.querySelector('.fallback').style.display='flex'"
-              />
-              <div class="fallback hidden absolute inset-0 items-center justify-center bg-trama">
-                <span class="font-bangers text-4xl">🖍️</span>
-              </div>
-            </div>
-            <p class="font-fredoka text-sm text-negro leading-tight group-hover:text-rojo transition-colors">{libro.titulo}</p>
-            <p class="font-nunito text-xs text-negro/50">{libro.autor}</p>
-          </a>
-        ))}
-      </div>
-
-      <!-- Badge de colección para libros ilustrados visible en móvil -->
-      <p class="font-fredoka text-xs uppercase tracking-widest text-negro/50 -mt-6 mb-2 lg:hidden">🖍️ Libros ilustrados</p>
 
     </div>
   </section>

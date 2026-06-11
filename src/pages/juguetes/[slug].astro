@@ -1,0 +1,19 @@
+---
+import { getCollection } from 'astro:content';
+import JugueteLayout from '../../layouts/Juguete.astro';
+
+export async function getStaticPaths() {
+  const juguetes = await getCollection('juguetes');
+  return juguetes.map(juguete => ({
+    params: { slug: juguete.slug },
+    props: { juguete },
+  }));
+}
+
+const { juguete } = Astro.props;
+const { Content } = await juguete.render();
+---
+
+<JugueteLayout {...juguete.data} slug={juguete.slug} imagen={juguete.data.imagen}>
+  <Content />
+</JugueteLayout>

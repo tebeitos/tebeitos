@@ -1,0 +1,56 @@
+---
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import TarjetaJuguete from '../../components/TarjetaJuguete.astro';
+import SeccionKiosko from '../../components/SeccionKiosko.astro';
+import { getCollection } from 'astro:content';
+
+const juguetes = await getCollection('juguetes');
+const ordenados = juguetes.sort((a,b) => b.data.fecha.valueOf() - a.data.fecha.valueOf());
+---
+
+<Base
+  title="Juguetes Retro — El Kiosko de Siempre"
+  description="Catálogo completo de juguetes clásicos y nostálgicos recomendados por Tebeitos: yo-yo, peonza, Tamagotchi y más."
+  breadcrumbs={[{ label: 'Juguetes', href: '/juguetes/' }]}
+>
+  <Header slot="header" />
+
+  <!-- Breadcrumb -->
+  <nav class="contenedor pt-10 pb-2" aria-label="Ruta de navegación">
+    <ol class="flex items-center gap-2 font-fredoka text-sm text-negro/70">
+      <li><a href="/" class="hover:text-rojo transition-colors">Inicio</a></li>
+      <li class="text-trama">›</li>
+      <li class="text-negro font-semibold">Juguetes retro</li>
+    </ol>
+  </nav>
+
+  <!-- Cabecera -->
+  <div class="contenedor py-10 pt-6">
+    <h1 class="titulo-seccion text-5xl lg:text-7xl mb-3">🧸 Juguetes retro</h1>
+    <p class="font-fredoka text-lg text-negro/70 max-w-2xl">
+      Los juguetes de toda la vida. Esos que no necesitaban wifi para hacernos pasar las tardes más divertidas.
+    </p>
+  </div>
+
+  <!-- Listado -->
+  <SeccionKiosko titulo="Juguetes clásicos recomendados" fondo="crema" id="juguetes-lista">
+    <div class="grid-comics">
+      {ordenados.map(juguete => (
+        <TarjetaJuguete
+          titulo={juguete.data.title}
+          slug={juguete.slug}
+          marca={juguete.data.marca}
+          edad={juguete.data.edad}
+          valoracion={juguete.data.valoracion}
+          precio={juguete.data.precio}
+          amazon={juguete.data.amazon}
+          imagen={juguete.data.imagen}
+        />
+      ))}
+    </div>
+  </SeccionKiosko>
+
+  <Footer slot="footer" />
+</Base>

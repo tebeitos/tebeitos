@@ -1,0 +1,141 @@
+---
+import Base from './Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import BotonAmazon from '../components/BotonAmazon.astro';
+import BocadilloDestacado from '../components/BocadilloDestacado.astro';
+
+export interface Props {
+  title: string;
+  marca: string;
+  edad: string;
+  precio: number;
+  valoracion: number;
+  amazon: string;
+  temas: string[];
+  imagen?: string;
+}
+
+const {
+  title,
+  marca,
+  edad,
+  precio,
+  valoracion,
+  amazon,
+  temas,
+  imagen,
+} = Astro.props;
+
+const descripcion = `Reseña de ${title} de ${marca}. Juguete retro recomendado para niños de ${edad} años. Cómpralo en Amazon España.`;
+
+const breadcrumbs = [
+  { label: 'Juguetes', href: '/juguetes/' },
+  { label: title, href: '' },
+];
+---
+
+<Base title={title} description={descripcion} breadcrumbs={breadcrumbs}>
+  <Header slot="header" />
+
+  <!-- Breadcrumb visual -->
+  <nav class="contenedor pt-10 pb-2" aria-label="Ruta de navegación">
+    <ol class="flex items-center gap-2 font-fredoka text-sm text-negro/70">
+      <li><a href="/" class="hover:text-rojo transition-colors">Inicio</a></li>
+      <li class="text-trama">›</li>
+      <li><a href="/juguetes/" class="hover:text-rojo transition-colors">Juguetes</a></li>
+      <li class="text-trama">›</li>
+      <li class="text-negro font-semibold truncate max-w-[200px]">{title}</li>
+    </ol>
+  </nav>
+
+  <!-- Cabecera de la reseña -->
+  <section class="contenedor py-8">
+    <div class="flex flex-col lg:flex-row gap-8 items-start">
+
+      <!-- Portada -->
+      <div class="w-full lg:w-56 flex-shrink-0">
+        <div class="comic-border aspect-[2/3] overflow-hidden bg-trama">
+          {imagen ? (
+            <img
+              src={imagen}
+              alt={`Imagen de ${title}`}
+              class="w-full h-full object-contain bg-hueso p-1"
+              loading="eager"
+            />
+          ) : (
+            <div class="w-full h-full flex flex-col items-center justify-center gap-2">
+              <span class="text-2xl">🎮</span>
+              <span class="font-fredoka text-xs text-center">Imagen próximamente</span>
+            </div>
+          )}
+        </div>
+      </div>
+
+      <!-- Info principal -->
+      <div class="flex-1">
+        <!-- Etiqueta tipo -->
+        <span class="inline-block font-fredoka text-xs px-3 py-1 border-2 border-negro mb-3 bg-mostaza text-negro">
+          🧸 JUGUETE CLÁSICO
+        </span>
+
+        <h1 class="titulo-seccion text-4xl lg:text-5xl mb-2">{title}</h1>
+        <p class="font-fredoka text-lg text-terracota mb-4">
+          Marca/Fabricante: {marca}
+        </p>
+
+        <!-- Temas -->
+        <div class="flex flex-wrap gap-2 mb-6">
+          {temas.map(tema => (
+            <span class="badge-edad font-nunito text-xs capitalize">{tema}</span>
+          ))}
+        </div>
+
+        <!-- Ficha rápida de juguete -->
+        <div class="comic-border bg-mostaza">
+          <div class="bg-negro text-hueso px-4 py-2">
+            <span class="font-bangers text-lg tracking-bangers uppercase">Ficha del Kiosko</span>
+          </div>
+
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-0">
+            {[
+              { label: 'Edad recomendada', valor: `${edad} años` },
+              { label: 'Marca / Distribución', valor: marca },
+              { label: 'Precio aprox.', valor: `${precio.toFixed(2)} €` },
+              { label: 'Nuestra nota', valor: `${valoracion}/5 🗯` },
+            ].map(({ label, valor }) => (
+              <div class="px-4 py-3 border-b-2 border-negro/20 flex flex-col gap-0.5">
+                <span class="font-fredoka text-[10px] text-negro/60 uppercase tracking-wider">{label}</span>
+                <span class="font-fredoka text-sm font-bold text-negro">{valor}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Botón Amazon -->
+        <div class="mt-6">
+          <BotonAmazon url={amazon} />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cuerpo MDX -->
+  <article class="contenedor pb-16">
+    <div class="max-w-3xl prose-tebeitos">
+      <slot />
+    </div>
+
+    <!-- CTA final -->
+    <div class="mt-12 max-w-3xl">
+      <BocadilloDestacado color="rojo">
+        ¿Quieres jugarlo con tus hijos? Encuéntralo en Amazon España con entrega rápida.
+      </BocadilloDestacado>
+      <div class="mt-4">
+        <BotonAmazon url={amazon} texto="Comprar ahora en Amazon →" />
+      </div>
+    </div>
+  </article>
+
+  <Footer slot="footer" />
+</Base>
