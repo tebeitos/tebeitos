@@ -217,34 +217,39 @@ const secciones = [
 
       <!-- CÓMICS -->
       <p class="font-fredoka text-xs uppercase tracking-widest text-negro/50 mb-4">💬 Cómics</p>
-      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 mb-10">
+      <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-4 gap-4 mb-10">
         {[
           {
             titulo: "El club de cómic de Chikigato 1",
             autor: "Dav Pilkey",
             cover: "https://covers.openlibrary.org/b/isbn/9788413921419-L.jpg",
-            href: "https://www.amazon.es/s?k=9788413921419&tag=tebeitos-21",
+            href: "/comics/club-comic-chikigato/",
             coleccion: "comics",
           },
           {
             titulo: "Policán 1",
             autor: "Dav Pilkey",
             cover: "https://covers.openlibrary.org/b/isbn/9788467594454-L.jpg",
-            href: "https://www.amazon.es/s?k=9788467594454&tag=tebeitos-21",
+            href: "/comics/polican/",
             coleccion: "comics",
           },
           {
             titulo: "Animalotes 1",
             autor: "Aaron Blabey",
-            cover: "https://covers.openlibrary.org/b/isbn/9788469833742-L.jpg",
-            href: "https://www.amazon.es/s?k=animalotes+aaron+blabey&tag=tebeitos-21",
+            cover: "/image/covers/animalotes.jpg",
+            href: "/comics/animalotes/",
+            coleccion: "comics",
+          },
+          {
+            titulo: "¡Escóndete que voy!",
+            autor: "L. Séchan / C. Jourdy",
+            cover: "/image/covers/escondete-que-voy.jpg",
+            href: "/comics/escondete-que-voy/",
             coleccion: "comics",
           },
         ].map(libro => (
           <a
             href={libro.href}
-            target="_blank"
-            rel="noopener noreferrer nofollow"
             class="group flex flex-col gap-2"
           >
             <div class="comic-border overflow-hidden bg-hueso aspect-[2/3] relative">
@@ -263,32 +268,39 @@ const secciones = [
             <p class="font-nunito text-xs text-negro/50">{libro.autor}</p>
           </a>
         ))}
+      </div>
 
-        <!-- LIBROS ILUSTRADOS en la misma fila en desktop -->
+      <!-- LIBROS ILUSTRADOS -->
+      <p class="font-fredoka text-xs uppercase tracking-widest text-negro/50 mb-4">🖍️ Libros ilustrados</p>
+      <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-4 gap-4 mb-10">
         {[
           {
             titulo: "Perro Apestoso",
             autor: "Colas Gutman",
             cover: "https://covers.openlibrary.org/b/isbn/9788417552442-L.jpg",
-            href: "https://www.amazon.es/s?k=9788417552442&tag=tebeitos-21",
+            href: "/comics/perro-apestoso/",
           },
           {
             titulo: "La Calavera",
             autor: "Folklore tirolés",
             cover: "https://vadecuentos.com/wp-content/uploads/2024/11/cuento-la-calavera-12-scaled.jpg",
-            href: "https://vadecuentos.com/cuento-la-calavera-folklore-tiroles/",
+            href: "/comics/la-calavera/",
           },
           {
             titulo: "Mina Trolina 1",
             autor: "Amelia Villetta",
-            cover: "https://covers.openlibrary.org/b/isbn/9788469642122-L.jpg",
-            href: "https://www.amazon.es/s?k=9788469642122&tag=tebeitos-21",
+            cover: "/image/covers/mina-trolina.jpg",
+            href: "/comics/mina-trolina/",
+          },
+          {
+            titulo: "Feliz Feroz",
+            autor: "El Hematocrítico",
+            cover: "/image/covers/feliz-feroz.jpg",
+            href: "/comics/feliz-feroz/",
           },
         ].map(libro => (
           <a
             href={libro.href}
-            target="_blank"
-            rel="noopener noreferrer nofollow"
             class="group flex flex-col gap-2"
           >
             <div class="comic-border overflow-hidden bg-hueso aspect-[2/3] relative">
