@@ -18,25 +18,8 @@ const actuales = todos.filter(c => c.data.tipo === 'actual').sort((a,b) => b.dat
 >
   <Header slot="header" />
 
-  <!-- Breadcrumb -->
-  <nav class="contenedor pt-10 pb-2" aria-label="Ruta de navegación">
-    <ol class="flex items-center gap-2 font-fredoka text-sm text-negro/70">
-      <li><a href="/" class="hover:text-rojo transition-colors">Inicio</a></li>
-      <li class="text-trama">›</li>
-      <li class="text-negro font-semibold">Cómics</li>
-    </ol>
-  </nav>
-
-  <!-- Cabecera -->
-  <div class="contenedor py-10 pt-6">
-    <h1 class="titulo-seccion text-5xl lg:text-7xl mb-3">📚 Cómics</h1>
-    <p class="font-fredoka text-lg text-negro/70 max-w-2xl">
-      De ayer y de hoy. Clásicos del kiosko español y novedades que enganchan a los nuevos lectores.
-    </p>
-  </div>
-
   <!-- Actuales -->
-  <SeccionKiosko titulo="Cómics actuales" fondo="crema" id="actuales">
+  <SeccionKiosko titulo="Cómics actuales recomendados" fondo="crema" id="actuales">
     <div class="grid-comics">
       {actuales.map(comic => (
         <TarjetaComic
@@ -55,7 +38,7 @@ const actuales = todos.filter(c => c.data.tipo === 'actual').sort((a,b) => b.dat
   </SeccionKiosko>
 
   <!-- Clásicos -->
-  <SeccionKiosko titulo="Clásicos del kiosko" fondo="hueso" id="clasicos">
+  <SeccionKiosko titulo="Cómics clásicos recomendados" fondo="hueso" id="clasicos">
     <div class="grid-comics">
       {clasicos.map(comic => (
         <TarjetaComic

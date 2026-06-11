@@ -17,22 +17,6 @@ const ilustrados = todos.filter(c => c.data.tipo === 'ilustrado').sort((a,b) => 
 >
   <Header slot="header" />
 
-  <!-- Breadcrumb -->
-  <nav class="contenedor pt-10 pb-2" aria-label="Ruta de navegación">
-    <ol class="flex items-center gap-2 font-fredoka text-sm text-negro/70">
-      <li><a href="/" class="hover:text-rojo transition-colors">Inicio</a></li>
-      <li class="text-trama">›</li>
-      <li class="text-negro font-semibold">Libros ilustrados</li>
-    </ol>
-  </nav>
-
-  <!-- Cabecera -->
-  <div class="contenedor py-10 pt-6">
-    <h1 class="titulo-seccion text-5xl lg:text-7xl mb-3">🖍️ Libros ilustrados</h1>
-    <p class="font-fredoka text-lg text-negro/70 max-w-2xl">
-      Arte y narración de la mano. Álbumes ilustrados y primeras lecturas visuales recomendadas.
-    </p>
-  </div>
 
   <!-- Ilustrados -->
   <SeccionKiosko titulo="Libros ilustrados recomendados" fondo="crema" id="ilustrados">
