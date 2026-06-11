@@ -204,6 +204,119 @@ const secciones = [
   </SeccionKiosko>
 
   <!-- ============================================================
+       BLOQUE 4 — EN EL KIOSKO ESTA SEMANA
+  ============================================================ -->
+  <section class="bg-crema border-y-4 border-negro py-12" id="kiosko-semana">
+    <div class="contenedor">
+
+      <!-- Título -->
+      <div class="flex items-center gap-4 mb-8">
+        <h2 class="font-bangers text-4xl lg:text-5xl tracking-bangers text-negro uppercase">
+          🔥 No te puedes perder
+        </h2>
+      </div>
+
+      <!-- CÓMICS -->
+      <p class="font-fredoka text-xs uppercase tracking-widest text-negro/50 mb-4">💬 Cómics</p>
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 mb-10">
+        {[
+          {
+            titulo: "El club de cómic de Chikigato 1",
+            autor: "Dav Pilkey",
+            cover: "https://covers.openlibrary.org/b/isbn/9788413921419-L.jpg",
+            href: "https://www.amazon.es/s?k=9788413921419&tag=tebeitos-21",
+            coleccion: "comics",
+          },
+          {
+            titulo: "Policán 1",
+            autor: "Dav Pilkey",
+            cover: "https://covers.openlibrary.org/b/isbn/9788467594454-L.jpg",
+            href: "https://www.amazon.es/s?k=9788467594454&tag=tebeitos-21",
+            coleccion: "comics",
+          },
+          {
+            titulo: "Animalotes 1",
+            autor: "Aaron Blabey",
+            cover: "https://covers.openlibrary.org/b/isbn/9788469833742-L.jpg",
+            href: "https://www.amazon.es/s?k=animalotes+aaron+blabey&tag=tebeitos-21",
+            coleccion: "comics",
+          },
+        ].map(libro => (
+          <a
+            href={libro.href}
+            target="_blank"
+            rel="noopener noreferrer nofollow"
+            class="group flex flex-col gap-2"
+          >
+            <div class="comic-border overflow-hidden bg-hueso aspect-[2/3] relative">
+              <img
+                src={libro.cover}
+                alt={`Portada de ${libro.titulo}`}
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-200"
+                loading="lazy"
+                onerror="this.style.display='none';this.parentElement.querySelector('.fallback').style.display='flex'"
+              />
+              <div class="fallback hidden absolute inset-0 items-center justify-center bg-mostaza">
+                <span class="font-bangers text-4xl">💬</span>
+              </div>
+            </div>
+            <p class="font-fredoka text-sm text-negro leading-tight group-hover:text-rojo transition-colors">{libro.titulo}</p>
+            <p class="font-nunito text-xs text-negro/50">{libro.autor}</p>
+          </a>
+        ))}
+
+        <!-- LIBROS ILUSTRADOS en la misma fila en desktop -->
+        {[
+          {
+            titulo: "Perro Apestoso",
+            autor: "Colas Gutman",
+            cover: "https://covers.openlibrary.org/b/isbn/9788417552442-L.jpg",
+            href: "https://www.amazon.es/s?k=9788417552442&tag=tebeitos-21",
+          },
+          {
+            titulo: "La Calavera",
+            autor: "Folklore tirolés",
+            cover: "https://vadecuentos.com/wp-content/uploads/2024/11/cuento-la-calavera-12-scaled.jpg",
+            href: "https://vadecuentos.com/cuento-la-calavera-folklore-tiroles/",
+          },
+          {
+            titulo: "Mina Trolina 1",
+            autor: "Amelia Villetta",
+            cover: "https://covers.openlibrary.org/b/isbn/9788469642122-L.jpg",
+            href: "https://www.amazon.es/s?k=9788469642122&tag=tebeitos-21",
+          },
+        ].map(libro => (
+          <a
+            href={libro.href}
+            target="_blank"
+            rel="noopener noreferrer nofollow"
+            class="group flex flex-col gap-2"
+          >
+            <div class="comic-border overflow-hidden bg-hueso aspect-[2/3] relative">
+              <img
+                src={libro.cover}
+                alt={`Portada de ${libro.titulo}`}
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-200"
+                loading="lazy"
+                onerror="this.style.display='none';this.parentElement.querySelector('.fallback').style.display='flex'"
+              />
+              <div class="fallback hidden absolute inset-0 items-center justify-center bg-trama">
+                <span class="font-bangers text-4xl">🖍️</span>
+              </div>
+            </div>
+            <p class="font-fredoka text-sm text-negro leading-tight group-hover:text-rojo transition-colors">{libro.titulo}</p>
+            <p class="font-nunito text-xs text-negro/50">{libro.autor}</p>
+          </a>
+        ))}
+      </div>
+
+      <!-- Badge de colección para libros ilustrados visible en móvil -->
+      <p class="font-fredoka text-xs uppercase tracking-widest text-negro/50 -mt-6 mb-2 lg:hidden">🖍️ Libros ilustrados</p>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
        BLOQUE 5 — BANNER NOSTALGIA
   ============================================================ -->
   <section class="bg-mostaza border-y-4 border-negro py-16 relative overflow-hidden">
