@@ -8,10 +8,8 @@ import Onomatopeya from '../components/Onomatopeya.astro';
 import BotonAmazon from '../components/BotonAmazon.astro';
 import { getCollection } from 'astro:content';
 
-// Cómics destacados
 const todosLosComics = await getCollection('comics');
 const destacados = todosLosComics
-  .filter(c => c.data.destacado)
   .sort((a, b) => b.data.fecha.valueOf() - a.data.fecha.valueOf())
   .slice(0, 6);
 
@@ -189,6 +187,7 @@ const secciones = [
           precio={comic.data.precio}
           amazon={comic.data.amazon}
           tipo={comic.data.tipo}
+          imagen={comic.data.imagen}
         />
       ))}
     </div>

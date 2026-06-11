@@ -12,7 +12,7 @@ const comicsCollection = defineCollection({
     dificultad: z.number().min(1).max(5),
     valoracion: z.number().min(1).max(5),
     temas:      z.array(z.string()),
-    tipo:       z.enum(['clasico', 'actual']),
+    tipo:       z.enum(['clasico', 'actual', 'ilustrado']),
     imagen:     z.string().optional(),
     amazon:     z.string().url(),
     fecha:      z.date(),

@@ -7,19 +7,38 @@ export interface Props {
   valoracion: number;
   precio: number;
   amazon: string;
-  tipo: 'clasico' | 'actual';
+  tipo: 'clasico' | 'actual' | 'ilustrado';
+  imagen?: string;
 }
 
-const { titulo, slug, autor, edad, valoracion, precio, amazon, tipo } = Astro.props;
+const { titulo, slug, autor, edad, valoracion, precio, amazon, tipo, imagen } = Astro.props;
+
+const badgeMap: Record<string, { bg: string; label: string }> = {
+  clasico:   { bg: 'bg-terracota text-hueso', label: '⭐ CLÁSICO' },
+  actual:    { bg: 'bg-mostaza text-negro',   label: '🆕 ACTUAL' },
+  ilustrado: { bg: 'bg-trama text-hueso',     label: '🖍️ ILUSTRADO' },
+};
+const badge = badgeMap[tipo] ?? badgeMap.actual;
 ---
 
 <article class="comic-border bg-crema flex flex-col overflow-hidden group hover:shadow-comic-lg transition-shadow duration-200">
 
-  <!-- Portada placeholder -->
+  <!-- Portada -->
   <a href={`/comics/${slug}/`} class="block">
-    <div class="img-placeholder aspect-[2/3] bg-trama border-b-3 border-negro flex flex-col items-center justify-center gap-2 group-hover:bg-mostaza transition-colors duration-200">
-      <span class="text-4xl">📚</span>
-      <span class="font-fredoka text-[10px] text-negro/60 text-center px-2">Portada<br/>próximamente</span>
+    <div class="aspect-[2/3] bg-trama border-b-3 border-negro overflow-hidden relative flex flex-col items-center justify-center">
+      {imagen ? (
+        <img
+          src={imagen}
+          alt={`Portada de ${titulo}`}
+          class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-200"
+          loading="lazy"
+        />
+      ) : (
+        <div class="w-full h-full flex flex-col items-center justify-center gap-2 group-hover:bg-mostaza transition-colors duration-200">
+          <span class="text-4xl">📚</span>
+          <span class="font-fredoka text-[10px] text-negro/60 text-center px-2">Portada<br/>próximamente</span>
+        </div>
+      )}
     </div>
   </a>
 
@@ -28,8 +47,8 @@ const { titulo, slug, autor, edad, valoracion, precio, amazon, tipo } = Astro.pr
 
     <!-- Badge tipo -->
     <div class="flex items-center justify-between">
-      <span class={`font-fredoka text-[10px] px-2 py-0.5 border-2 border-negro ${tipo === 'clasico' ? 'bg-terracota text-hueso' : 'bg-mostaza text-negro'}`}>
-        {tipo === 'clasico' ? '⭐ CLÁSICO' : '🆕 ACTUAL'}
+      <span class={`font-fredoka text-[10px] px-2 py-0.5 border-2 border-negro ${badge.bg}`}>
+        {badge.label}
       </span>
       <span class="font-fredoka text-xs text-negro/60">
         {edad} años
@@ -53,7 +72,6 @@ const { titulo, slug, autor, edad, valoracion, precio, amazon, tipo } = Astro.pr
           class={i < valoracion ? 'fill-mostaza' : 'fill-trama/40'}
           aria-hidden="true"
         >
-          <!-- Bocadillo de cómic simplificado -->
           <path d="M12 2C6.48 2 2 5.58 2 10c0 2.54 1.37 4.82 3.5 6.35L4 22l5.5-2.5c.82.15 1.65.5 2.5.5 5.52 0 10-3.58 10-8S17.52 2 12 2z"/>
         </svg>
       ))}
