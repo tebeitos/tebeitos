@@ -28,19 +28,8 @@ const breadcrumbs = [
 <Base title={title} description={descripcion} breadcrumbs={breadcrumbs}>
   <Header slot="header" />
 
-  <!-- Breadcrumb visual -->
-  <nav class="contenedor pt-36 pb-2" aria-label="Ruta de navegación">
-    <ol class="flex items-center gap-2 font-fredoka text-sm text-negro/70">
-      <li><a href="/" class="hover:text-rojo transition-colors">Inicio</a></li>
-      <li class="text-trama">›</li>
-      <li><a href="/blog/" class="hover:text-rojo transition-colors">Blog</a></li>
-      <li class="text-trama">›</li>
-      <li class="text-negro font-semibold truncate max-w-[200px]">{title}</li>
-    </ol>
-  </nav>
-
   <!-- Cabecera del artículo -->
-  <header class="contenedor py-10">
+  <header class="contenedor pt-36 pb-10">
     <span class="inline-block bg-mostaza text-negro font-fredoka text-xs px-3 py-1 border-2 border-negro mb-4 uppercase">
       {categoria}
     </span>
