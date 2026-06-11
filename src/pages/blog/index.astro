@@ -16,55 +16,49 @@ const ordenados = articulos.sort((a, b) => b.data.fecha.valueOf() - a.data.fecha
 >
   <Header slot="header" />
 
-  <!-- Cabecera -->
-  <div class="contenedor pt-20 pb-10">
-    <h1 class="titulo-seccion text-5xl lg:text-7xl mb-3">📝 Del cuaderno de Tebeitos</h1>
-    <p class="font-fredoka text-lg text-negro/70 max-w-2xl">
-      Guías, recomendaciones y artículos para encontrar el cómic perfecto o completar tu colección.
-    </p>
+  <div class="pt-24">
+    <SeccionKiosko titulo="El cuadernillo de Tebeitos" fondo="crema">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {ordenados.map(articulo => {
+          const fecha = new Intl.DateTimeFormat('es-ES', {
+            day: 'numeric', month: 'long', year: 'numeric'
+          }).format(articulo.data.fecha);
+
+          return (
+            <article class="comic-border bg-crema flex flex-col group hover:shadow-comic-lg transition-shadow duration-150">
+              {articulo.data.imagen ? (
+                <div class="h-44 overflow-hidden border-b-3 border-negro bg-crema relative">
+                  <img
+                    src={articulo.data.imagen}
+                    alt={articulo.data.title}
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-200"
+                    loading="lazy"
+                  />
+                </div>
+              ) : (
+                <div class="h-44 bg-trama/50 border-b-3 border-negro flex items-center justify-center">
+                  <span class="text-4xl">📝</span>
+                </div>
+              )}
+              <div class="p-5 flex flex-col gap-3 flex-1">
+                <span class="font-fredoka text-xs text-rojo uppercase tracking-wide">{articulo.data.categoria}</span>
+                <h2 class="font-bangers text-xl tracking-bangers text-negro leading-tight group-hover:text-rojo transition-colors">
+                  <a href={`/blog/${articulo.slug}/`}>{articulo.data.title}</a>
+                </h2>
+                <p class="font-nunito text-sm text-negro/70 line-clamp-3 flex-1">{articulo.data.descripcion}</p>
+                <div class="flex items-center justify-between mt-auto pt-3 border-t-2 border-negro/10">
+                  <span class="font-fredoka text-xs text-trama">{fecha}</span>
+                  <a href={`/blog/${articulo.slug}/`} class="font-fredoka text-xs text-rojo hover:underline">
+                    Leer →
+                  </a>
+                </div>
+              </div>
+            </article>
+          );
+        })}
+      </div>
+    </SeccionKiosko>
   </div>
-
-  <SeccionKiosko titulo="Todos los artículos" fondo="crema">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {ordenados.map(articulo => {
-        const fecha = new Intl.DateTimeFormat('es-ES', {
-          day: 'numeric', month: 'long', year: 'numeric'
-        }).format(articulo.data.fecha);
-
-        return (
-          <article class="comic-border bg-crema flex flex-col group hover:shadow-comic-lg transition-shadow duration-150">
-            {articulo.data.imagen ? (
-              <div class="h-44 overflow-hidden border-b-3 border-negro bg-crema relative">
-                <img
-                  src={articulo.data.imagen}
-                  alt={articulo.data.title}
-                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-200"
-                  loading="lazy"
-                />
-              </div>
-            ) : (
-              <div class="h-44 bg-trama/50 border-b-3 border-negro flex items-center justify-center">
-                <span class="text-4xl">📝</span>
-              </div>
-            )}
-            <div class="p-5 flex flex-col gap-3 flex-1">
-              <span class="font-fredoka text-xs text-rojo uppercase tracking-wide">{articulo.data.categoria}</span>
-              <h2 class="font-bangers text-xl tracking-bangers text-negro leading-tight group-hover:text-rojo transition-colors">
-                <a href={`/blog/${articulo.slug}/`}>{articulo.data.title}</a>
-              </h2>
-              <p class="font-nunito text-sm text-negro/70 line-clamp-3 flex-1">{articulo.data.descripcion}</p>
-              <div class="flex items-center justify-between mt-auto pt-3 border-t-2 border-negro/10">
-                <span class="font-fredoka text-xs text-trama">{fecha}</span>
-                <a href={`/blog/${articulo.slug}/`} class="font-fredoka text-xs text-rojo hover:underline">
-                  Leer →
-                </a>
-              </div>
-            </div>
-          </article>
-        );
-      })}
-    </div>
-  </SeccionKiosko>
 
   <Footer slot="footer" />
 </Base>
