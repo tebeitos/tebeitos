@@ -1,0 +1,38 @@
+---
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import TarjetaComic from '../../components/TarjetaComic.astro';
+import SeccionKiosko from '../../components/SeccionKiosko.astro';
+import { getCollection } from 'astro:content';
+
+const todos = await getCollection('comics');
+const actuales = todos.filter(c => c.data.tipo === 'actual').sort((a,b) => b.data.fecha.valueOf() - a.data.fecha.valueOf());
+---
+
+<Base
+  title="Cómics Actuales de Ahora — El Kiosko de Siempre"
+  description="Catálogo de cómics actuales seleccionados por Tebeitos: novedades de temporada, Capitán Calzoncillos, Policán y más."
+>
+  <Header slot="header" />
+
+  <SeccionKiosko titulo="Cómics actuales recomendados" fondo="crema" id="actuales">
+    <div class="grid-comics">
+      {actuales.map(comic => (
+        <TarjetaComic
+          titulo={comic.data.title}
+          slug={comic.slug}
+          autor={comic.data.autor}
+          edad={comic.data.edad}
+          valoracion={comic.data.valoracion}
+          precio={comic.data.precio}
+          amazon={comic.data.amazon}
+          tipo={comic.data.tipo}
+          imagen={comic.data.imagen}
+        />
+      ))}
+    </div>
+  </SeccionKiosko>
+
+  <Footer slot="footer" />
+</Base>

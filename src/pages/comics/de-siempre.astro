@@ -1,0 +1,38 @@
+---
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import TarjetaComic from '../../components/TarjetaComic.astro';
+import SeccionKiosko from '../../components/SeccionKiosko.astro';
+import { getCollection } from 'astro:content';
+
+const todos = await getCollection('comics');
+const clasicos = todos.filter(c => c.data.tipo === 'clasico').sort((a,b) => b.data.fecha.valueOf() - a.data.fecha.valueOf());
+---
+
+<Base
+  title="Cómics Clásicos de Siempre — El Kiosko de Siempre"
+  description="Catálogo de cómics clásicos españoles seleccionados por Tebeitos: Mortadelo, Zipi y Zape, Astérix y mucho más."
+>
+  <Header slot="header" />
+
+  <SeccionKiosko titulo="Cómics clásicos recomendados" fondo="hueso" id="clasicos">
+    <div class="grid-comics">
+      {clasicos.map(comic => (
+        <TarjetaComic
+          titulo={comic.data.title}
+          slug={comic.slug}
+          autor={comic.data.autor}
+          edad={comic.data.edad}
+          valoracion={comic.data.valoracion}
+          precio={comic.data.precio}
+          amazon={comic.data.amazon}
+          tipo={comic.data.tipo}
+          imagen={comic.data.imagen}
+        />
+      ))}
+    </div>
+  </SeccionKiosko>
+
+  <Footer slot="footer" />
+</Base>
