@@ -25,13 +25,13 @@ import Onomatopeya from '../components/Onomatopeya.astro';
         </p>
       </div>
       <div class="relative flex-shrink-0">
-        <!-- Espacio reservado para el dibujo de Alfonso y Vera -->
-        <div class="comic-border-lg border-dashed bg-hueso w-48 h-48 flex flex-col items-center justify-center text-center p-4">
-          <span class="text-3xl mb-1">🎨</span>
-          <span class="font-fredoka text-xs text-negro/60">Aquí irá el dibujo de Alfonso y Vera</span>
-        </div>
-        <div class="absolute -top-4 -right-6 animate-float">
-          <Onomatopeya texto="¡PRONTO!" color="rojo" rotacion={10} />
+        <!-- Dibujo de Alfonso y Vera -->
+        <div class="comic-border-lg bg-hueso w-56 h-56 overflow-hidden">
+          <img
+            src="/image/dibujo Vera.jpg"
+            alt="Dibujo de Alfonso y Vera hecho por Vera"
+            class="w-full h-full object-cover"
+          />
         </div>
       </div>
     </div>
