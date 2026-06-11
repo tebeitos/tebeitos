@@ -16,8 +16,8 @@ const ordenados = articulos.sort((a, b) => b.data.fecha.valueOf() - a.data.fecha
 >
   <Header slot="header" />
 
-  <div class="pt-4">
-    <SeccionKiosko titulo="El cuadernillo de Tebeitos" fondo="crema">
+  <div class="pt-0">
+    <SeccionKiosko id="blog-seccion" titulo="El cuadernillo de Tebeitos" fondo="crema">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {ordenados.map(articulo => {
           const fecha = new Intl.DateTimeFormat('es-ES', {
@@ -59,6 +59,17 @@ const ordenados = articulos.sort((a, b) => b.data.fecha.valueOf() - a.data.fecha
       </div>
     </SeccionKiosko>
   </div>
+
+  <style>
+    :global(#blog-seccion) {
+      padding-top: 1rem !important;
+    }
+    @media (min-width: 768px) {
+      :global(#blog-seccion) {
+        padding-top: 1.5rem !important;
+      }
+    }
+  </style>
 
   <Footer slot="footer" />
 </Base>
