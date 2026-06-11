@@ -37,7 +37,7 @@ const breadcrumbs = [
     <p class="font-nunito text-lg text-negro/70 mb-6 max-w-2xl">{descripcion}</p>
 
     {imagen && (
-      <div class="comic-border-lg max-w-3xl overflow-hidden mb-8 bg-crema p-2">
+      <div class="comic-border-lg max-w-3xl overflow-hidden mb-6 bg-crema">
         <img
           src={imagen}
           alt={`Imagen ilustrativa de ${title}`}
@@ -46,10 +46,10 @@ const breadcrumbs = [
       </div>
     )}
 
-    <p class="font-fredoka text-sm text-trama mb-6">
+    <p class="font-fredoka text-sm text-trama">
       📅 {fechaFormateada} · Tebeitos
     </p>
-    <div class="mt-8 border-t-4 border-negro"></div>
+    <div class="mt-6 border-t-4 border-negro"></div>
   </header>
 
   <!-- Cuerpo MDX -->
