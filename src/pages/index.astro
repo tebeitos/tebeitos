@@ -142,10 +142,12 @@ const secciones = [
           href={s.href}
           class={`comic-border-lg ${s.color} ${s.textColor ?? 'text-negro'} p-6 flex flex-col gap-3 group hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-100`}
         >
-          <span class="text-5xl">{s.icono}</span>
-          <h3 class="font-bangers text-2xl tracking-bangers uppercase leading-tight">
-            {s.titulo}
-          </h3>
+          <div class="flex items-center gap-4 lg:flex-col lg:items-start lg:gap-2">
+            <span class="text-4xl lg:text-5xl">{s.icono}</span>
+            <h3 class="font-bangers text-2xl tracking-bangers uppercase leading-tight mt-1 lg:mt-0">
+              {s.titulo}
+            </h3>
+          </div>
           <p class={`font-nunito text-sm leading-snug ${s.textColor ?? 'text-negro/70'}`}>
             {s.desc}
           </p>
