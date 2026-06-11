@@ -256,7 +256,7 @@ const secciones = [
               <img
                 src={libro.cover}
                 alt={`Portada de ${libro.titulo}`}
-                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-200"
+                class="w-full h-full object-contain bg-hueso p-1 group-hover:scale-105 transition-transform duration-200"
                 loading="lazy"
                 onerror="this.style.display='none';this.parentElement.querySelector('.fallback').style.display='flex'"
               />
@@ -307,7 +307,7 @@ const secciones = [
               <img
                 src={libro.cover}
                 alt={`Portada de ${libro.titulo}`}
-                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-200"
+                class="w-full h-full object-contain bg-hueso p-1 group-hover:scale-105 transition-transform duration-200"
                 loading="lazy"
                 onerror="this.style.display='none';this.parentElement.querySelector('.fallback').style.display='flex'"
               />
