@@ -75,73 +75,31 @@ const secciones = [
   <section class="relative overflow-hidden trama-bg border-b-4 border-negro">
     <div class="absolute inset-0 speed-lines opacity-40 pointer-events-none" aria-hidden="true"></div>
 
-    <div class="contenedor relative z-10 py-8 lg:py-12">
-      <div class="flex flex-col lg:flex-row items-center gap-8 lg:gap-16">
+    <div class="contenedor relative z-10 py-10 lg:py-14">
+      <div class="text-center max-w-2xl mx-auto">
 
-        <!-- Texto izquierda -->
-        <div class="flex-1 text-center lg:text-left order-2 lg:order-1">
+        <h1 class="font-bangers text-5xl lg:text-7xl text-negro leading-none tracking-bangers mb-3"
+            style="text-shadow: 3px 3px 0 #E8A01B, 5px 5px 0 #1B1714;">
+          MUNDIAL PANINI 2026
+        </h1>
 
-          <p class="font-fredoka text-sm uppercase tracking-widest text-rojo mb-2">
-            🔥 No te puedes perder:
-          </p>
+        <p class="font-bangers text-2xl lg:text-3xl text-rojo tracking-bangers mb-5">
+          980 cromos · 48 selecciones · el más grande de la historia
+        </p>
 
-          <h1 class="font-bangers text-5xl lg:text-7xl text-negro leading-none tracking-bangers mb-3"
-              style="text-shadow: 3px 3px 0 #E8A01B, 5px 5px 0 #1B1714;">
-            MUNDIAL PANINI 2026
-          </h1>
+        <p class="font-nunito text-base text-negro/80 mb-8 max-w-lg mx-auto leading-relaxed">
+          Los quioscos llevan semanas sin stock. Aquí te contamos qué formatos hay,
+          cuánto cuesta completarlo de verdad y dónde comprarlo online.
+        </p>
 
-          <p class="font-bangers text-2xl lg:text-3xl text-rojo tracking-bangers mb-5">
-            980 cromos · 48 selecciones · el más grande de la historia
-          </p>
-
-          <p class="font-nunito text-base text-negro/80 mb-8 max-w-lg mx-auto lg:mx-0 leading-relaxed">
-            Los quioscos llevan semanas sin stock. Aquí te contamos qué formatos hay,
-            cuánto cuesta completarlo de verdad y dónde comprarlo online.
-          </p>
-
-          <div class="flex flex-wrap gap-4 justify-center lg:justify-start">
-            <a
-              href="/cromos/panini-mundial-2026/"
-              class="font-bangers text-xl text-hueso bg-rojo px-8 py-3 border-3 border-negro shadow-comic hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-100 tracking-bangers"
-            >
-              VER GUÍA COMPLETA →
-            </a>
-          </div>
+        <div class="flex gap-4 justify-center">
+          <a
+            href="/cromos/panini-mundial-2026/"
+            class="font-bangers text-xl text-hueso bg-rojo px-8 py-3 border-3 border-negro shadow-comic hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-100 tracking-bangers"
+          >
+            VER GUÍA COMPLETA →
+          </a>
         </div>
-
-        <!-- Cromo Lamine Yamal -->
-        <div class="flex-shrink-0 order-1 lg:order-2 relative flex items-center justify-center">
-
-          <!-- Burst detrás del cromo -->
-          <div class="absolute inset-0 flex items-center justify-center" aria-hidden="true">
-            <div class="w-72 h-72 lg:w-96 lg:h-96 bg-mostaza rounded-full opacity-30"
-                 style="filter: blur(40px);"></div>
-          </div>
-
-          <!-- Onomatopeya -->
-          <div class="absolute -bottom-2 -right-4 animate-float z-10" style="animation-delay: 0.5s;">
-            <Onomatopeya texto="¡CRACK!" color="terracota" rotacion={10} />
-          </div>
-
-          <!-- El cromo -->
-          <div class="relative z-10 mt-5" style="transform: rotate(-4deg);">
-            <div class="comic-border-lg overflow-hidden shadow-[8px_8px_0px_#1B1714] w-36 sm:w-44 lg:w-52">
-              <img
-                src="/image/jamine lamal.jpg"
-                alt="Lamine Yamal — Cromo Panini Mundial 2026"
-                width="220"
-                height="300"
-                class="w-full block"
-              />
-            </div>
-            <!-- Etiqueta "MÁS BUSCADO" -->
-            <div class="absolute -top-3 -right-3 bg-rojo border-2 border-negro px-2 py-1 rotate-6 z-20">
-              <span class="font-bangers text-xs text-hueso tracking-bangers">⭐ MÁS BUSCADO</span>
-            </div>
-          </div>
-
-        </div>
-
       </div>
     </div>
   </section>
