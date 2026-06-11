@@ -96,10 +96,16 @@ const currentPath = Astro.url.pathname;
       {navLinks.map(link => (
         link.dropdown ? (
           <div class="flex flex-col border-2 border-negro bg-hueso mb-1">
-            <span class="font-fredoka text-base px-4 py-3 bg-negro text-crema font-bold border-b border-negro">
-              {link.label}
-            </span>
-            <div class="flex flex-col">
+            <button
+              id="mobile-dropdown-btn"
+              class="font-fredoka text-base px-4 py-3 bg-negro text-crema font-bold flex items-center justify-between border-b border-negro"
+              aria-expanded="false"
+              aria-controls="mobile-dropdown-menu"
+            >
+              <span>{link.label}</span>
+              <span class="text-xs transition-transform duration-150 arrow">▼</span>
+            </button>
+            <div id="mobile-dropdown-menu" class="hidden flex flex-col bg-hueso">
               {link.dropdown.map(sub => (
                 <a
                   href={sub.href}
@@ -134,6 +140,20 @@ const currentPath = Astro.url.pathname;
     menu?.classList.toggle('hidden');
     toggle.setAttribute('aria-expanded', String(!isOpen));
     menu?.setAttribute('aria-hidden', String(isOpen));
+  });
+
+  // Toggle de subsecciones en móvil
+  const mobileDropdownBtn = document.getElementById('mobile-dropdown-btn');
+  const mobileDropdownMenu = document.getElementById('mobile-dropdown-menu');
+  const arrow = mobileDropdownBtn?.querySelector('.arrow') as HTMLElement | null;
+
+  mobileDropdownBtn?.addEventListener('click', () => {
+    const isClosed = mobileDropdownMenu?.classList.contains('hidden');
+    mobileDropdownMenu?.classList.toggle('hidden');
+    mobileDropdownBtn.setAttribute('aria-expanded', String(isClosed));
+    if (arrow) {
+      arrow.style.transform = isClosed ? 'rotate(180deg)' : 'rotate(0deg)';
+    }
   });
 
   // Cerrar menú al hacer clic en un enlace
