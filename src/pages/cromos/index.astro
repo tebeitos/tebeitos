@@ -1,0 +1,66 @@
+---
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import SeccionKiosko from '../../components/SeccionKiosko.astro';
+
+const colecciones = [
+  {
+    titulo: "Panini Mundial 2026",
+    desc: "El álbum más grande de la historia con 980 cromos y las 48 selecciones nacionales. Todos los detalles, precios y consejos.",
+    href: "/cromos/panini-mundial-2026/",
+    imagen: "⚽",
+    badge: "🔥 Más buscado",
+    badgeBg: "bg-rojo text-hueso"
+  },
+  {
+    titulo: "K-Pop Demon Hunters (Guerreras K-Pop)",
+    desc: "La colección oficial de pegatinas de las cazadoras de demonios de Netflix. 200 cromos especiales, brillantes y troquelados de Bizak.",
+    href: "/cromos/guerreras-kpop/",
+    imagen: "🎤",
+    badge: "🆕 Novedad",
+    badgeBg: "bg-mostaza text-negro"
+  }
+];
+---
+
+<Base
+  title="Cromos y Álbumes — El Kiosko de Siempre"
+  description="Encuentra las mejores colecciones de cromos y pegatinas: Panini Mundial 2026, K-Pop Demon Hunters y más."
+>
+  <Header slot="header" />
+
+  <div class="pt-8">
+    <SeccionKiosko titulo="Cromos y Álbumes" fondo="crema">
+      <p class="font-fredoka text-lg text-negro/70 mb-10 max-w-2xl">
+        Las colecciones de cromos, pegatinas y álbumes que están llenando las carpetas y los patios del colegio esta temporada.
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl">
+        {colecciones.map(c => (
+          <article class="comic-border bg-hueso flex flex-col group hover:shadow-comic-lg transition-shadow duration-150">
+            <div class="h-48 bg-trama/40 border-b-3 border-negro flex items-center justify-center text-7xl relative">
+              <span>{c.imagen}</span>
+              <span class={`absolute top-4 right-4 font-fredoka text-xs px-2.5 py-1 border-2 border-negro ${c.badgeBg}`}>
+                {c.badge}
+              </span>
+            </div>
+            <div class="p-6 flex flex-col gap-3 flex-1">
+              <h3 class="font-bangers text-2xl tracking-bangers text-negro leading-tight group-hover:text-rojo transition-colors">
+                <a href={c.href}>{c.titulo}</a>
+              </h3>
+              <p class="font-nunito text-base text-negro/70 flex-1">{c.desc}</p>
+              <div class="pt-4 border-t border-negro/10 flex justify-end">
+                <a href={c.href} class="font-fredoka text-sm text-rojo hover:underline flex items-center gap-1">
+                  Ver guía de colección →
+                </a>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </SeccionKiosko>
+  </div>
+
+  <Footer slot="footer" />
+</Base>

@@ -1,0 +1,214 @@
+---
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import BotonAmazon from '../../components/BotonAmazon.astro';
+import BocadilloDestacado from '../../components/BocadilloDestacado.astro';
+import Onomatopeya from '../../components/Onomatopeya.astro';
+import SeccionKiosko from '../../components/SeccionKiosko.astro';
+
+const amazonBase = "?tag=tebeitos-21";
+
+const productos = [
+  {
+    titulo: "Starter Pack: Álbum + 4 sobres",
+    desc: "El pack de inicio imprescindible para comenzar la colección. Contiene el álbum de 32 páginas y 20 pegatinas.",
+    icono: "📔",
+    url: `https://www.amazon.es/s?k=k-pop+demon+hunters+starter+pack&${amazonBase}`,
+    cta: "Ver Starter Pack",
+    color: "bg-mostaza",
+  },
+  {
+    titulo: "Sobres individuales (5 pegatinas)",
+    desc: "La unidad mínima para abrir sobres y divertirse buscando las pegatinas holográficas.",
+    icono: "✉️",
+    url: `https://www.amazon.es/s?k=k-pop+demon+hunters+sobres&${amazonBase}`,
+    cta: "Ver sobres sueltos",
+    color: "bg-crema",
+  },
+  {
+    titulo: "Caja de 24 sobres (120 pegatinas)",
+    desc: "El formato más rentable para avanzar rápidamente con tu colección y conseguir los cromos especiales.",
+    icono: "📦",
+    url: `https://www.amazon.es/s?k=k-pop+demon+hunters+caja&${amazonBase}`,
+    cta: "Ver caja en Amazon",
+    color: "bg-hueso",
+  },
+];
+
+const especiales = [
+  { nombre: "Pegatinas Brillantes", desc: "Holográficas con purpurina que brillan en la oscuridad.", emoji: "✨" },
+  { nombre: "Pegatinas Troqueladas", desc: "Siluetas recortadas de las guerreras listas para la acción.", emoji: "✂️" },
+  { nombre: "Las 4 Guerreras", desc: "Las protagonistas (Luna, Hana, Yeji y Jin) en sus poses de combate.", emoji: "🎤" },
+  { nombre: "Póster Central", desc: "Un póster exclusivo a doble página para decorar la habitación.", emoji: "🖼️" },
+];
+
+const relacionados = [
+  { titulo: "Guía Panini Mundial 2026", href: "/cromos/panini-mundial-2026/", emoji: "⚽" },
+  { titulo: "Cartas Pokémon: guía para empezar", href: "/cartas/", emoji: "🃏" },
+  { titulo: "Cómics actuales recomendados", href: "/comics/de-ahora/", emoji: "📚" },
+];
+---
+
+<Base
+  title="Guía Cromos Guerreras K-Pop (Demon Hunters) — Álbum Oficial"
+  description="Colección de pegatinas K-Pop Demon Hunters de Bizak. 200 pegatinas, brillantes, troqueladas y póster. Opinión de Vera y dónde comprar online."
+>
+  <Header slot="header" />
+
+  <!-- ============================================================
+       HERO
+  ============================================================ -->
+  <section class="trama-bg border-b-4 border-negro relative overflow-hidden">
+    <div class="absolute top-4 right-8 animate-float" aria-hidden="true">
+      <Onomatopeya texto="¡K-POP!" color="rojo" rotacion={12} />
+    </div>
+    <div class="absolute bottom-4 left-6 opacity-40" aria-hidden="true">
+      <Onomatopeya texto="¡YEAH!" color="mostaza" rotacion={-8} />
+    </div>
+
+    <div class="contenedor pt-20 pb-12 lg:pt-24 lg:pb-16 relative z-10">
+      <!-- Badge -->
+      <div class="inline-flex items-center gap-2 bg-rojo text-hueso font-fredoka text-sm px-4 py-1.5 border-3 border-negro shadow-comic mb-5">
+        <span>⭐</span><span>COLECCIÓN OFICIAL BIZAK — NETFLIX</span>
+      </div>
+
+      <h1 class="font-bangers text-5xl lg:text-7xl text-negro tracking-bangers leading-none mb-4"
+          style="text-shadow: 3px 3px 0 #E8A01B, 5px 5px 0 #1B1714;">
+        GUERRERAS K-POP
+      </h1>
+      <p class="font-bangers text-2xl lg:text-3xl text-rojo tracking-bangers mb-6">
+        K-Pop Demon Hunters Sticker Album
+      </p>
+
+      <!-- Intro -->
+      <div class="comic-border bg-crema p-6 max-w-3xl">
+        <p class="font-fredoka text-xl text-negro leading-relaxed mb-3">
+          El álbum de pegatinas de la película de cazadoras de demonios de Netflix.
+        </p>
+        <p class="font-nunito text-base text-negro/80 leading-relaxed">
+          Basado en la exitosa producción de Netflix, Bizak nos trae una colección de <strong>200 pegatinas totales</strong> llenas de música, acción y fantasía. Con cromos holográficos, siluetas troqueladas especiales y un póster exclusivo de las protagonistas en concierto.
+        </p>
+      </div>
+
+      <!-- Stats rápidos -->
+      <div class="flex flex-wrap gap-4 mt-6">
+        {[
+          { n: "200", label: "cromos totales" },
+          { n: "32", label: "páginas de álbum" },
+          { n: "4", label: "guerreras protagonistas" },
+          { n: "Bizak", label: "editorial oficial" },
+        ].map(s => (
+          <div class="comic-border-sm bg-mostaza px-4 py-2 text-center">
+            <p class="font-bangers text-3xl text-negro leading-none">{s.n}</p>
+            <p class="font-fredoka text-xs text-negro/70 uppercase">{s.label}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PRODUCTOS
+  ============================================================ -->
+  <SeccionKiosko titulo="Formatos disponibles" fondo="hueso" id="productos">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {productos.map(p => (
+        <article class={`comic-border ${p.color} flex flex-col gap-3 p-5`}>
+          <span class="text-4xl">{p.icono}</span>
+          <h3 class="font-bangers text-xl tracking-bangers text-negro leading-tight">{p.titulo}</h3>
+          <p class="font-nunito text-sm text-negro/75 flex-1">{p.desc}</p>
+          <a
+            href={p.url}
+            target="_blank"
+            rel="noopener noreferrer nofollow"
+            class="font-fredoka text-sm text-hueso bg-rojo px-4 py-2 border-2 border-negro shadow-comic-sm hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-none transition-all duration-100 inline-flex items-center gap-2 w-fit"
+          >
+            👉 {p.cta}
+          </a>
+        </article>
+      ))}
+    </div>
+  </SeccionKiosko>
+
+  <!-- ============================================================
+       LA OPINIÓN DE ALFONSO Y VERA
+  ============================================================ -->
+  <section class="bg-negro text-crema border-y-4 border-negro py-14">
+    <div class="contenedor max-w-3xl">
+      <h2 class="font-bangers text-4xl lg:text-5xl text-mostaza tracking-bangers mb-6">
+        La opinión de Alfonso y Vera
+      </h2>
+
+      <div class="comic-border bg-rojo/10 border-rojo p-6 mb-8">
+        <p class="font-fredoka text-xl text-hueso leading-relaxed mb-4">
+          Vera dice: "¡Me encantan las pegatinas brillantes! Tienen purpurina y además las chicas luchan contra monstruos con su ropa de K-Pop. Mi favorita es Hana".
+        </p>
+        <p class="font-nunito text-base text-crema/80 leading-relaxed">
+          Alfonso opina: "Es una colección muy bien producida por Bizak. A diferencia de las colecciones gigantes de fútbol, con 200 cromos es un álbum muy abarcable y divertido para completar con los peques de casa sin dejarse un dineral. El póster central está genial".
+        </p>
+      </div>
+
+      <div class="mt-6">
+        <BocadilloDestacado color="mostaza">
+          Ideal para regalar a cualquier fan del K-Pop o de la película de cazadoras de demonios.
+        </BocadilloDestacado>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CROMOS ESPECIALES
+  ============================================================ -->
+  <SeccionKiosko titulo="Qué hace especial este álbum" fondo="crema" id="especiales">
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl">
+      {especiales.map(c => (
+        <div class="comic-border bg-mostaza p-4 flex items-start gap-3">
+          <span class="text-3xl flex-shrink-0">{c.emoji}</span>
+          <div>
+            <p class="font-bangers text-xl tracking-bangers text-negro leading-tight">{c.nombre}</p>
+            <p class="font-nunito text-sm text-negro/70">{c.desc}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </SeccionKiosko>
+
+  <!-- ============================================================
+       DÓNDE COMPRAR
+  ============================================================ -->
+  <SeccionKiosko titulo="Dónde comprar online" fondo="hueso" id="donde-comprar">
+    <p class="font-nunito text-base text-negro/70 mb-6 max-w-2xl">
+      Puedes encontrar los sobres y el pack de inicio en Amazon España con envío rápido y seguro:
+    </p>
+
+    <div class="mb-8">
+      <BotonAmazon
+        url={`https://www.amazon.es/s?k=k-pop+demon+hunters+album&tag=tebeitos-21`}
+        texto="Ver todas las opciones en Amazon"
+      />
+    </div>
+  </SeccionKiosko>
+
+  <!-- ============================================================
+       TAMBIÉN TE PUEDE INTERESAR
+  ============================================================ -->
+  <section class="bg-crema border-t-4 border-negro py-10">
+    <div class="contenedor">
+      <h2 class="font-bangers text-2xl tracking-bangers text-negro mb-5 uppercase">También te puede interesar</h2>
+      <div class="flex flex-wrap gap-3">
+        {relacionados.map(r => (
+          <a
+            href={r.href}
+            class="comic-border-sm bg-hueso px-5 py-3 font-fredoka text-sm text-negro hover:bg-mostaza transition-colors duration-150 flex items-center gap-2"
+          >
+            <span>{r.emoji}</span>
+            <span>{r.titulo}</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</Base>
