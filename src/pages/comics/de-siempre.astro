@@ -16,7 +16,18 @@ const clasicos = todos.filter(c => c.data.tipo === 'clasico').sort((a,b) => b.da
 >
   <Header slot="header" />
 
-  <SeccionKiosko titulo="Cómics clásicos recomendados" fondo="hueso" id="clasicos">
+  <section class="contenedor pt-44 pb-4">
+    <h1 class="titulo-seccion text-4xl lg:text-5xl mb-4">Cómics de siempre</h1>
+    <div class="flex gap-1 mt-2 mb-6">
+      <div class="h-1 w-16 bg-rojo"></div>
+      <div class="h-1 flex-1 bg-negro"></div>
+    </div>
+    <p class="font-fredoka text-lg text-negro/70 mb-10 max-w-3xl">
+      Mortadelo, Astérix, Zipi y Zape, Tintín... Los que leía tu padre, los que leías tú, los que leerán tus hijos. Algunos clásicos no caducan. Simplemente esperan.
+    </p>
+  </section>
+
+  <SeccionKiosko titulo="" fondo="hueso" id="clasicos">
     <div class="grid-comics">
       {clasicos.map(comic => (
         <TarjetaComic

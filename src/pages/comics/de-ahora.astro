@@ -16,7 +16,18 @@ const actuales = todos.filter(c => c.data.tipo === 'actual').sort((a,b) => b.dat
 >
   <Header slot="header" />
 
-  <SeccionKiosko titulo="Cómics actuales recomendados" fondo="crema" id="actuales">
+  <section class="contenedor pt-44 pb-4">
+    <h1 class="titulo-seccion text-4xl lg:text-5xl mb-4">Cómics de ahora</h1>
+    <div class="flex gap-1 mt-2 mb-6">
+      <div class="h-1 w-16 bg-rojo"></div>
+      <div class="h-1 flex-1 bg-negro"></div>
+    </div>
+    <p class="font-fredoka text-lg text-negro/70 mb-10 max-w-3xl">
+      Dog Man, Superpatata, Policán, Las Hermanas... Los que se agotan en el kiosko, los que piden en el colegio, los que no sueltan en el sofá. El cómic de hoy tiene mucha energía.
+    </p>
+  </section>
+
+  <SeccionKiosko titulo="" fondo="crema" id="actuales">
     <div class="grid-comics">
       {actuales.map(comic => (
         <TarjetaComic

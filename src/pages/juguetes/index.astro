@@ -18,8 +18,19 @@ const ordenados = juguetes.sort((a,b) => b.data.fecha.valueOf() - a.data.fecha.v
   <Header slot="header" />
 
 
+  <section class="contenedor pt-44 pb-4">
+    <h1 class="titulo-seccion text-4xl lg:text-5xl mb-4">Juguetes</h1>
+    <div class="flex gap-1 mt-2 mb-6">
+      <div class="h-1 w-16 bg-rojo"></div>
+      <div class="h-1 flex-1 bg-negro"></div>
+    </div>
+    <p class="font-fredoka text-lg text-negro/70 mb-10 max-w-3xl">
+      El yoyó, la peonza, el Tamagotchi, el Cubo de Rubik... Los juguetes que no necesitaban batería para durar toda la tarde. Algunos han vuelto. Otros nunca se fueron.
+    </p>
+  </section>
+
   <!-- Listado -->
-  <SeccionKiosko titulo="Juguetes clásicos recomendados" fondo="crema" id="juguetes-lista">
+  <SeccionKiosko titulo="" fondo="crema" id="juguetes-lista">
     <div class="grid-comics">
       {ordenados.map(juguete => (
         <TarjetaJuguete
