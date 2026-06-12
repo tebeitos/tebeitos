@@ -10,8 +10,8 @@ import { getCollection } from 'astro:content';
 
 const todosLosComics = await getCollection('comics');
 const destacados = todosLosComics
-  .sort((a, b) => b.data.fecha.valueOf() - a.data.fecha.valueOf())
-  .slice(0, 8);
+  .filter(comic => comic.data.destacado)
+  .sort((a, b) => b.data.fecha.valueOf() - a.data.fecha.valueOf());
 
 // Blog recientes
 const todosLosArticulos = await getCollection('blog');
