@@ -1,0 +1,122 @@
+---
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import SeccionKiosko from '../../components/SeccionKiosko.astro';
+import Onomatopeya from '../../components/Onomatopeya.astro';
+
+const juegos = [
+  {
+    titulo: "Dobble",
+    desc: "Un juego de velocidad visual, reflejos y observación donde todos juegan a la vez. ¡Encuentra el símbolo idéntico entre las cartas antes que nadie!",
+    icono: "👀",
+    marca: "Asmodee",
+    edad: "6+",
+    color: "bg-mostaza",
+    amazon: "https://www.amazon.es/s?k=dobble+juego&tag=tebeitos-21"
+  },
+  {
+    titulo: "Parchís y Oca de Madera",
+    desc: "El clásico indiscutible de toda la vida. Lanza los dados, cómete una y cuenta veinte. El rey de las tardes lluviosas de domingo en familia.",
+    icono: "🎲",
+    marca: "Clásico",
+    edad: "5+",
+    color: "bg-crema",
+    amazon: "https://www.amazon.es/s?k=parchis+madera+tradicional&tag=tebeitos-21"
+  },
+  {
+    titulo: "Virus!",
+    desc: "El juego de cartas de contagios, órganos y vacunas más adictivo y vendido de los últimos años. Partidas rápidas, gamberras y súper divertidas.",
+    icono: "🦠",
+    marca: "Tranjis Games",
+    edad: "8+",
+    color: "bg-rojo",
+    amazon: "https://www.amazon.es/s?k=virus+juego+de+cartas&tag=tebeitos-21"
+  },
+  {
+    titulo: "Jenga",
+    desc: "Retira los bloques de madera uno a uno y colócalos en la cima sin derribar la torre. Un juego de pulso de cirujano y mucha tensión.",
+    icono: "🪵",
+    marca: "Hasbro Gaming",
+    edad: "6+",
+    color: "bg-terracota",
+    amazon: "https://www.amazon.es/s?k=jenga+clasico&tag=tebeitos-21"
+  }
+];
+---
+
+<Base
+  title="Juegos de Mesa en Familia — El Kiosko de Siempre"
+  description="Del parchís al Dobble. Juegos para jugar en familia, en el sofá o de camino a cualquier sitio."
+  breadcrumbs={[{ label: 'Juegos de mesa', href: '/juegos-de-mesa/' }]}
+>
+  <Header slot="header" />
+
+  <!-- Hero -->
+  <section class="trama-bg border-b-4 border-negro relative overflow-hidden">
+    <div class="absolute top-4 right-8 animate-float" aria-hidden="true">
+      <Onomatopeya texto="¡DADOS!" color="mostaza" rotacion={12} />
+    </div>
+    <div class="absolute bottom-4 left-6 opacity-40" aria-hidden="true">
+      <Onomatopeya texto="¡TURNO!" color="rojo" rotacion={-8} />
+    </div>
+
+    <div class="contenedor pt-20 pb-12 lg:pt-24 lg:pb-16 relative z-10">
+      <div class="inline-flex items-center gap-2 bg-rojo text-hueso font-fredoka text-sm px-4 py-1.5 border-3 border-negro shadow-comic mb-5">
+        <span>🎲</span><span>DIVERSIÓN MULTIGENERACIONAL</span>
+      </div>
+
+      <h1 class="font-bangers text-5xl lg:text-7xl text-negro tracking-bangers leading-none mb-4"
+          style="text-shadow: 3px 3px 0 #E8A01B, 5px 5px 0 #1B1714;">
+        Juegos de Mesa
+      </h1>
+      <p class="font-bangers text-2xl lg:text-3xl text-rojo tracking-bangers mb-6">
+        Del parchís al Dobble
+      </p>
+
+      <div class="comic-border bg-crema p-6 max-w-3xl">
+        <p class="font-fredoka text-xl text-negro leading-relaxed mb-3">
+          Juegos para jugar en familia, en el sofá o de camino a cualquier sitio.
+        </p>
+        <p class="font-nunito text-base text-negro/80 leading-relaxed">
+          En Tebeitos creemos que no hay nada mejor que apagar las pantallas, sentarse en la mesa del salón y sacar un tablero o un mazo de cartas. Aquí tienes nuestra selección de juegos que triunfan con niños de todas las edades y también divierten a los mayores.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lista de juegos -->
+  <SeccionKiosko titulo="Nuestros recomendados" fondo="hueso">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl">
+      {juegos.map(j => (
+        <article class={`comic-border ${j.color} flex flex-col md:flex-row gap-6 p-6 group hover:shadow-comic-lg transition-shadow duration-150`}>
+          <div class="w-full md:w-32 h-32 bg-hueso/80 border-3 border-negro flex items-center justify-center text-6xl flex-shrink-0 relative">
+            <span>{j.icono}</span>
+          </div>
+          <div class="flex flex-col gap-3 flex-1">
+            <h3 class="font-bangers text-2xl tracking-bangers text-negro leading-tight">
+              {j.titulo}
+            </h3>
+            <p class="font-nunito text-base text-negro/85 flex-1">
+              {j.desc}
+            </p>
+            <div class="flex flex-wrap items-center gap-3 pt-3 border-t border-negro/10">
+              <span class="font-fredoka text-xs bg-negro text-crema px-2.5 py-1">Edad: {j.edad}</span>
+              <span class="font-fredoka text-xs bg-hueso text-negro border border-negro px-2.5 py-1">Marca: {j.marca}</span>
+              <a
+                href={j.amazon}
+                target="_blank"
+                rel="noopener noreferrer nofollow"
+                class="font-fredoka text-xs text-hueso bg-rojo ml-auto px-4 py-2 border-2 border-negro shadow-comic-sm hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-none transition-all duration-100"
+              >
+                Ver en Amazon 👉
+              </a>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </SeccionKiosko>
+
+  <Footer slot="footer" />
+</Base>
