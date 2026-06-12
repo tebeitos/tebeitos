@@ -3,56 +3,33 @@ import Base from '../../layouts/Base.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import SeccionKiosko from '../../components/SeccionKiosko.astro';
-import Onomatopeya from '../../components/Onomatopeya.astro';
 import { getCollection } from 'astro:content';
 
 const juegos = await getCollection('juegos');
-// Sort by date or just keep them
+// Sort by date
 juegos.sort((a, b) => b.data.fecha.getTime() - a.data.fecha.getTime());
 ---
 
 <Base
   title="Juegos de Mesa en Familia — El Kiosko de Siempre"
-  description="Del parchís al Dobble. Juegos para jugar en familia, en el sofá o de camino a cualquier sitio."
+  description="Juegos para jugar en familia, en el sofá o de camino a cualquier sitio."
   breadcrumbs={[{ label: 'Juegos de mesa', href: '/juegos-de-mesa/' }]}
 >
   <Header slot="header" />
 
-  <!-- Hero -->
-  <section class="trama-bg border-b-4 border-negro relative overflow-hidden">
-    <div class="absolute top-4 right-8 animate-float" aria-hidden="true">
-      <Onomatopeya texto="¡DADOS!" color="mostaza" rotacion={12} />
+  <section class="contenedor pt-36 pb-8">
+    <h1 class="titulo-seccion text-4xl lg:text-5xl mb-4">Juegos de Mesa</h1>
+    <div class="flex gap-1 mt-2 mb-6">
+      <div class="h-1 w-16 bg-rojo"></div>
+      <div class="h-1 flex-1 bg-negro"></div>
     </div>
-    <div class="absolute bottom-4 left-6 opacity-40" aria-hidden="true">
-      <Onomatopeya texto="¡TURNO!" color="rojo" rotacion={-8} />
-    </div>
-
-    <div class="contenedor pt-20 pb-12 lg:pt-24 lg:pb-16 relative z-10">
-      <div class="inline-flex items-center gap-2 bg-rojo text-hueso font-fredoka text-sm px-4 py-1.5 border-3 border-negro shadow-comic mb-5">
-        <span>🎲</span><span>DIVERSIÓN MULTIGENERACIONAL</span>
-      </div>
-
-      <h1 class="font-bangers text-5xl lg:text-7xl text-negro tracking-bangers leading-none mb-4"
-          style="text-shadow: 3px 3px 0 #E8A01B, 5px 5px 0 #1B1714;">
-        Juegos de Mesa
-      </h1>
-      <p class="font-bangers text-2xl lg:text-3xl text-rojo tracking-bangers mb-6">
-        Del parchís al Dobble
-      </p>
-
-      <div class="comic-border bg-crema p-6 max-w-3xl">
-        <p class="font-fredoka text-xl text-negro leading-relaxed mb-3">
-          Juegos para jugar en familia, en el sofá o de camino a cualquier sitio.
-        </p>
-        <p class="font-nunito text-base text-negro/80 leading-relaxed">
-          En Tebeitos creemos que no hay nada mejor que apagar las pantallas, sentarse en la mesa del salón y sacar un tablero o un mazo de cartas. Aquí tienes nuestra selección de juegos que triunfan con niños de todas las edades y también divierten a los mayores.
-        </p>
-      </div>
-    </div>
+    <p class="font-fredoka text-xl text-negro leading-relaxed max-w-3xl">
+      En Tebeitos creemos que no hay nada mejor que apagar las pantallas, sentarse en la mesa del salón y sacar un tablero o un mazo de cartas. Aquí tienes nuestra selección de juegos que triunfan con niños de todas las edades y también divierten a los mayores.
+    </p>
   </section>
 
   <!-- Lista de juegos -->
-  <SeccionKiosko titulo="Juegos recomendados" fondo="hueso">
+  <SeccionKiosko titulo="" fondo="hueso">
     <div class="grid-comics">
       {juegos.map(j => (
         <article class="comic-border bg-crema flex flex-col overflow-hidden group hover:shadow-comic-lg transition-shadow duration-200">
