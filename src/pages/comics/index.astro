@@ -18,8 +18,22 @@ const actuales = todos.filter(c => c.data.tipo === 'actual').sort((a,b) => b.dat
 >
   <Header slot="header" />
 
+  <!-- Cabecera de Sección -->
+  <section class="trama-bg border-b-4 border-negro pt-[4rem] pb-8">
+    <div class="contenedor">
+      <h1 class="titulo-seccion text-4xl lg:text-5xl mb-4">Cómics</h1>
+      <div class="flex gap-1 mt-2 mb-6">
+        <div class="h-1 w-16 bg-rojo"></div>
+        <div class="h-1 flex-1 bg-negro"></div>
+      </div>
+      <p class="font-fredoka text-lg text-negro/70 max-w-3xl">
+        De ayer y de hoy. Cómics clásicos españoles de toda la vida y las mejores novedades actuales para todas las edades.
+      </p>
+    </div>
+  </section>
+
   <!-- Actuales -->
-  <SeccionKiosko titulo="Cómics actuales recomendados" fondo="crema" id="actuales">
+  <SeccionKiosko titulo="Cómics actuales recomendados" fondo="hueso" id="actuales">
     <div class="grid-comics">
       {actuales.map(comic => (
         <TarjetaComic
@@ -38,7 +52,7 @@ const actuales = todos.filter(c => c.data.tipo === 'actual').sort((a,b) => b.dat
   </SeccionKiosko>
 
   <!-- Clásicos -->
-  <SeccionKiosko titulo="Cómics clásicos recomendados" fondo="hueso" id="clasicos">
+  <SeccionKiosko titulo="Cómics clásicos recomendados" fondo="crema" id="clasicos">
     <div class="grid-comics">
       {clasicos.map(comic => (
         <TarjetaComic

@@ -17,18 +17,20 @@ juegos.sort((a, b) => b.data.fecha.getTime() - a.data.fecha.getTime());
 >
   <Header slot="header" />
 
-  <section class="contenedor pt-44 pb-8">
-    <h1 class="titulo-seccion text-4xl lg:text-5xl mb-4">Juegos de Mesa</h1>
-    <div class="flex gap-1 mt-2 mb-6">
-      <div class="h-1 w-16 bg-rojo"></div>
-      <div class="h-1 flex-1 bg-negro"></div>
+  <!-- Cabecera de Sección -->
+  <section class="trama-bg border-b-4 border-negro pt-[4rem] pb-8">
+    <div class="contenedor">
+      <h1 class="titulo-seccion text-4xl lg:text-5xl mb-4">Juegos de Mesa</h1>
+      <div class="flex gap-1 mt-2 mb-6">
+        <div class="h-1 w-16 bg-rojo"></div>
+        <div class="h-1 flex-1 bg-negro"></div>
+      </div>
+      <p class="font-fredoka text-lg text-negro/70 max-w-3xl">
+        En Tebeitos creemos que no hay nada mejor que apagar las pantallas, sentarse en la mesa del salón y sacar un tablero o un mazo de cartas. Aquí tienes nuestra selección de juegos que triunfan con niños de todas las edades y también divierten a los mayores.
+      </p>
     </div>
-    <p class="font-fredoka text-lg text-negro/70 mb-10 max-w-3xl">
-      En Tebeitos creemos que no hay nada mejor que apagar las pantallas, sentarse en la mesa del salón y sacar un tablero o un mazo de cartas. Aquí tienes nuestra selección de juegos que triunfan con niños de todas las edades y también divierten a los mayores.
-    </p>
   </section>
 
-  <!-- Lista de juegos -->
   <SeccionKiosko titulo="" fondo="hueso">
     <div class="grid-comics">
       {juegos.map(j => (

@@ -17,20 +17,23 @@ const ilustrados = todos.filter(c => c.data.tipo === 'ilustrado').sort((a,b) => 
 >
   <Header slot="header" />
 
-
-  <section class="contenedor pt-44 pb-4">
-    <h1 class="titulo-seccion text-4xl lg:text-5xl mb-4">Libros ilustrados</h1>
-    <div class="flex gap-1 mt-2 mb-6">
-      <div class="h-1 w-16 bg-rojo"></div>
-      <div class="h-1 flex-1 bg-negro"></div>
+  <!-- Cabecera de Sección -->
+  <section class="trama-bg border-b-4 border-negro pt-[4rem] pb-8">
+    <div class="contenedor">
+      <h1 class="titulo-seccion text-4xl lg:text-5xl mb-4">Libros ilustrados</h1>
+      <div class="flex gap-1 mt-2 mb-6">
+        <div class="h-1 w-16 bg-rojo"></div>
+        <div class="h-1 flex-1 bg-negro"></div>
+      </div>
+      <p class="font-fredoka text-lg text-negro/70 max-w-3xl">
+        Historias con muchos dibujos y pocas excusas para no leer. Para los que leen con los ojos y con el corazón. Perro Apestoso, Anna Kadabra, Isadora Moon y mucho más.
+      </p>
     </div>
-    <p class="font-fredoka text-lg text-negro/70 mb-10 max-w-3xl">
-      Historias con muchos dibujos y pocas excusas para no leer. Para los que leen con los ojos y con el corazón. Perro Apestoso, Anna Kadabra, Isadora Moon y mucho más.
-    </p>
   </section>
 
   <!-- Ilustrados -->
-  <SeccionKiosko titulo="" fondo="crema" id="ilustrados">
+  <SeccionKiosko titulo="" fondo="hueso" id="ilustrados">
+
     <div class="grid-comics">
       {ilustrados.map(comic => (
         <TarjetaComic

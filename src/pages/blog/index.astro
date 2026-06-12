@@ -16,8 +16,21 @@ const ordenados = articulos.sort((a, b) => b.data.fecha.valueOf() - a.data.fecha
 >
   <Header slot="header" />
 
-  <div class="pt-0">
-    <SeccionKiosko id="blog-seccion" titulo="El cuadernillo de Tebeitos" fondo="crema">
+  <!-- Cabecera de Sección -->
+  <section class="trama-bg border-b-4 border-negro pt-[4rem] pb-8">
+    <div class="contenedor">
+      <h1 class="titulo-seccion text-4xl lg:text-5xl mb-4">Blog</h1>
+      <div class="flex gap-1 mt-2 mb-6">
+        <div class="h-1 w-16 bg-rojo"></div>
+        <div class="h-1 flex-1 bg-negro"></div>
+      </div>
+      <p class="font-fredoka text-lg text-negro/70 max-w-3xl">
+        Guías, recomendaciones y artículos sobre cómics, cromos y juguetes retro. El cuadernillo de Tebeitos.
+      </p>
+    </div>
+  </section>
+
+  <SeccionKiosko id="blog-seccion" titulo="" fondo="hueso">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {ordenados.map(articulo => {
           const fecha = new Intl.DateTimeFormat('es-ES', {
@@ -58,18 +71,6 @@ const ordenados = articulos.sort((a, b) => b.data.fecha.valueOf() - a.data.fecha
         })}
       </div>
     </SeccionKiosko>
-  </div>
-
-  <style>
-    :global(#blog-seccion) {
-      padding-top: 1rem !important;
-    }
-    @media (min-width: 768px) {
-      :global(#blog-seccion) {
-        padding-top: 1.5rem !important;
-      }
-    }
-  </style>
 
   <Footer slot="footer" />
 </Base>
