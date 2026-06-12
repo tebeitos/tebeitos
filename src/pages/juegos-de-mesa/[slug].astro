@@ -1,0 +1,159 @@
+---
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import BotonAmazon from '../../components/BotonAmazon.astro';
+import BocadilloDestacado from '../../components/BocadilloDestacado.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const juegos = await getCollection('juegos');
+  return juegos.map(juego => ({
+    params: { slug: juego.slug },
+    props:  { juego },
+  }));
+}
+
+const { juego } = Astro.props;
+const { Content } = await juego.render();
+
+const descripcion = `Ficha y reseña de ${juego.data.title}. Juego de mesa de ${juego.data.marca} recomendado para niños de ${juego.data.edad} años. ¡Aprende cómo se juega y por qué nos gusta!`;
+
+const breadcrumbs = [
+  { label: 'Juegos de mesa', href: '/juegos-de-mesa/' },
+  { label: juego.data.title, href: '' },
+];
+
+// Query all games to build the "También te gustará" section matching slug values
+const allJuegos = await getCollection('juegos');
+const relatedSlugs = juego.data.temas || []; // fallback or custom array if we parser from text, but we also have also-like list in MDX body or metadata.
+// Actually, in the MDX files, there is a "También te gustará" list of slugs. Let's inspect if we can read them or find them.
+// Wait! The MDX files have:
+// ## También te gustará
+// - jungle-speed
+// - virus
+// - exploding-kittens
+// Since this is in the body, it renders as standard markdown bullets. But we could also find matching items from our games collection to display them nicely as rich cards!
+// Let's filter related games by comparing slug.
+const relatedGames = allJuegos.filter(j => 
+  juego.data.temas.some(tema => j.data.temas.includes(tema)) && j.slug !== juego.slug
+).slice(0, 3);
+---
+
+<Base title={juego.data.title} description={descripcion} breadcrumbs={breadcrumbs}>
+  <Header slot="header" />
+
+  <!-- Cabecera de la reseña -->
+  <section class="contenedor pt-36 pb-8">
+    <div class="flex flex-col lg:flex-row gap-8 items-start">
+
+      <!-- Portada / Imagen -->
+      <div class="w-full lg:w-56 flex-shrink-0">
+        <div class="comic-border aspect-[2/3] overflow-hidden bg-trama">
+          {juego.data.imagen ? (
+            <img
+              src={juego.data.imagen}
+              alt={`Imagen de ${juego.data.title}`}
+              class="w-full h-full object-contain bg-hueso p-1"
+              loading="eager"
+            />
+          ) : (
+            <div class="w-full h-full flex flex-col items-center justify-center gap-2">
+              <span class="text-2xl">🎲</span>
+              <span class="font-fredoka text-xs text-center">Imagen próximamente</span>
+            </div>
+          )}
+        </div>
+      </div>
+
+      <!-- Info principal -->
+      <div class="flex-1">
+        <!-- Etiqueta tipo -->
+        <span class="inline-block font-fredoka text-xs px-3 py-1 border-2 border-negro mb-3 bg-mostaza text-negro font-bold">
+          🎲 JUEGO DE MESA
+        </span>
+
+        <h1 class="titulo-seccion text-4xl lg:text-5xl mb-2">{juego.data.title}</h1>
+        <p class="font-fredoka text-lg text-terracota mb-4">
+          Editorial / Marca: {juego.data.marca}
+        </p>
+
+        <!-- Temas -->
+        <div class="flex flex-wrap gap-2 mb-6">
+          {juego.data.temas.map(tema => (
+            <span class="badge-edad font-nunito text-xs capitalize">{tema}</span>
+          ))}
+        </div>
+
+        <!-- Ficha rápida de juego -->
+        <div class="comic-border bg-mostaza">
+          <div class="bg-negro text-hueso px-4 py-2">
+            <span class="font-bangers text-lg tracking-bangers uppercase">Ficha del Kiosko</span>
+          </div>
+
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-0">
+            {[
+              { label: 'Edad recomendada', valor: `${juego.data.edad}` },
+              { label: 'Editorial / Distribución', valor: juego.data.marca },
+              { label: 'Precio aprox.', valor: `${juego.data.precio.toFixed(2)} €` },
+              { label: 'Nuestra nota', valor: `${juego.data.valoracion}/5 🗯` },
+            ].map(({ label, valor }) => (
+              <div class="px-4 py-3 border-b-2 border-negro/20 flex flex-col gap-0.5">
+                <span class="font-fredoka text-[10px] text-negro/60 uppercase tracking-wider">{label}</span>
+                <span class="font-fredoka text-sm font-bold text-negro">{valor}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Botón Amazon -->
+        <div class="mt-6">
+          <BotonAmazon url={juego.data.amazon} />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cuerpo MDX -->
+  <article class="contenedor pb-16">
+    <div class="max-w-3xl prose-tebeitos">
+      <Content />
+    </div>
+
+    <!-- CTA final -->
+    <div class="mt-12 max-w-3xl">
+      <BocadilloDestacado color="rojo">
+        ¿Quieres jugar a {juego.data.title} en familia? Encuéntralo en Amazon España con entrega rápida.
+      </BocadilloDestacado>
+      <div class="mt-4">
+        <BotonAmazon url={juego.data.amazon} texto="Comprar ahora en Amazon →" />
+      </div>
+    </div>
+
+    <!-- También te gustará (Sugerencias dinámicas debajo del contenido si hay similares) -->
+    {relatedGames.length > 0 && (
+      <div class="mt-16 border-t-4 border-negro pt-8">
+        <h3 class="font-bangers text-3xl text-negro tracking-bangers mb-6">Otros juegos que te encantarán</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+          {relatedGames.map(g => (
+            <a href={`/juegos-de-mesa/${g.slug}/`} class="comic-border bg-crema flex flex-col overflow-hidden group hover:shadow-comic transition-shadow duration-200">
+              <div class="aspect-[4/3] bg-trama border-b-3 border-negro overflow-hidden relative flex items-center justify-center">
+                {g.data.imagen ? (
+                  <img src={g.data.imagen} alt={g.data.title} class="w-full h-full object-contain p-2 bg-hueso" />
+                ) : (
+                  <span class="text-4xl">🎲</span>
+                )}
+              </div>
+              <div class="p-3 flex flex-col flex-1">
+                <span class="font-fredoka text-[9px] text-negro/50 mb-1">{g.data.edad} años</span>
+                <h4 class="font-bangers text-lg text-negro tracking-bangers group-hover:text-rojo transition-colors line-clamp-1">{g.data.title}</h4>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    )}
+  </article>
+
+  <Footer slot="footer" />
+</Base>

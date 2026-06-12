@@ -4,89 +4,11 @@ import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import SeccionKiosko from '../../components/SeccionKiosko.astro';
 import Onomatopeya from '../../components/Onomatopeya.astro';
+import { getCollection } from 'astro:content';
 
-const juegos = [
-  {
-    titulo: "Dobble",
-    desc: "El juego de rapidez visual y reflejos más divertido. Encuentra el símbolo repetido antes que nadie.",
-    marca: "Asmodee",
-    edad: "6+",
-    precio: 15.99,
-    valoracion: 5,
-    amazon: "https://www.amazon.es/s?k=dobble+juego&tag=tebeitos-21",
-    icono: "👀"
-  },
-  {
-    titulo: "Virus!",
-    desc: "El juego de cartas de contagios, órganos y vacunas más adictivo. Rápido, divertido y muy gamberro.",
-    marca: "Tranjis Games",
-    edad: "8+",
-    precio: 14.99,
-    valoracion: 5,
-    amazon: "https://www.amazon.es/s?k=virus+juego+de+cartas&tag=tebeitos-21",
-    icono: "🦠"
-  },
-  {
-    titulo: "Catan Junior",
-    desc: "Iníciate en la colonización de la isla de Catan como un intrépido pirata en esta genial versión infantil.",
-    marca: "Devir España",
-    edad: "6+",
-    precio: 29.99,
-    valoracion: 5,
-    amazon: "https://www.amazon.es/s?k=catan+junior&tag=tebeitos-21",
-    icono: "⛵"
-  },
-  {
-    titulo: "Dixit",
-    desc: "Usa tu imaginación, empatía y poesía en este deslumbrante juego de adivinar cartas ilustradas.",
-    marca: "Libellud",
-    edad: "8+",
-    precio: 32.99,
-    valoracion: 5,
-    amazon: "https://www.amazon.es/s?k=dixit+juego&tag=tebeitos-21",
-    icono: "🖼️"
-  },
-  {
-    titulo: "Jungle Speed",
-    desc: "Atrapa el tótem de madera al vuelo antes que tus rivales cuando las cartas coincidan. ¡Reflejos de acero!",
-    marca: "Asmodee",
-    edad: "7+",
-    precio: 21.99,
-    valoracion: 5,
-    amazon: "https://www.amazon.es/s?k=jungle+speed&tag=tebeitos-21",
-    icono: "🗿"
-  },
-  {
-    titulo: "Exploding Kittens",
-    desc: "Una versión gatuna de la ruleta rusa con mucha estrategia, desactivadores y gatos explosivos.",
-    marca: "Exploding Kittens",
-    edad: "7+",
-    precio: 19.99,
-    valoracion: 5,
-    amazon: "https://www.amazon.es/s?k=exploding+kittens+espanol&tag=tebeitos-21",
-    icono: "💥"
-  },
-  {
-    titulo: "Jenga",
-    desc: "Retira los bloques de madera uno a uno sin derribar la torre. Un juego clásico de pulso firme.",
-    marca: "Hasbro Gaming",
-    edad: "6+",
-    precio: 18.50,
-    valoracion: 5,
-    amazon: "https://www.amazon.es/s?k=jenga+clasico&tag=tebeitos-21",
-    icono: "🪵"
-  },
-  {
-    titulo: "Parchís y Oca de Madera",
-    desc: "El clásico tradicional. Lanza los dados, cómete una y cuenta veinte. Diversión multigeneracional.",
-    marca: "Clásico",
-    edad: "5+",
-    precio: 12.95,
-    valoracion: 5,
-    amazon: "https://www.amazon.es/s?k=parchis+madera+tradicional&tag=tebeitos-21",
-    icono: "🎲"
-  }
-];
+const juegos = await getCollection('juegos');
+// Sort by date or just keep them
+juegos.sort((a, b) => b.data.fecha.getTime() - a.data.fecha.getTime());
 ---
 
 <Base
@@ -135,37 +57,49 @@ const juegos = [
       {juegos.map(j => (
         <article class="comic-border bg-crema flex flex-col overflow-hidden group hover:shadow-comic-lg transition-shadow duration-200">
           <!-- Portada / Icono Placeholder -->
-          <div class="aspect-[2/3] bg-trama border-b-3 border-negro overflow-hidden relative flex flex-col items-center justify-center">
-            <div class="w-full h-full flex flex-col items-center justify-center gap-2 group-hover:bg-mostaza transition-colors duration-200">
-              <span class="text-6xl">{j.icono}</span>
-              <span class="font-fredoka text-[10px] text-negro/65 text-center px-2">Imagen<br/>próximamente</span>
-            </div>
-          </div>
+          <a href={`/juegos-de-mesa/${j.slug}/`} class="aspect-[2/3] bg-trama border-b-3 border-negro overflow-hidden relative flex flex-col items-center justify-center">
+            {j.data.imagen ? (
+              <img
+                src={j.data.imagen}
+                alt={`Imagen de ${j.data.title}`}
+                class="w-full h-full object-contain p-2 bg-hueso group-hover:scale-105 transition-transform duration-200"
+              />
+            ) : (
+              <div class="w-full h-full flex flex-col items-center justify-center gap-2 group-hover:bg-mostaza transition-colors duration-200">
+                <span class="text-6xl">🎲</span>
+                <span class="font-fredoka text-[10px] text-negro/65 text-center px-2">Imagen<br/>próximamente</span>
+              </div>
+            )}
+          </a>
 
           <!-- Info -->
           <div class="p-4 flex flex-col flex-1 gap-3">
             <div class="flex items-center justify-between">
-              <span class="font-fredoka text-[10px] px-2 py-0.5 border-2 border-negro bg-terracota text-hueso">
+              <span class="font-fredoka text-[10px] px-2 py-0.5 border-2 border-negro bg-terracota text-hueso font-bold">
                 🎲 JUEGO
               </span>
-              <span class="font-fredoka text-xs text-negro/60">
-                {j.edad} años
+              <span class="font-fredoka text-xs text-negro/60 font-semibold">
+                {j.data.edad} años
               </span>
             </div>
 
             <h3 class="font-bangers text-xl text-negro leading-tight tracking-bangers group-hover:text-rojo transition-colors duration-150 line-clamp-2">
-              {j.titulo}
+              <a href={`/juegos-de-mesa/${j.slug}/`}>
+                {j.data.title}
+              </a>
             </h3>
 
-            <p class="font-nunito text-xs text-negro/50 font-semibold">{j.marca}</p>
-            <p class="font-nunito text-xs text-negro/70 flex-1 leading-normal line-clamp-3">{j.desc}</p>
+            <p class="font-nunito text-xs text-negro/50 font-bold">{j.data.marca}</p>
+            <p class="font-nunito text-xs text-negro/70 flex-1 leading-normal line-clamp-3">
+              {j.body ? j.body.split('\n').find(line => line.trim().length > 0 && !line.startsWith('#')) : ''}
+            </p>
 
             <!-- Valoración -->
-            <div class="flex gap-1" aria-label={`Valoración: ${j.valoracion} de 5`} role="img">
+            <div class="flex gap-1" aria-label={`Valoración: ${j.data.valoracion} de 5`} role="img">
               {Array.from({ length: 5 }).map((_, i) => (
                 <svg
                   width="20" height="20" viewBox="0 0 24 24"
-                  class={i < j.valoracion ? 'fill-mostaza' : 'fill-trama/40'}
+                  class={i < j.data.valoracion ? 'fill-mostaza' : 'fill-trama/40'}
                   aria-hidden="true"
                 >
                   <path d="M12 2C6.48 2 2 5.58 2 10c0 2.54 1.37 4.82 3.5 6.35L4 22l5.5-2.5c.82.15 1.65.5 2.5.5 5.52 0 10-3.58 10-8S17.52 2 12 2z"/>
@@ -175,13 +109,13 @@ const juegos = [
 
             <!-- Precio y botón -->
             <div class="mt-auto flex items-center justify-between gap-2 pt-2 border-t-2 border-negro/10">
-              <span class="font-bangers text-xl text-negro tracking-wider">{j.precio.toFixed(2)} €</span>
+              <span class="font-bangers text-xl text-negro tracking-wider">{j.data.precio.toFixed(2)} €</span>
               <a
-                href={j.amazon}
+                href={j.data.amazon}
                 target="_blank"
                 rel="noopener noreferrer nofollow"
                 class="font-fredoka text-xs bg-rojo text-hueso px-3 py-2 border-2 border-negro shadow-comic-sm hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-none transition-all duration-100 flex items-center gap-1"
-                aria-label={`Comprar ${j.titulo} en Amazon`}
+                aria-label={`Comprar ${j.data.title} en Amazon`}
               >
                 🛒 Comprar
               </a>
