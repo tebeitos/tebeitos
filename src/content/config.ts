@@ -29,6 +29,10 @@ const blogCollection = defineCollection({
     categoria:   z.string(),
     imagen:      z.string().optional(),
     destacado:   z.boolean().default(false),
+    preguntas:   z.array(z.object({
+      q: z.string(),
+      a: z.string()
+    })).optional(),
   }),
 });
 

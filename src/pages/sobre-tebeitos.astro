@@ -11,6 +11,20 @@ import Onomatopeya from '../components/Onomatopeya.astro';
   description="Conoce la historia de Tebeitos: un proyecto de Alfonso y Vera (padre e hija) para traer de vuelta el kiosko de siempre a internet."
   breadcrumbs={[{ label: 'Sobre Tebeitos', href: '/sobre-tebeitos/' }]}
 >
+  <script type="application/ld+json" slot="head">
+    {
+      "@context": "https://schema.org",
+      "@type": "AboutPage",
+      "name": "Sobre Tebeitos — Alfonso y Vera",
+      "description": "Conoce la historia de Tebeitos: un proyecto de Alfonso y Vera (padre e hija) para traer de vuelta el kiosko de siempre a internet.",
+      "url": "https://tebeitos.vercel.app/sobre-tebeitos/",
+      "mainEntity": {
+        "@type": "Person",
+        "name": "Alfonso y Vera"
+      }
+    }
+  </script>
+
   <Header slot="header" />
 
   <!-- Hero -->

@@ -9,9 +9,10 @@ export interface Props {
   fecha: Date;
   categoria: string;
   imagen?: string;
+  preguntas?: { q: string; a: string; }[];
 }
 
-const { title, descripcion, fecha, categoria, imagen } = Astro.props;
+const { title, descripcion, fecha, categoria, imagen, preguntas } = Astro.props;
 
 const fechaFormateada = new Intl.DateTimeFormat('es-ES', {
   day: 'numeric',
@@ -23,9 +24,37 @@ const breadcrumbs = [
   { label: 'Blog', href: '/blog/' },
   { label: title, href: '' },
 ];
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": title,
+  "description": descripcion,
+  "datePublished": fecha instanceof Date ? fecha.toISOString() : new Date(fecha).toISOString(),
+  "author": {
+    "@type": "Person",
+    "name": "Alfonso y Vera"
+  },
+  "image": imagen ? (imagen.startsWith('http') ? imagen : `https://tebeitos.vercel.app${imagen}`) : undefined
+};
+
+const faqSchema = preguntas && preguntas.length > 0 ? {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": preguntas.map(p => ({
+    "@type": "Question",
+    "name": p.q,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": p.a
+    }
+  }))
+} : null;
 ---
 
 <Base title={title} description={descripcion} breadcrumbs={breadcrumbs}>
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(articleSchema)} />
+  {faqSchema && <script type="application/ld+json" slot="head" set:html={JSON.stringify(faqSchema)} />}
   <Header slot="header" />
 
   <!-- Cabecera del artículo -->
