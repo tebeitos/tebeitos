@@ -9,7 +9,7 @@ const colecciones = [
     titulo: "Panini Mundial 2026",
     desc: "El álbum más grande de la historia con 980 cromos y las 48 selecciones nacionales. Todos los detalles, precios y consejos.",
     href: "/cromos/panini-mundial-2026/",
-    imagen: "⚽",
+    imagen: "https://www.tradeinn.com/f/14313/143130823/panini-caja-expositora-de-50-paquetes-de-cromos-de-la-copa-mundial-de-la-fifa--2026.webp",
     badge: "🔥 Más buscado",
     badgeBg: "bg-rojo text-hueso"
   }
@@ -41,8 +41,12 @@ const colecciones = [
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl">
         {colecciones.map(c => (
           <article class="comic-border bg-hueso flex flex-col group hover:shadow-comic-lg transition-shadow duration-150">
-            <div class="h-48 bg-trama/40 border-b-3 border-negro flex items-center justify-center text-7xl relative">
-              <span>{c.imagen}</span>
+            <div class="h-48 bg-trama/40 border-b-3 border-negro flex items-center justify-center text-7xl relative overflow-hidden">
+              {c.imagen.startsWith('http') || c.imagen.startsWith('/') ? (
+                <img src={c.imagen} alt={c.titulo} class="w-full h-full object-cover" />
+              ) : (
+                <span>{c.imagen}</span>
+              )}
               <span class={`absolute top-4 right-4 font-fredoka text-xs px-2.5 py-1 border-2 border-negro ${c.badgeBg}`}>
                 {c.badge}
               </span>
