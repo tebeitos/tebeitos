@@ -181,7 +181,7 @@ const secciones = [
   <!-- ============================================================
        BLOQUE 4 — EN EL KIOSKO ESTA SEMANA
   ============================================================ -->
-  <section class="bg-crema border-y-4 border-negro py-12" id="kiosko-semana">
+  <section class="bg-crema border-y-4 border-negro pt-6 pb-12 md:py-14" id="kiosko-semana">
     <div class="contenedor">
 
       <!-- Título -->
@@ -191,7 +191,7 @@ const secciones = [
         </h2>
       </div>
 
-      <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-4 mb-10">
+      <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-4">
         {[
           { titulo: "Cometa", cover: "https://m.media-amazon.com/images/I/61Ci5ZxHsKL._AC_SL1500_.jpg", href: "/juguetes/cometa/", marca: "Generic Classic" },
           { titulo: "Yoyó", cover: "https://m.media-amazon.com/images/I/710GhJAOvFS._AC_SL1500_.jpg", href: "/juguetes/yoyo/", marca: "Artesanal" },
@@ -315,7 +315,7 @@ const secciones = [
   <!-- ============================================================
        BLOQUE 6 — ÚLTIMAS DEL BLOG
   ============================================================ -->
-  <SeccionKiosko titulo="El cuadernillo de Tebeitos" fondo="hueso" id="blog">
+  <SeccionKiosko titulo="El Blog de Tebeitos" fondo="hueso" id="blog">
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
       {recientes.map(articulo => {
         const fecha = new Intl.DateTimeFormat('es-ES', {
