@@ -41,7 +41,7 @@ const breadcrumbSchema = {
 
     <!-- SEO -->
     <meta name="google-site-verification" content="0TNbU4VklRPeistMJAdmX-LTRJRlmOCX4OStQpyU-bQ" />
-    <title>{title} | Tebeitos</title>
+    <title>{Astro.url.pathname === '/' ? title : `${title} | Tebeitos`}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalURL} />
 
