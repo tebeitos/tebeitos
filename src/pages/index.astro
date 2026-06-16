@@ -82,16 +82,16 @@ const secciones = [
   <!-- ============================================================
        BLOQUE 1 — HERO: La Resistencia
   ============================================================ -->
-  <section class="relative overflow-hidden border-b-4 border-negro pb-16 pt-12" style="background-color: #F3E9D2;">
-    <div class="contenedor relative z-10 flex flex-col items-center text-center max-w-4xl">
+  <section class="relative overflow-hidden border-b-4 border-negro pb-16 pt-4" style="background-color: #F3E9D2;">
+    <div class="contenedor relative z-10 flex flex-col items-center text-center max-w-5xl">
       
-      <!-- Imagen arriba y un poco más pequeña, con estética de la web -->
-      <div class="relative mb-8" style="transform: rotate(-1.5deg);">
-        <div class="comic-border-lg overflow-hidden shadow-[8px_8px_0px_#1B1714] w-full max-w-md sm:max-w-lg md:max-w-xl bg-negro">
+      <!-- Imagen arriba, aspect-ratio 21:9 en desktop, más cuadrada en móvil -->
+      <div class="relative mb-8 w-full flex justify-center" style="transform: rotate(-0.5deg);">
+        <div class="comic-border-lg overflow-hidden shadow-[8px_8px_0px_#1B1714] w-full max-w-md sm:max-w-lg md:max-w-none md:aspect-[21/9] bg-negro">
           <img
             src="/image/blog/la_resistencia.jpg"
             alt="Los cómics son peligrosos - La Resistencia"
-            class="w-full h-auto block object-cover"
+            class="w-full h-full block object-cover object-center"
           />
         </div>
       </div>
