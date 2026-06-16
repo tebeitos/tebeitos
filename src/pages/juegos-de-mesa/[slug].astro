@@ -54,7 +54,7 @@ const relatedGames = allJuegos.filter(j =>
             <img
               src={juego.data.imagen}
               alt={`Imagen de ${juego.data.title}`}
-              class="w-full h-full object-contain bg-hueso p-1"
+              class="w-full h-full object-contain bg-white p-1"
               loading="eager"
             />
           ) : (
@@ -139,7 +139,7 @@ const relatedGames = allJuegos.filter(j =>
             <a href={`/juegos-de-mesa/${g.slug}/`} class="comic-border bg-crema flex flex-col overflow-hidden group hover:shadow-comic transition-shadow duration-200">
               <div class="aspect-[4/3] bg-trama border-b-3 border-negro overflow-hidden relative flex items-center justify-center">
                 {g.data.imagen ? (
-                  <img src={g.data.imagen} alt={g.data.title} class="w-full h-full object-contain p-2 bg-hueso" />
+                  <img src={g.data.imagen} alt={g.data.title} class="w-full h-full object-contain p-2 bg-white" />
                 ) : (
                   <span class="text-4xl">🎲</span>
                 )}
