@@ -82,14 +82,31 @@ const secciones = [
   <!-- ============================================================
        BLOQUE 1 — HERO: La Resistencia
   ============================================================ -->
-  <section class="relative overflow-hidden border-b-4 border-negro" style="background-color: #F3E9D2;">
-    <div class="contenedor pt-16 pb-12 text-center relative z-10 max-w-4xl">
-      <h1 class="font-bangers text-5xl sm:text-6xl lg:text-8xl text-[#1B1714] leading-none tracking-bangers mb-4 uppercase">
+  <section class="relative overflow-hidden border-b-4 border-negro pb-16 pt-12" style="background-color: #F3E9D2;">
+    <div class="contenedor relative z-10 flex flex-col items-center text-center max-w-4xl">
+      
+      <!-- Imagen arriba y un poco más pequeña, con estética de la web -->
+      <div class="relative mb-8" style="transform: rotate(-1.5deg);">
+        <div class="comic-border-lg overflow-hidden shadow-[8px_8px_0px_#1B1714] w-full max-w-md sm:max-w-lg md:max-w-xl bg-negro">
+          <img
+            src="/image/blog/la_resistencia.jpg"
+            alt="Los cómics son peligrosos - La Resistencia"
+            class="w-full h-auto block object-cover"
+          />
+        </div>
+      </div>
+
+      <!-- Título -->
+      <h1 class="font-bangers text-4xl sm:text-5xl lg:text-7xl text-[#1B1714] leading-none tracking-bangers mb-4 uppercase">
         Los cómics son peligrosos.
       </h1>
+
+      <!-- Texto -->
       <p class="font-nunito text-lg sm:text-xl lg:text-2xl text-[#1B1714]/80 mb-8 max-w-2xl mx-auto leading-relaxed">
         Lo dijo un psiquiatra en 1954. Se equivocó.
       </p>
+
+      <!-- Botón cajetín en rojo -->
       <div>
         <a
           href="/blog/leer-lo-que-te-gusta-resistencia/"
@@ -99,15 +116,7 @@ const secciones = [
           Descubre por qué →
         </a>
       </div>
-    </div>
 
-    <!-- Imagen a ancho completo -->
-    <div class="w-full border-t-4 border-negro overflow-hidden bg-negro">
-      <img
-        src="/image/blog/la_resistencia.jpg"
-        alt="Los cómics son peligrosos - La Resistencia"
-        class="w-full h-auto object-cover max-h-[450px]"
-      />
     </div>
   </section>
 
