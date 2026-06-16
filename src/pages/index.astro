@@ -80,64 +80,34 @@ const secciones = [
   <Header slot="header" />
 
   <!-- ============================================================
-       BLOQUE 1 — HERO: Esta semana en el kiosko
+       BLOQUE 1 — HERO: La Resistencia
   ============================================================ -->
-  <section class="relative overflow-hidden trama-bg border-b-4 border-negro">
-    <div class="absolute inset-0 speed-lines opacity-40 pointer-events-none" aria-hidden="true"></div>
-
-    <div class="contenedor relative z-10 pt-16 pb-16 lg:py-12">
-      <div class="flex flex-col lg:flex-row items-center gap-6 lg:gap-16">
-
-        <!-- Texto izquierda -->
-        <div class="flex-1 text-center lg:text-left order-2 lg:order-1">
-
-          <h1 class="font-bangers text-5xl lg:text-7xl text-negro leading-none tracking-bangers mb-3"
-              style="text-shadow: 3px 3px 0 #E8A01B, 5px 5px 0 #1B1714;">
-            MUNDIAL PANINI 2026
-          </h1>
-
-          <p class="font-bangers text-2xl lg:text-3xl text-rojo tracking-bangers mb-5">
-            980 cromos · 48 selecciones · el más grande de la historia
-          </p>
-
-          <p class="font-nunito text-base text-negro/80 mb-8 max-w-lg mx-auto lg:mx-0 leading-relaxed">
-            Los quioscos llevan semanas sin stock. Aquí te contamos qué formatos hay,
-            cuánto cuesta completarlo de verdad y dónde comprarlo online.
-          </p>
-
-          <div class="flex flex-wrap gap-4 justify-center lg:justify-start">
-            <a
-              href="/cromos/panini-mundial-2026/"
-              class="font-bangers text-xl text-hueso bg-rojo px-8 py-3 border-3 border-negro shadow-comic hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-100 tracking-bangers"
-            >
-              VER GUÍA COMPLETA →
-            </a>
-          </div>
-        </div>
-
-        <!-- Cromo Lamine Yamal -->
-        <div class="flex-shrink-0 order-1 lg:order-2 relative flex items-center justify-center">
-
-          <!-- El cromo -->
-          <div class="relative z-10 mt-8 lg:mt-5" style="transform: rotate(-4deg);">
-            <div class="comic-border-lg overflow-hidden shadow-[8px_8px_0px_#1B1714] w-36 sm:w-44 lg:w-52">
-              <img
-                src="/image/jamine%20lamal.jpg"
-                alt="Lamine Yamal — Cromo Panini Mundial 2026"
-                width="220"
-                height="300"
-                class="w-full block"
-              />
-            </div>
-            <!-- Etiqueta "MÁS BUSCADO" -->
-            <div class="absolute -top-3 -right-3 bg-rojo border-2 border-negro px-2 py-1 rotate-6 z-20">
-              <span class="font-bangers text-xs text-hueso tracking-bangers">⭐ MÁS BUSCADO</span>
-            </div>
-          </div>
-
-        </div>
-
+  <section class="relative overflow-hidden border-b-4 border-negro" style="background-color: #F3E9D2;">
+    <div class="contenedor pt-16 pb-12 text-center relative z-10 max-w-4xl">
+      <h1 class="font-bangers text-5xl sm:text-6xl lg:text-8xl text-[#1B1714] leading-none tracking-bangers mb-4 uppercase">
+        Los cómics son peligrosos.
+      </h1>
+      <p class="font-nunito text-lg sm:text-xl lg:text-2xl text-[#1B1714]/80 mb-8 max-w-2xl mx-auto leading-relaxed">
+        Lo dijo un psiquiatra en 1954. Se equivocó.
+      </p>
+      <div>
+        <a
+          href="/blog/leer-lo-que-te-gusta-resistencia/"
+          class="font-bangers text-xl sm:text-2xl text-hueso px-10 py-4 border-3 border-negro shadow-comic hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-100 tracking-bangers inline-block"
+          style="background-color: #E1352A;"
+        >
+          Descubre por qué →
+        </a>
       </div>
+    </div>
+
+    <!-- Imagen a ancho completo -->
+    <div class="w-full border-t-4 border-negro overflow-hidden bg-negro">
+      <img
+        src="/image/blog/la_resistencia.jpg"
+        alt="Los cómics son peligrosos - La Resistencia"
+        class="w-full h-auto object-cover max-h-[450px]"
+      />
     </div>
   </section>
 
@@ -244,7 +214,69 @@ const secciones = [
   </section>
 
   <!-- ============================================================
-       BLOQUE 5 — BANNER NOSTALGIA
+       BLOQUE 5 — MUNDIAL PANINI 2026
+  ============================================================ -->
+  <section class="relative overflow-hidden trama-bg border-b-4 border-negro">
+    <div class="absolute inset-0 speed-lines opacity-40 pointer-events-none" aria-hidden="true"></div>
+
+    <div class="contenedor relative z-10 pt-16 pb-16 lg:py-12">
+      <div class="flex flex-col lg:flex-row items-center gap-6 lg:gap-16">
+
+        <!-- Texto izquierda -->
+        <div class="flex-1 text-center lg:text-left order-2 lg:order-1">
+
+          <h2 class="font-bangers text-5xl lg:text-7xl text-negro leading-none tracking-bangers mb-3"
+              style="text-shadow: 3px 3px 0 #E8A01B, 5px 5px 0 #1B1714;">
+            MUNDIAL PANINI 2026
+          </h2>
+
+          <p class="font-bangers text-2xl lg:text-3xl text-rojo tracking-bangers mb-5">
+            980 cromos · 48 selecciones · el más grande de la historia
+          </p>
+
+          <p class="font-nunito text-base text-negro/80 mb-8 max-w-lg mx-auto lg:mx-0 leading-relaxed">
+            Los quioscos llevan semanas sin stock. Aquí te contamos qué formatos hay,
+            cuánto cuesta completarlo de verdad y dónde comprarlo online.
+          </p>
+
+          <div class="flex flex-wrap gap-4 justify-center lg:justify-start">
+            <a
+              href="/cromos/panini-mundial-2026/"
+              class="font-bangers text-xl text-hueso bg-rojo px-8 py-3 border-3 border-negro shadow-comic hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-100 tracking-bangers"
+            >
+              VER GUÍA COMPLETA →
+            </a>
+          </div>
+        </div>
+
+        <!-- Cromo Lamine Yamal -->
+        <div class="flex-shrink-0 order-1 lg:order-2 relative flex items-center justify-center">
+
+          <!-- El cromo -->
+          <div class="relative z-10 mt-8 lg:mt-5" style="transform: rotate(-4deg);">
+            <div class="comic-border-lg overflow-hidden shadow-[8px_8px_0px_#1B1714] w-36 sm:w-44 lg:w-52">
+              <img
+                src="/image/jamine%20lamal.jpg"
+                alt="Lamine Yamal — Cromo Panini Mundial 2026"
+                width="220"
+                height="300"
+                class="w-full block"
+              />
+            </div>
+            <!-- Etiqueta "MÁS BUSCADO" -->
+            <div class="absolute -top-3 -right-3 bg-rojo border-2 border-negro px-2 py-1 rotate-6 z-20">
+              <span class="font-bangers text-xs text-hueso tracking-bangers">⭐ MÁS BUSCADO</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       BLOQUE 6 — BANNER NOSTALGIA
   ============================================================ -->
   <section class="bg-mostaza border-y-4 border-negro py-16 relative overflow-hidden">
     <!-- Onomatopeyas decorativas -->
