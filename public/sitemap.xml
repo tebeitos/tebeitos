@@ -3,81 +3,81 @@
 
   <!-- Home -->
   <url>
-    <loc>https://tebeitos.vercel.app/</loc>
+    <loc>https://tebeitos.com/</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
 
   <!-- Secciones principales -->
   <url>
-    <loc>https://tebeitos.vercel.app/comics/</loc>
+    <loc>https://tebeitos.com/comics/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://tebeitos.vercel.app/cromos/</loc>
+    <loc>https://tebeitos.com/cromos/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://tebeitos.vercel.app/cromos/panini-mundial-2026/</loc>
+    <loc>https://tebeitos.com/cromos/panini-mundial-2026/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
-    <loc>https://tebeitos.vercel.app/blog/</loc>
+    <loc>https://tebeitos.com/blog/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://tebeitos.vercel.app/sobre-tebeitos/</loc>
+    <loc>https://tebeitos.com/sobre-tebeitos/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <!-- Reseñas de cómics -->
   <url>
-    <loc>https://tebeitos.vercel.app/comics/dog-man/</loc>
+    <loc>https://tebeitos.com/comics/dog-man/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://tebeitos.vercel.app/comics/chiquigato/</loc>
+    <loc>https://tebeitos.com/comics/chiquigato/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://tebeitos.vercel.app/comics/capitan-calzoncillos/</loc>
+    <loc>https://tebeitos.com/comics/capitan-calzoncillos/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://tebeitos.vercel.app/comics/superpatata/</loc>
+    <loc>https://tebeitos.com/comics/superpatata/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://tebeitos.vercel.app/comics/isadora-moon/</loc>
+    <loc>https://tebeitos.com/comics/isadora-moon/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://tebeitos.vercel.app/comics/mortadelo-filemon/</loc>
+    <loc>https://tebeitos.com/comics/mortadelo-filemon/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://tebeitos.vercel.app/comics/zipi-zape/</loc>
+    <loc>https://tebeitos.com/comics/zipi-zape/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://tebeitos.vercel.app/comics/las-hermanas/</loc>
+    <loc>https://tebeitos.com/comics/las-hermanas/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://tebeitos.vercel.app/comics/asterix/</loc>
+    <loc>https://tebeitos.com/comics/asterix/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>

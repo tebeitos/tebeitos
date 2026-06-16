@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://tebeitos.vercel.app/sitemap.xml
+Sitemap: https://tebeitos.com/sitemap.xml

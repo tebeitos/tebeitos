@@ -4,7 +4,7 @@ import mdx from '@astrojs/mdx';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://tebeitos.vercel.app',
+  site: 'https://tebeitos.com',
   integrations: [
     tailwind({
       applyBaseStyles: false,
