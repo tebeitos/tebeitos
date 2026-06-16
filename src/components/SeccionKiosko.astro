@@ -3,9 +3,10 @@ export interface Props {
   titulo: string;
   fondo?: 'crema' | 'hueso' | 'negro';
   id?: string;
+  class?: string;
 }
 
-const { titulo, fondo = 'crema', id } = Astro.props;
+const { titulo, fondo = 'crema', id, class: className = '' } = Astro.props;
 
 const fondos: Record<string, string> = {
   crema: 'bg-crema trama-bg-sutil',
@@ -15,7 +16,7 @@ const fondos: Record<string, string> = {
 ---
 
 <section
-  class={`pt-6 pb-12 md:py-14 ${fondos[fondo]}`}
+  class={`pt-6 pb-12 md:py-14 ${fondos[fondo]} ${className}`}
   id={id}
 >
   <div class="contenedor">
