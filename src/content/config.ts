@@ -68,9 +68,26 @@ const juegosCollection = defineCollection({
   }),
 });
 
+const coleccionablesCollection = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title:      z.string(),
+    marca:      z.string(),
+    edad:       z.string(),
+    precio:     z.number(),
+    valoracion: z.number().min(1).max(5),
+    temas:      z.array(z.string()),
+    imagen:     z.string().optional(),
+    amazon:     z.string().url(),
+    fecha:      z.date(),
+    destacado:  z.boolean().default(false),
+  }),
+});
+
 export const collections = {
   comics:   comicsCollection,
   blog:     blogCollection,
   juguetes: juguetesCollection,
   juegos:   juegosCollection,
+  coleccionables: coleccionablesCollection,
 };

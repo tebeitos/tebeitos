@@ -1,0 +1,53 @@
+---
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import TarjetaColeccionable from '../../components/TarjetaColeccionable.astro';
+import SeccionKiosko from '../../components/SeccionKiosko.astro';
+import { getCollection } from 'astro:content';
+
+const coleccionables = await getCollection('coleccionables');
+const ordenados = coleccionables.sort((a,b) => b.data.fecha.valueOf() - a.data.fecha.valueOf());
+---
+
+<Base
+  title="Coleccionables — El Kiosko de Siempre"
+  description="Catálogo completo de figuras coleccionables de Schleich y Bullyland recomendadas por Tebeitos: personajes de siempre con calidad alemana."
+  breadcrumbs={[{ label: 'Coleccionables', href: '/coleccionables/' }]}
+>
+  <Header slot="header" />
+
+  <!-- Cabecera de Sección -->
+  <section class="trama-bg border-b-4 border-negro pt-6 pb-8">
+    <div class="contenedor">
+      <h1 class="titulo-seccion text-4xl lg:text-5xl mb-4">Coleccionables</h1>
+      <div class="flex gap-1 mt-2 mb-6">
+        <div class="h-1 w-16 bg-rojo"></div>
+        <div class="h-1 flex-1 bg-negro"></div>
+      </div>
+      <p class="font-fredoka text-lg text-negro/70 max-w-3xl">
+        Figuras de toda la vida. Las que se guardaban en una vitrina, las que se coleccionaban con devoción y las que siguen apareciendo en los kioskos de siempre. Calidad alemana, personajes de siempre.
+      </p>
+    </div>
+  </section>
+
+  <SeccionKiosko titulo="" fondo="hueso" id="coleccionables-lista">
+
+    <div class="grid-comics">
+      {ordenados.map(item => (
+        <TarjetaColeccionable
+          titulo={item.data.title}
+          slug={item.slug}
+          marca={item.data.marca}
+          edad={item.data.edad}
+          valoracion={item.data.valoracion}
+          precio={item.data.precio}
+          amazon={item.data.amazon}
+          imagen={item.data.imagen}
+        />
+      ))}
+    </div>
+  </SeccionKiosko>
+
+  <Footer slot="footer" />
+</Base>

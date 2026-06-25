@@ -1,0 +1,19 @@
+---
+import { getCollection } from 'astro:content';
+import ColeccionableLayout from '../../layouts/Coleccionable.astro';
+
+export async function getStaticPaths() {
+  const coleccionables = await getCollection('coleccionables');
+  return coleccionables.map(item => ({
+    params: { slug: item.slug },
+    props: { item },
+  }));
+}
+
+const { item } = Astro.props;
+const { Content } = await item.render();
+---
+
+<ColeccionableLayout {...item.data} slug={item.slug} imagen={item.data.imagen}>
+  <Content />
+</ColeccionableLayout>

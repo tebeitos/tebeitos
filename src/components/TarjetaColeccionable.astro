@@ -1,0 +1,84 @@
+---
+export interface Props {
+  titulo: string;
+  slug: string;
+  marca: string;
+  edad: string;
+  valoracion: number;
+  precio: number;
+  amazon: string;
+  imagen?: string;
+}
+
+const { titulo, slug, marca, edad, valoracion, precio, amazon, imagen } = Astro.props;
+---
+
+<article class="comic-border bg-crema flex flex-col overflow-hidden group hover:shadow-comic-lg transition-shadow duration-200">
+
+  <!-- Imagen -->
+  <a href={`/coleccionables/${slug}/`} class="block">
+    <div class="aspect-[2/3] bg-trama border-b-3 border-negro overflow-hidden relative flex flex-col items-center justify-center">
+      {imagen ? (
+        <img
+          src={imagen}
+          alt={`Imagen de ${titulo}`}
+          class="w-full h-full object-contain bg-white p-1 group-hover:scale-105 transition-transform duration-200"
+          loading="lazy"
+        />
+      ) : (
+        <div class="w-full h-full flex flex-col items-center justify-center gap-2 group-hover:bg-mostaza transition-colors duration-200">
+          <span class="text-4xl">🧸</span>
+          <span class="font-fredoka text-[10px] text-negro/60 text-center px-2">Imagen<br/>próximamente</span>
+        </div>
+      )}
+    </div>
+  </a>
+
+  <!-- Info -->
+  <div class="p-4 flex flex-col flex-1 gap-3">
+
+    <!-- Badge marca -->
+    <div class="flex items-center justify-between">
+      <span class="font-fredoka text-[10px] px-2 py-0.5 border-2 border-negro bg-mostaza text-negro">
+        {marca}
+      </span>
+      <span class="font-fredoka text-xs text-negro/60">
+        +{edad} años
+      </span>
+    </div>
+
+    <!-- Título -->
+    <a href={`/coleccionables/${slug}/`}>
+      <h3 class="font-bangers text-xl text-negro leading-tight tracking-bangers group-hover:text-rojo transition-colors duration-150 line-clamp-2">
+        {titulo}
+      </h3>
+    </a>
+
+    <!-- Valoración -->
+    <div class="flex gap-1" aria-label={`Valoración: ${valoracion} de 5`} role="img">
+      {Array.from({ length: 5 }).map((_, i) => (
+        <svg
+          width="20" height="20" viewBox="0 0 24 24"
+          class={i < valoracion ? 'fill-mostaza' : 'fill-trama/40'}
+          aria-hidden="true"
+        >
+          <path d="M12 2C6.48 2 2 5.58 2 10c0 2.54 1.37 4.82 3.5 6.35L4 22l5.5-2.5c.82.15 1.65.5 2.5.5 5.52 0 10-3.58 10-8S17.52 2 12 2z"/>
+        </svg>
+      ))}
+    </div>
+
+    <!-- Precio + botón -->
+    <div class="mt-auto flex items-center justify-between gap-2 pt-2 border-t-2 border-negro/10">
+      <span class="font-bangers text-xl text-negro tracking-wider">{precio.toFixed(2)} €</span>
+      <a
+        href={amazon}
+        target="_blank"
+        rel="noopener noreferrer nofollow"
+        class="font-fredoka text-xs bg-rojo text-hueso px-3 py-2 border-2 border-negro shadow-comic-sm hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-none transition-all duration-100 flex items-center gap-1"
+        aria-label={`Comprar ${titulo} en Amazon`}
+      >
+        🛒 Comprar
+      </a>
+    </div>
+  </div>
+</article>
