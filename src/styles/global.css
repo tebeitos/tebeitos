@@ -233,6 +233,10 @@ body {
   max-width: 70ch;
 }
 
+.prose-tebeitos > *:first-child {
+  margin-top: 0 !important;
+}
+
 .prose-tebeitos h2 {
   font-family: 'Bangers', cursive;
   font-size: 1.8rem;
