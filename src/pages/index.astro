@@ -15,9 +15,18 @@ const destacados = todosLosComics
 
 // Blog recientes
 const todosLosArticulos = await getCollection('blog');
-const recientes = todosLosArticulos
-  .sort((a, b) => b.data.fecha.valueOf() - a.data.fecha.valueOf())
-  .slice(0, 3);
+const ordenados = todosLosArticulos
+  .sort((a, b) => b.data.fecha.valueOf() - a.data.fecha.valueOf());
+
+const article1 = ordenados[0];
+const article2 = ordenados.find(a => a.slug === 'comics-clasicos-compartir-hijos');
+const article3 = ordenados.filter(a => a.slug !== article1.slug && a.slug !== article2?.slug)[0];
+
+const recientes = [
+  article1,
+  article2 || ordenados[1],
+  article3 || ordenados[2]
+];
 
 // Secciones del kiosko
 const secciones = [
