@@ -28,6 +28,7 @@ const blogCollection = defineCollection({
     fecha:       z.date(),
     categoria:   z.string(),
     imagen:      z.string().optional(),
+    imagen_portada: z.string().optional(),
     destacado:   z.boolean().default(false),
     preguntas:   z.array(z.object({
       q: z.string(),

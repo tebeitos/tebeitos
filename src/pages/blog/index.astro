@@ -39,10 +39,10 @@ const ordenados = articulos.sort((a, b) => b.data.fecha.valueOf() - a.data.fecha
 
           return (
             <article class="comic-border bg-crema flex flex-col group hover:shadow-comic-lg transition-shadow duration-150">
-              {articulo.data.imagen ? (
+              {articulo.data.imagen_portada || articulo.data.imagen ? (
                 <div class="h-44 overflow-hidden border-b-3 border-negro bg-crema relative">
                   <img
-                    src={articulo.data.imagen}
+                    src={articulo.data.imagen_portada || articulo.data.imagen}
                     alt={articulo.data.title}
                     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-200"
                     loading="lazy"
