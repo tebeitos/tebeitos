@@ -20,7 +20,7 @@ const ordenados = todosLosArticulos
 
 const article1 = ordenados[0];
 const article2 = ordenados.find(a => a.slug === 'comics-clasicos-compartir-hijos');
-const article3 = ordenados.filter(a => a.slug !== article1.slug && a.slug !== article2?.slug)[0];
+const article3 = ordenados.find(a => a.slug === 'anuncios-que-se-nos-quedaron-grabados');
 
 const recientes = [
   article1,
