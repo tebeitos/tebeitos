@@ -60,6 +60,13 @@ const secciones = [
     color: 'bg-negro',
     textColor: 'text-crema',
   },
+  {
+    href: '/coleccionables/',
+    icono: '✨',
+    titulo: 'Coleccionables',
+    desc: 'Schleich y Bullyland, las dos marcas de figuras que pasan de generación en generación.',
+    color: 'bg-mostaza',
+  },
 ];
 ---
 
@@ -125,7 +132,7 @@ const secciones = [
        BLOQUE 3 — SECCIONES DEL KIOSKO
   ============================================================ -->
   <SeccionKiosko titulo="Las secciones del kiosko" fondo="hueso" id="secciones">
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
       {secciones.map(s => (
         <a
           href={s.href}
